@@ -1,18 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { Button, Label, Input } from '../';
+import './App.css';
+import { SipContextProvider, PhoneComponent } from '../lib/store/SipContextProvider'; // Correct import path
+
 function App() {
-  const [count, setCount] = useState(0)
+  const baseUri = "sip.example.com";
+  const server = `ws:${baseUri}`;
+  const aor = `sip:user1@${baseUri}`;
+  const userAgentOptions = {
+    authorizationUsername: "user1",
+    authorizationPassword: "password",
+  }
+  const sipConfig = {
+    baseUri,
+    server,
+    aor,
+    userAgentOptions
+  }
 
   return (
-    <>
-      <Button>test</Button>
-      <Label>test</Label>
-      <Input />
-    </>
-  )
+    <SipContextProvider sipConfig={sipConfig} >
+      <PhoneComponent />
+    </SipContextProvider>
+  );
 }
 
-export default App
+export default App;
