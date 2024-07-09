@@ -9,16 +9,19 @@ This project demonstrates how to integrate SIP.js with a React application. It p
 - Node.js and npm installed on your machine
 - Basic understanding of React
 
-### Installation
+### Usage
 
 1. install the repository:
    npm install git+https://github.com/Winston87245/react-sip.git#master 
 2. import SipContextProvider
-  ```javascript
-  import { SipContextProvider, PhoneComponent } from 'react-sip';
-  ```
-3. Set Sip config
-  ```javascript
+   
+```ts
+import { SipContextProvider, PhoneComponent } from 'react-sip';
+```
+3. set sip config
+   
+```ts
+function App() {
   const sipConfig = {
     baseUri: "sip.example.com",
     server: "ws:sip.example.com",
@@ -26,14 +29,50 @@ This project demonstrates how to integrate SIP.js with a React application. It p
     userAgentOptions: {
       authorizationUsername: "user1",
       authorizationPassword: "password",
-     }
- }
-<SipContextProvider sipConfig={sipConfig} >
+    }
+  }
+
+  return (
+    <SipContextProvider sipConfig={sipConfig} >
       <PhoneComponent />
     </SipContextProvider>
+  );
+}
 ```
 
+or you use SipContext to build your own component
 
-### Exapmle
-./src/App.tsx
-	
+```ts
+import { SipContext } from 'react-sip';
+// Example of using the SipContext in a component
+const MyComponent: React.FC = () => {
+    const { state, call, hangup } = React.useContext(SipContext);
+    const [destination, setDestination] = useState('');
+
+    const handleCall = () => {
+        call(destination);
+    };
+
+    const handleHangup = () => {
+        hangup();
+    };
+
+    return (
+        <div>
+            <input
+                type="text"
+                value={destination}
+                onChange={(e) => setDestination(e.target.value)}
+                placeholder="Enter destination"
+            />
+            <button onClick={handleCall} disabled={state !== SipState.idle}>
+                Call
+            </button>
+            <button onClick={handleHangup} disabled={state !== SipState.connected}>
+                Hang Up
+            </button>
+            <div>Current State: {state}</div>
+        </div>
+    );
+}
+```
