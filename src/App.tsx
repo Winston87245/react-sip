@@ -1,19 +1,19 @@
 import './App.css';
-import { SipContextProvider, PhoneComponent } from '../lib/store/SipContextProvider'; // Correct import path
+import { SipContextProvider, SipContext, PhoneComponent } from '../lib/store/SipContextProvider'; // Correct import path
 
 function App() {
-  const baseUri = "sip.example.com";
-  const server = `ws:${baseUri}`;
-  const aor = `sip:user1@${baseUri}`;
   const userAgentOptions = {
     authorizationUsername: "user1",
     authorizationPassword: "password",
   }
   const sipConfig = {
-    baseUri,
-    server,
-    aor,
-    userAgentOptions
+    baseUri: "sip.example.com",
+    server: "ws:sip.example.com",
+    aor: "sip:user1@sip.example.com",
+    userAgentOptions: {
+      authorizationUsername: "user1",
+      authorizationPassword: "password",
+    }
   }
 
   return (
