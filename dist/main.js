@@ -1,8 +1,6 @@
-import { Button as t } from "./components/Button/index.js";
-import { Input as p } from "./components/Input/index.js";
-import { Label as m } from "./components/Label/index.js";
+import { PhoneComponent as t, SipContext as n, SipContextProvider as p } from "./store/SipContextProvider.js";
 export {
-  t as Button,
-  p as Input,
-  m as Label
+  t as PhoneComponent,
+  n as SipContext,
+  p as SipContextProvider
 };

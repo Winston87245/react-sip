@@ -21,13 +21,13 @@ interface SipContextProps {
     hangup: () => void;
 }
 
-export const SipContext = createContext<SipContextProps>({
+ const SipContext = createContext<SipContextProps>({
     state: SipState.idle,
-    call: (destination: string) => { },
+    call: (destination: string) => { destination },
     hangup: () => { },
 });
 
-export const SipContextProvider: React.FC<PropsWithChildren<{ sipConfig: { baseUri: string, server: string, aor: string, userAgentOptions: UserAgentOptions } }>> = ({ children, sipConfig }) => {
+ const SipContextProvider: React.FC<PropsWithChildren<{ sipConfig: { baseUri: string, server: string, aor: string, userAgentOptions: UserAgentOptions } }>> = ({ children, sipConfig }) => {
     const [sipState, setSipState] = useState<SipState>(SipState.idle);
     const audioRef = useRef<HTMLAudioElement>(null);
     const simpleUserRef = useRef<Web.SimpleUser | null>(null);
@@ -189,4 +189,4 @@ const PhoneComponent: React.FC = () => {
     );
 };
 
-export default PhoneComponent;
+export { SipContextProvider, SipContext, PhoneComponent };
