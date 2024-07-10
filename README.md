@@ -76,3 +76,21 @@ const MyComponent: React.FC = () => {
     );
 }
 ```
+
+## Contribution
+
+Contributions are always welcome! If you'd like to contribute, please follow these steps:
+
+1. Fork the repository.
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request.
+
+Please make sure to update tests as appropriate.
+
+git commit -m "Add README with project overview and getting started guide"
+
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
