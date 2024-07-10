@@ -1,0 +1,23 @@
+/* main color #99e9f2 */
+/* grey color #0c8599 */
+
+.phoneIcon {
+    width: 50px;
+    height: 50px;
+    fill: #0b7285;
+}
+
+.draggablePhone {
+    cursor: pointer;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #99e9f2;
+    border-radius: 50%;
+    filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+}
+
+.dragging {
+    cursor: grabbing;
+}

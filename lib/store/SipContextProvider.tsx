@@ -21,13 +21,13 @@ interface SipContextProps {
     hangup: () => void;
 }
 
- const SipContext = createContext<SipContextProps>({
+const SipContext = createContext<SipContextProps>({
     state: SipState.idle,
     call: (destination: string) => { destination },
     hangup: () => { },
 });
 
- const SipContextProvider: React.FC<PropsWithChildren<{ sipConfig: { baseUri: string, server: string, aor: string, userAgentOptions: UserAgentOptions } }>> = ({ children, sipConfig }) => {
+const SipContextProvider: React.FC<PropsWithChildren<{ sipConfig: { baseUri: string, server: string, aor: string, userAgentOptions: UserAgentOptions } }>> = ({ children, sipConfig }) => {
     const [sipState, setSipState] = useState<SipState>(SipState.idle);
     const audioRef = useRef<HTMLAudioElement>(null);
     const simpleUserRef = useRef<Web.SimpleUser | null>(null);
@@ -157,36 +157,5 @@ interface SipContextProps {
     );
 };
 
-// Example of using the SipContext in a component
-const SoftPhone: React.FC = () => {
-    const { state, call, hangup } = React.useContext(SipContext);
-    const [destination, setDestination] = useState('');
 
-    const handleCall = () => {
-        call(destination);
-    };
-
-    const handleHangup = () => {
-        hangup();
-    };
-
-    return (
-        <div>
-            <input
-                type="text"
-                value={destination}
-                onChange={(e) => setDestination(e.target.value)}
-                placeholder="Enter destination"
-            />
-            <button onClick={handleCall} disabled={state !== SipState.idle}>
-                Call
-            </button>
-            <button onClick={handleHangup} disabled={state !== SipState.connected}>
-                Hang Up
-            </button>
-            <div>Current State: {state}</div>
-        </div>
-    );
-};
-
-export { SipContextProvider, SipContext, SoftPhone };
+export { SipContextProvider, SipContext, SipState };

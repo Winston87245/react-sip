@@ -1,6 +1,6 @@
 import './App.css';
-import { SipContextProvider, SoftPhone } from '../lib/store/SipContextProvider'; // Correct import path
-
+import { SipContextProvider } from '../lib/store/SipContextProvider';
+import { SoftPhone } from '../lib/components/SoftPhone';
 function App() {
   const sipConfig = {
     baseUri: "sip.example.com",
