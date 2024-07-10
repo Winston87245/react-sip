@@ -35,7 +35,6 @@ const SoftPhone: React.FC = () => {
     useEffect(() => {
         window.addEventListener('mousemove', handleMouseMove);
         window.addEventListener('mouseup', handleMouseUp);
-        console.log('useEffect');
         return () => {
             window.removeEventListener('mousemove', handleMouseMove);
             window.removeEventListener('mouseup', handleMouseUp);
