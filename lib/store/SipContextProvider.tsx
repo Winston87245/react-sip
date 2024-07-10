@@ -158,7 +158,7 @@ interface SipContextProps {
 };
 
 // Example of using the SipContext in a component
-const PhoneComponent: React.FC = () => {
+const SoftPhone: React.FC = () => {
     const { state, call, hangup } = React.useContext(SipContext);
     const [destination, setDestination] = useState('');
 
@@ -189,4 +189,4 @@ const PhoneComponent: React.FC = () => {
     );
 };
 
-export { SipContextProvider, SipContext, PhoneComponent };
+export { SipContextProvider, SipContext, SoftPhone };

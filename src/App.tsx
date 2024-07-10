@@ -1,5 +1,5 @@
 import './App.css';
-import { SipContextProvider, SipContext, PhoneComponent } from '../lib/store/SipContextProvider'; // Correct import path
+import { SipContextProvider, SoftPhone } from '../lib/store/SipContextProvider'; // Correct import path
 
 function App() {
   const sipConfig = {
@@ -14,7 +14,7 @@ function App() {
 
   return (
     <SipContextProvider sipConfig={sipConfig} >
-      <PhoneComponent />
+      <SoftPhone />
     </SipContextProvider>
   );
 }

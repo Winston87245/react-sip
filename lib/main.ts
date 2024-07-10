@@ -1,1 +1,1 @@
-export { SipContextProvider, SipContext, PhoneComponent } from './store/SipContextProvider';
+export { SipContextProvider, SipContext, SoftPhone } from './store/SipContextProvider';
