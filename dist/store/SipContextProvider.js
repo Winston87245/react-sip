@@ -1,12 +1,12 @@
-import { jsxs as ke, jsx as ve } from "react/jsx-runtime";
-import dt, { createContext as ht, useState as We, useRef as Be, useEffect as lt } from "react";
-const ut = "0.21.1";
+import { jsxs as nt, jsx as at } from "react/jsx-runtime";
+import { createContext as ot, useState as ct, useRef as Ue, useEffect as dt } from "react";
+const ht = "0.21.1";
 class ae extends Error {
   constructor(e) {
     super(e), Object.setPrototypeOf(this, new.target.prototype);
   }
 }
-class qe extends ae {
+class _e extends ae {
   constructor(e) {
     super(e || "Unsupported content type.");
   }
@@ -17,12 +17,12 @@ class fe extends ae {
     super(e || "Request pending.");
   }
 }
-class gt extends ae {
+class lt extends ae {
   constructor(e) {
     super(e || "Unspecified session description handler error.");
   }
 }
-class Ae extends ae {
+class Ie extends ae {
   constructor() {
     super("The session has terminated.");
   }
@@ -32,7 +32,7 @@ class le extends ae {
     super(e || "An error occurred during state transition.");
   }
 }
-class ft {
+class ut {
   /** @internal */
   constructor(e) {
     this.incomingAckRequest = e;
@@ -42,7 +42,7 @@ class ft {
     return this.incomingAckRequest.message;
   }
 }
-class pt {
+class gt {
   /** @internal */
   constructor(e) {
     this.incomingByeRequest = e;
@@ -60,7 +60,7 @@ class pt {
     return this.incomingByeRequest.reject(e), Promise.resolve();
   }
 }
-class mt {
+class ft {
   /** @internal */
   constructor(e) {
     this.incomingCancelRequest = e;
@@ -132,7 +132,7 @@ class pe {
     return this.addListener(e, { once: !0 });
   }
 }
-class wt {
+class pt {
   /** @internal */
   constructor(e) {
     this.incomingInfoRequest = e;
@@ -150,7 +150,7 @@ class wt {
     return this.incomingInfoRequest.reject(e), Promise.resolve();
   }
 }
-class Ye {
+class Ge {
   constructor(e) {
     this.parameters = {};
     for (const t in e)
@@ -176,7 +176,7 @@ class Ye {
     this.parameters = {};
   }
 }
-class N extends Ye {
+class N extends Ge {
   /**
    * Constructor
    * @param uri -
@@ -206,7 +206,7 @@ class N extends Ye {
     return e;
   }
 }
-class J extends Ye {
+class J extends Ge {
   /**
    * Constructor
    * @param scheme -
@@ -219,8 +219,8 @@ class J extends Ye {
   constructor(e = "sip", t, r, s, i, n) {
     if (super(i || {}), this.headers = {}, !r)
       throw new TypeError('missing or invalid "host" parameter');
-    for (const a in n)
-      n.hasOwnProperty(a) && this.setHeader(a, n[a]);
+    for (const o in n)
+      n.hasOwnProperty(o) && this.setHeader(o, n[o]);
     this.raw = {
       scheme: e,
       user: t,
@@ -335,27 +335,27 @@ class J extends Ye {
     return t[i] && (i = t[i]), i;
   }
 }
-function Le(o, e) {
-  if (o.scheme !== e.scheme || o.user !== e.user || o.host !== e.host || o.port !== e.port)
+function je(a, e) {
+  if (a.scheme !== e.scheme || a.user !== e.user || a.host !== e.host || a.port !== e.port)
     return !1;
   function t(i, n) {
-    const a = Object.keys(i.parameters), d = Object.keys(n.parameters);
-    return !(!a.filter((f) => d.includes(f)).every((f) => i.parameters[f] === n.parameters[f]) || !["user", "ttl", "method", "transport"].every((f) => i.hasParam(f) && n.hasParam(f) || !i.hasParam(f) && !n.hasParam(f)) || !["maddr"].every((f) => i.hasParam(f) && n.hasParam(f) || !i.hasParam(f) && !n.hasParam(f)));
+    const o = Object.keys(i.parameters), d = Object.keys(n.parameters);
+    return !(!o.filter((f) => d.includes(f)).every((f) => i.parameters[f] === n.parameters[f]) || !["user", "ttl", "method", "transport"].every((f) => i.hasParam(f) && n.hasParam(f) || !i.hasParam(f) && !n.hasParam(f)) || !["maddr"].every((f) => i.hasParam(f) && n.hasParam(f) || !i.hasParam(f) && !n.hasParam(f)));
   }
-  if (!t(o, e))
+  if (!t(a, e))
     return !1;
-  const r = Object.keys(o.headers), s = Object.keys(e.headers);
+  const r = Object.keys(a.headers), s = Object.keys(e.headers);
   if (r.length !== 0 || s.length !== 0) {
     if (r.length !== s.length)
       return !1;
     const i = r.filter((n) => s.includes(n));
-    if (i.length !== s.length || !i.every((n) => o.headers[n].length && e.headers[n].length && o.headers[n][0] === e.headers[n][0]))
+    if (i.length !== s.length || !i.every((n) => a.headers[n].length && e.headers[n].length && a.headers[n][0] === e.headers[n][0]))
       return !1;
   }
   return !0;
 }
-function De(o, e, t) {
-  return t = t || " ", o.length > e ? o : (e -= o.length, t += t.repeat(e), o + t.slice(0, e));
+function Ae(a, e, t) {
+  return t = t || " ", a.length > e ? a : (e -= a.length, t += t.repeat(e), a + t.slice(0, e));
 }
 class oe extends Error {
   constructor(e, t, r, s) {
@@ -386,7 +386,7 @@ class oe extends Error {
           return m.description;
       }
     }
-    function a(m) {
+    function o(m) {
       const f = m.map(n);
       let w, E;
       if (f.sort(), f.length > 0) {
@@ -406,7 +406,7 @@ class oe extends Error {
     function d(m) {
       return m ? '"' + s(m) + '"' : "end of input";
     }
-    return "Expected " + a(e) + " but " + d(t) + " found.";
+    return "Expected " + o(e) + " but " + d(t) + " found.";
   }
   format(e) {
     let t = "Error: " + this.message;
@@ -419,12 +419,12 @@ class oe extends Error {
         }
       let i = this.location.start, n = this.location.source + ":" + i.line + ":" + i.column;
       if (r) {
-        let a = this.location.end, d = De("", i.line.toString().length, " "), m = r[i.line - 1], f = i.line === a.line ? a.column : m.length + 1;
+        let o = this.location.end, d = Ae("", i.line.toString().length, " "), m = r[i.line - 1], f = i.line === o.line ? o.column : m.length + 1;
         t += `
  --> ` + n + `
 ` + d + ` |
 ` + i.line + " | " + m + `
-` + d + " | " + De("", i.column - 1, " ") + De("", f - i.column, "^");
+` + d + " | " + Ae("", i.column - 1, " ") + Ae("", f - i.column, "^");
       } else
         t += `
  at ` + n;
@@ -432,7 +432,7 @@ class oe extends Error {
     return t;
   }
 }
-function vt(o, e) {
+function mt(a, e) {
   e = e !== void 0 ? e : {};
   const t = {}, r = e.grammarSource, s = { Contact: 119, Name_Addr_Header: 156, Record_Route: 176, Request_Response: 81, SIP_URI: 45, Subscription_State: 186, Supported: 191, Require: 182, Via: 194, absoluteURI: 84, Call_ID: 118, Content_Disposition: 130, Content_Length: 135, Content_Type: 136, CSeq: 146, displayName: 122, Event: 149, From: 151, host: 52, Max_Forwards: 154, Min_SE: 213, Proxy_Authenticate: 157, quoted_string: 40, Refer_To: 178, Replaces: 179, Session_Expires: 210, stun_URI: 217, To: 192, turn_URI: 223, uuid: 226, WWW_Authenticate: 209, challenge: 158, sipfrag: 230, Referred_By: 231 };
   let i = 119;
@@ -945,7 +945,7 @@ function vt(o, e) {
       return v;
     },
     function(h, v) {
-      return ot(h, v);
+      return st(h, v);
     },
     function(h) {
       e = e || { data: {} }, e.startRule === "Require" && (e.data = h || []);
@@ -1084,7 +1084,7 @@ function vt(o, e) {
     g("b", !1),
     "cid",
     g("cid", !1)
-  ], a = [
+  ], o = [
     c('2 ""6 7!'),
     c('4"""5!7#'),
     c('4$""5!7%'),
@@ -1323,17 +1323,17 @@ function vt(o, e) {
   ];
   let d = 0, m = 0;
   const f = [{ line: 1, column: 1 }];
-  let w = 0, E = [], I = 0, y;
+  let w = 0, E = [], I = 0, C;
   if (e.startRule !== void 0) {
     if (!(e.startRule in s))
       throw new Error(`Can't start parsing from rule "` + e.startRule + '".');
     i = s[e.startRule];
   }
   function S() {
-    return o.substring(m, d);
+    return a.substring(m, d);
   }
   function k() {
-    return Ie(m, d);
+    return Ce(m, d);
   }
   function g(h, v) {
     return { type: "literal", text: h, ignoreCase: v };
@@ -1344,7 +1344,7 @@ function vt(o, e) {
   function ye() {
     return { type: "end" };
   }
-  function Oe(h) {
+  function Fe(h) {
     let v = f[h], l;
     if (v)
       return v;
@@ -1354,11 +1354,11 @@ function vt(o, e) {
       line: v.line,
       column: v.column
     }; l < h; )
-      o.charCodeAt(l) === 10 ? (v.line++, v.column = 1) : v.column++, l++;
+      a.charCodeAt(l) === 10 ? (v.line++, v.column = 1) : v.column++, l++;
     return f[h] = v, v;
   }
-  function Ie(h, v) {
-    const l = Oe(h), L = Oe(v);
+  function Ce(h, v) {
+    const l = Fe(h), L = Fe(v);
     return {
       source: r,
       start: {
@@ -1373,22 +1373,22 @@ function vt(o, e) {
       }
     };
   }
-  function Ne(h) {
+  function Me(h) {
     d < w || (d > w && (w = d, E = []), E.push(h));
   }
-  function at(h, v, l) {
+  function rt(h, v, l) {
     return new oe(oe.buildMessage(h, v), h, v, l);
   }
   function c(h) {
     return h.split("").map((v) => v.charCodeAt(0) - 32);
   }
-  function Ue(h) {
-    const v = a[h];
+  function Oe(h) {
+    const v = o[h];
     let l = 0;
     const L = [];
     let D = v.length;
     const W = [], R = [];
-    let je;
+    let Ne;
     for (; ; ) {
       for (; l < D; )
         switch (v[l]) {
@@ -1429,7 +1429,7 @@ function vt(o, e) {
             R.push(R.splice(R.length - v[l + 1], v[l + 1])), l += 2;
             break;
           case 12:
-            R.push(o.substring(R.pop(), d)), l++;
+            R.push(a.substring(R.pop(), d)), l++;
             break;
           case 13:
             W.push(D), L.push(l + 3 + v[l + 1] + v[l + 2]), R[R.length - 1] ? (D = l + 3 + v[l + 1], l += 3) : (D = l + 3 + v[l + 1] + v[l + 2], l += 3 + v[l + 1]);
@@ -1444,25 +1444,25 @@ function vt(o, e) {
             R[R.length - 1] !== t ? (W.push(D), L.push(l), D = l + 2 + v[l + 1], l += 2) : l += 2 + v[l + 1];
             break;
           case 17:
-            W.push(D), L.push(l + 3 + v[l + 1] + v[l + 2]), o.length > d ? (D = l + 3 + v[l + 1], l += 3) : (D = l + 3 + v[l + 1] + v[l + 2], l += 3 + v[l + 1]);
+            W.push(D), L.push(l + 3 + v[l + 1] + v[l + 2]), a.length > d ? (D = l + 3 + v[l + 1], l += 3) : (D = l + 3 + v[l + 1] + v[l + 2], l += 3 + v[l + 1]);
             break;
           case 18:
-            W.push(D), L.push(l + 4 + v[l + 2] + v[l + 3]), o.substr(d, n[v[l + 1]].length) === n[v[l + 1]] ? (D = l + 4 + v[l + 2], l += 4) : (D = l + 4 + v[l + 2] + v[l + 3], l += 4 + v[l + 2]);
+            W.push(D), L.push(l + 4 + v[l + 2] + v[l + 3]), a.substr(d, n[v[l + 1]].length) === n[v[l + 1]] ? (D = l + 4 + v[l + 2], l += 4) : (D = l + 4 + v[l + 2] + v[l + 3], l += 4 + v[l + 2]);
             break;
           case 19:
-            W.push(D), L.push(l + 4 + v[l + 2] + v[l + 3]), o.substr(d, n[v[l + 1]].length).toLowerCase() === n[v[l + 1]] ? (D = l + 4 + v[l + 2], l += 4) : (D = l + 4 + v[l + 2] + v[l + 3], l += 4 + v[l + 2]);
+            W.push(D), L.push(l + 4 + v[l + 2] + v[l + 3]), a.substr(d, n[v[l + 1]].length).toLowerCase() === n[v[l + 1]] ? (D = l + 4 + v[l + 2], l += 4) : (D = l + 4 + v[l + 2] + v[l + 3], l += 4 + v[l + 2]);
             break;
           case 20:
-            W.push(D), L.push(l + 4 + v[l + 2] + v[l + 3]), n[v[l + 1]].test(o.charAt(d)) ? (D = l + 4 + v[l + 2], l += 4) : (D = l + 4 + v[l + 2] + v[l + 3], l += 4 + v[l + 2]);
+            W.push(D), L.push(l + 4 + v[l + 2] + v[l + 3]), n[v[l + 1]].test(a.charAt(d)) ? (D = l + 4 + v[l + 2], l += 4) : (D = l + 4 + v[l + 2] + v[l + 3], l += 4 + v[l + 2]);
             break;
           case 21:
-            R.push(o.substr(d, v[l + 1])), d += v[l + 1], l += 2;
+            R.push(a.substr(d, v[l + 1])), d += v[l + 1], l += 2;
             break;
           case 22:
             R.push(n[v[l + 1]]), d += n[v[l + 1]].length, l += 2;
             break;
           case 23:
-            R.push(t), I === 0 && Ne(n[v[l + 1]]), l += 2;
+            R.push(t), I === 0 && Me(n[v[l + 1]]), l += 2;
             break;
           case 24:
             m = R[R.length - 1 - v[l + 1]], l += 2;
@@ -1471,12 +1471,12 @@ function vt(o, e) {
             m = d, l++;
             break;
           case 26:
-            je = v.slice(l + 4, l + 4 + v[l + 3]).map(function(ct) {
-              return R[R.length - 1 - ct];
-            }), R.splice(R.length - v[l + 2], v[l + 2], n[v[l + 1]].apply(null, je)), l += 4 + v[l + 3];
+            Ne = v.slice(l + 4, l + 4 + v[l + 3]).map(function(it) {
+              return R[R.length - 1 - it];
+            }), R.splice(R.length - v[l + 2], v[l + 2], n[v[l + 1]].apply(null, Ne)), l += 4 + v[l + 3];
             break;
           case 27:
-            R.push(Ue(v[l + 1])), l += 2;
+            R.push(Oe(v[l + 1])), l += 2;
             break;
           case 28:
             I++, l++;
@@ -1495,38 +1495,38 @@ function vt(o, e) {
     return R[0];
   }
   e.data = {};
-  function ot(h, v) {
+  function st(h, v) {
     return [h].concat(v);
   }
-  if (y = Ue(i), y !== t && d === o.length)
-    return y;
-  throw y !== t && d < o.length && Ne(ye()), at(E, w < o.length ? o.charAt(w) : null, w < o.length ? Ie(w, w + 1) : Ie(w, w));
+  if (C = Oe(i), C !== t && d === a.length)
+    return C;
+  throw C !== t && d < a.length && Me(ye()), rt(E, w < a.length ? a.charAt(w) : null, w < a.length ? Ce(w, w + 1) : Ce(w, w));
 }
-const Tt = vt;
+const wt = mt;
 var P;
-(function(o) {
+(function(a) {
   function e(s, i) {
     const n = { startRule: i };
     try {
-      Tt(s, n);
+      wt(s, n);
     } catch {
       n.data = -1;
     }
     return n.data;
   }
-  o.parse = e;
+  a.parse = e;
   function t(s) {
-    const i = o.parse(s, "Name_Addr_Header");
+    const i = a.parse(s, "Name_Addr_Header");
     return i !== -1 ? i : void 0;
   }
-  o.nameAddrHeaderParse = t;
+  a.nameAddrHeaderParse = t;
   function r(s) {
-    const i = o.parse(s, "SIP_URI");
+    const i = a.parse(s, "SIP_URI");
     return i !== -1 ? i : void 0;
   }
-  o.URIParse = r;
+  a.URIParse = r;
 })(P = P || (P = {}));
-const bt = {
+const vt = {
   100: "Trying",
   180: "Ringing",
   181: "Call Is Being Forwarded",
@@ -1599,21 +1599,21 @@ const bt = {
   604: "Does Not Exist Anywhere",
   606: "Not Acceptable"
 };
-function ie(o, e = 32) {
+function ie(a, e = 32) {
   let t = "";
-  for (let r = 0; r < o; r++) {
+  for (let r = 0; r < a; r++) {
     const s = Math.floor(Math.random() * e);
     t += s.toString(e);
   }
   return t;
 }
-function Se(o) {
-  return bt[o] || "";
+function Re(a) {
+  return vt[a] || "";
 }
-function Ce() {
+function Se() {
   return ie(10);
 }
-function Y(o) {
+function Y(a) {
   const e = {
     "Call-Id": "Call-ID",
     Cseq: "CSeq",
@@ -1621,16 +1621,16 @@ function Y(o) {
     Rack: "RAck",
     Rseq: "RSeq",
     "Www-Authenticate": "WWW-Authenticate"
-  }, t = o.toLowerCase().replace(/_/g, "-").split("-"), r = t.length;
+  }, t = a.toLowerCase().replace(/_/g, "-").split("-"), r = t.length;
   let s = "";
   for (let i = 0; i < r; i++)
     i !== 0 && (s += "-"), s += t[i].charAt(0).toUpperCase() + t[i].substring(1);
   return e[s] && (s = e[s]), s;
 }
-function me(o) {
-  return encodeURIComponent(o).replace(/%[A-F\d]{2}/g, "U").length;
+function me(a) {
+  return encodeURIComponent(a).replace(/%[A-F\d]{2}/g, "U").length;
 }
-class Ze {
+class Ke {
   constructor() {
     this.headers = {};
   }
@@ -1727,22 +1727,22 @@ class Ze {
     return this.data;
   }
 }
-class ce extends Ze {
+class ce extends Ke {
   constructor() {
     super();
   }
 }
-class se extends Ze {
+class se extends Ke {
   constructor() {
     super();
   }
 }
 class ne {
-  constructor(e, t, r, s, i, n, a) {
-    this.headers = {}, this.extraHeaders = [], this.options = ne.getDefaultOptions(), i && (this.options = Object.assign(Object.assign({}, this.options), i), this.options.optionTags && this.options.optionTags.length && (this.options.optionTags = this.options.optionTags.slice()), this.options.routeSet && this.options.routeSet.length && (this.options.routeSet = this.options.routeSet.slice())), n && n.length && (this.extraHeaders = n.slice()), a && (this.body = {
-      body: a.content,
-      contentType: a.contentType
-    }), this.method = e, this.ruri = t.clone(), this.fromURI = r.clone(), this.fromTag = this.options.fromTag ? this.options.fromTag : Ce(), this.from = ne.makeNameAddrHeader(this.fromURI, this.options.fromDisplayName, this.fromTag), this.toURI = s.clone(), this.toTag = this.options.toTag, this.to = ne.makeNameAddrHeader(this.toURI, this.options.toDisplayName, this.toTag), this.callId = this.options.callId ? this.options.callId : this.options.callIdPrefix + ie(15), this.cseq = this.options.cseq, this.setHeader("route", this.options.routeSet), this.setHeader("via", ""), this.setHeader("to", this.to.toString()), this.setHeader("from", this.from.toString()), this.setHeader("cseq", this.cseq + " " + this.method), this.setHeader("call-id", this.callId), this.setHeader("max-forwards", "70");
+  constructor(e, t, r, s, i, n, o) {
+    this.headers = {}, this.extraHeaders = [], this.options = ne.getDefaultOptions(), i && (this.options = Object.assign(Object.assign({}, this.options), i), this.options.optionTags && this.options.optionTags.length && (this.options.optionTags = this.options.optionTags.slice()), this.options.routeSet && this.options.routeSet.length && (this.options.routeSet = this.options.routeSet.slice())), n && n.length && (this.extraHeaders = n.slice()), o && (this.body = {
+      body: o.content,
+      contentType: o.contentType
+    }), this.method = e, this.ruri = t.clone(), this.fromURI = r.clone(), this.fromTag = this.options.fromTag ? this.options.fromTag : Se(), this.from = ne.makeNameAddrHeader(this.fromURI, this.options.fromDisplayName, this.fromTag), this.toURI = s.clone(), this.toTag = this.options.toTag, this.to = ne.makeNameAddrHeader(this.toURI, this.options.toDisplayName, this.toTag), this.callId = this.options.callId ? this.options.callId : this.options.callIdPrefix + ie(15), this.cseq = this.options.cseq, this.setHeader("route", this.options.routeSet), this.setHeader("via", ""), this.setHeader("to", this.to.toString()), this.setHeader("from", this.from.toString()), this.setHeader("cseq", this.cseq + " " + this.method), this.setHeader("call-id", this.callId), this.setHeader("max-forwards", "70");
   }
   /** Get a copy of the default options. */
   static getDefaultOptions() {
@@ -1872,38 +1872,38 @@ class ne {
 `, e;
   }
 }
-function Je(o) {
-  return o === "application/sdp" ? "session" : "render";
+function We(a) {
+  return a === "application/sdp" ? "session" : "render";
 }
-function Ee(o) {
-  const e = typeof o == "string" ? o : o.body, t = typeof o == "string" ? "application/sdp" : o.contentType;
-  return { contentDisposition: Je(t), contentType: t, content: e };
+function be(a) {
+  const e = typeof a == "string" ? a : a.body, t = typeof a == "string" ? "application/sdp" : a.contentType;
+  return { contentDisposition: We(t), contentType: t, content: e };
 }
-function ze(o) {
-  return o && typeof o.content == "string" && typeof o.contentType == "string" && o.contentDisposition === void 0 ? !0 : typeof o.contentDisposition == "string";
+function Ye(a) {
+  return a && typeof a.content == "string" && typeof a.contentType == "string" && a.contentDisposition === void 0 ? !0 : typeof a.contentDisposition == "string";
 }
-function ge(o) {
+function ge(a) {
   let e, t, r;
-  if (o instanceof ce && o.body) {
-    const s = o.parseHeader("Content-Disposition");
-    e = s ? s.type : void 0, t = o.parseHeader("Content-Type"), r = o.body;
+  if (a instanceof ce && a.body) {
+    const s = a.parseHeader("Content-Disposition");
+    e = s ? s.type : void 0, t = a.parseHeader("Content-Type"), r = a.body;
   }
-  if (o instanceof se && o.body) {
-    const s = o.parseHeader("Content-Disposition");
-    e = s ? s.type : void 0, t = o.parseHeader("Content-Type"), r = o.body;
+  if (a instanceof se && a.body) {
+    const s = a.parseHeader("Content-Disposition");
+    e = s ? s.type : void 0, t = a.parseHeader("Content-Type"), r = a.body;
   }
-  if (o instanceof ne && o.body)
-    if (e = o.getHeader("Content-Disposition"), t = o.getHeader("Content-Type"), typeof o.body == "string") {
+  if (a instanceof ne && a.body)
+    if (e = a.getHeader("Content-Disposition"), t = a.getHeader("Content-Type"), typeof a.body == "string") {
       if (!t)
         throw new Error("Header content type header does not equal body content type.");
-      r = o.body;
+      r = a.body;
     } else {
-      if (t && t !== o.body.contentType)
+      if (t && t !== a.body.contentType)
         throw new Error("Header content type header does not equal body content type.");
-      t = o.body.contentType, r = o.body.body;
+      t = a.body.contentType, r = a.body.body;
     }
-  if (ze(o) && (e = o.contentDisposition, t = o.contentType, r = o.content), !!r) {
-    if (t && !e && (e = Je(t)), !e)
+  if (Ye(a) && (e = a.contentDisposition, t = a.contentType, r = a.content), !!r) {
+    if (t && !e && (e = We(t)), !e)
       throw new Error("Content disposition undefined.");
     if (!t)
       throw new Error("Content type undefined.");
@@ -1915,24 +1915,24 @@ function ge(o) {
   }
 }
 var V;
-(function(o) {
-  o.Initial = "Initial", o.Early = "Early", o.AckWait = "AckWait", o.Confirmed = "Confirmed", o.Terminated = "Terminated";
+(function(a) {
+  a.Initial = "Initial", a.Early = "Early", a.AckWait = "AckWait", a.Confirmed = "Confirmed", a.Terminated = "Terminated";
 })(V = V || (V = {}));
 var T;
-(function(o) {
-  o.Initial = "Initial", o.HaveLocalOffer = "HaveLocalOffer", o.HaveRemoteOffer = "HaveRemoteOffer", o.Stable = "Stable", o.Closed = "Closed";
+(function(a) {
+  a.Initial = "Initial", a.HaveLocalOffer = "HaveLocalOffer", a.HaveRemoteOffer = "HaveRemoteOffer", a.Stable = "Stable", a.Closed = "Closed";
 })(T = T || (T = {}));
-const X = 500, Et = 4e3, He = 5e3, F = {
+const X = 500, Tt = 4e3, De = 5e3, F = {
   T1: X,
-  T2: Et,
-  T4: He,
+  T2: Tt,
+  T4: De,
   TIMER_B: 64 * X,
   TIMER_D: 0 * X,
   TIMER_F: 64 * X,
   TIMER_H: 64 * X,
-  TIMER_I: 0 * He,
+  TIMER_I: 0 * De,
   TIMER_J: 0 * X,
-  TIMER_K: 0 * He,
+  TIMER_K: 0 * De,
   TIMER_L: 64 * X,
   TIMER_M: 64 * X,
   TIMER_N: 64 * X,
@@ -1945,8 +1945,8 @@ class ee extends ae {
   }
 }
 var b;
-(function(o) {
-  o.ACK = "ACK", o.BYE = "BYE", o.CANCEL = "CANCEL", o.INFO = "INFO", o.INVITE = "INVITE", o.MESSAGE = "MESSAGE", o.NOTIFY = "NOTIFY", o.OPTIONS = "OPTIONS", o.REGISTER = "REGISTER", o.UPDATE = "UPDATE", o.SUBSCRIBE = "SUBSCRIBE", o.PUBLISH = "PUBLISH", o.REFER = "REFER", o.PRACK = "PRACK";
+(function(a) {
+  a.ACK = "ACK", a.BYE = "BYE", a.CANCEL = "CANCEL", a.INFO = "INFO", a.INVITE = "INVITE", a.MESSAGE = "MESSAGE", a.NOTIFY = "NOTIFY", a.OPTIONS = "OPTIONS", a.REGISTER = "REGISTER", a.UPDATE = "UPDATE", a.SUBSCRIBE = "SUBSCRIBE", a.PUBLISH = "PUBLISH", a.REFER = "REFER", a.PRACK = "PRACK";
 })(b = b || (b = {}));
 const te = [
   b.ACK,
@@ -1962,7 +1962,7 @@ const te = [
   b.REGISTER,
   b.SUBSCRIBE
 ];
-class Xe {
+class Ze {
   /** @internal */
   constructor(e) {
     this.incomingMessageRequest = e;
@@ -1980,7 +1980,7 @@ class Xe {
     return this.incomingMessageRequest.reject(e), Promise.resolve();
   }
 }
-class Fe {
+class ke {
   /** @internal */
   constructor(e) {
     this.incomingNotifyRequest = e;
@@ -1998,7 +1998,7 @@ class Fe {
     return this.incomingNotifyRequest.reject(e), Promise.resolve();
   }
 }
-class xt {
+class bt {
   /** @internal */
   constructor(e, t) {
     this.incomingReferRequest = e, this.session = t;
@@ -2053,8 +2053,8 @@ class xt {
   }
 }
 var p;
-(function(o) {
-  o.Initial = "Initial", o.Establishing = "Establishing", o.Established = "Established", o.Terminating = "Terminating", o.Terminated = "Terminated";
+(function(a) {
+  a.Initial = "Initial", a.Establishing = "Establishing", a.Established = "Established", a.Terminating = "Terminating", a.Terminated = "Terminated";
 })(p = p || (p = {}));
 class de {
   /**
@@ -2266,11 +2266,11 @@ class de {
           return;
         }
         if (e.withoutSdp) {
-          const a = {
+          const o = {
             sessionDescriptionHandlerOptions: this.sessionDescriptionHandlerOptionsReInvite,
             sessionDescriptionHandlerModifiers: this.sessionDescriptionHandlerModifiersReInvite
           };
-          this.setOfferAndGetAnswer(n, a).then((d) => {
+          this.setOfferAndGetAnswer(n, o).then((d) => {
             i.ack({ body: d });
           }).catch((d) => {
             this.logger.error("Failed to handle offer in 2xx response to re-INVITE"), this.logger.error(d.message), this.state === p.Terminated ? i.ack() : (this.ackAndBye(i, 488, "Bad Media Description"), this.stateTransition(p.Terminated));
@@ -2278,11 +2278,11 @@ class de {
             this.pendingReinvite = !1, e.requestDelegate && e.requestDelegate.onAccept && e.requestDelegate.onAccept(i);
           });
         } else {
-          const a = {
+          const o = {
             sessionDescriptionHandlerOptions: this.sessionDescriptionHandlerOptionsReInvite,
             sessionDescriptionHandlerModifiers: this.sessionDescriptionHandlerModifiersReInvite
           };
-          this.setAnswer(n, a).then(() => {
+          this.setAnswer(n, o).then(() => {
             i.ack();
           }).catch((d) => {
             this.logger.error("Failed to handle answer in 2xx response to re-INVITE"), this.logger.error(d.message), this.state !== p.Terminated ? (this.ackAndBye(i, 488, "Bad Media Description"), this.stateTransition(p.Terminated)) : i.ack();
@@ -2302,8 +2302,8 @@ class de {
           if (this.logger.error("Failed to rollback offer on non-2xx response to re-INVITE"), this.logger.error(n.message), this.state !== p.Terminated) {
             if (!this.dialog)
               throw new Error("Dialog undefined.");
-            const a = [];
-            a.push("Reason: " + this.getReasonHeaderValue(500, "Internal Server Error")), this.dialog.bye(void 0, { extraHeaders: a }), this.stateTransition(p.Terminated);
+            const o = [];
+            o.push("Reason: " + this.getReasonHeaderValue(500, "Internal Server Error")), this.dialog.bye(void 0, { extraHeaders: o }), this.stateTransition(p.Terminated);
           }
         }).then(() => {
           e.requestDelegate && e.requestDelegate.onReject && e.requestDelegate.onReject(i);
@@ -2453,7 +2453,7 @@ class de {
       sessionDescriptionHandlerModifiers: this.pendingReinviteAck ? this._sessionDescriptionHandlerModifiersReInvite : this._sessionDescriptionHandlerModifiers
     };
     if (this.delegate && this.delegate.onAck) {
-      const s = new ft(e);
+      const s = new ut(e);
       this.delegate.onAck(s);
     }
     switch (this.pendingReinviteAck = !1, t.signalingState) {
@@ -2496,7 +2496,7 @@ class de {
       return;
     }
     if (this.delegate && this.delegate.onBye) {
-      const t = new pt(e);
+      const t = new gt(e);
       this.delegate.onBye(t);
     } else
       e.accept();
@@ -2512,7 +2512,7 @@ class de {
       return;
     }
     if (this.delegate && this.delegate.onInfo) {
-      const t = new wt(e);
+      const t = new pt(e);
       this.delegate.onInfo(t);
     } else
       e.accept();
@@ -2558,8 +2558,8 @@ class de {
         if (this.state !== p.Terminated) {
           if (!this.dialog)
             throw new Error("Dialog undefined.");
-          const a = [];
-          a.push("Reason: " + this.getReasonHeaderValue(500, "Internal Server Error")), this.dialog.bye(void 0, { extraHeaders: a }), this.stateTransition(p.Terminated);
+          const o = [];
+          o.push("Reason: " + this.getReasonHeaderValue(500, "Internal Server Error")), this.dialog.bye(void 0, { extraHeaders: o }), this.stateTransition(p.Terminated);
         }
         this.delegate && this.delegate.onInvite && this.delegate.onInvite(e.message, n.message, 488);
       });
@@ -2575,7 +2575,7 @@ class de {
       return;
     }
     if (this.delegate && this.delegate.onMessage) {
-      const t = new Xe(e);
+      const t = new Ze(e);
       this.delegate.onMessage(t);
     } else
       e.accept();
@@ -2590,12 +2590,12 @@ class de {
       return;
     }
     if (this.onNotify) {
-      const t = new Fe(e);
+      const t = new ke(e);
       this.onNotify(t);
       return;
     }
     if (this.delegate && this.delegate.onNotify) {
-      const t = new Fe(e);
+      const t = new ke(e);
       this.delegate.onNotify(t);
     } else
       e.accept();
@@ -2625,7 +2625,7 @@ class de {
       this.logger.warn("Invalid REFER packet. A refer-to header is required. Rejecting."), e.reject();
       return;
     }
-    const t = new xt(e, this);
+    const t = new bt(e, this);
     this.delegate && this.delegate.onRefer ? this.delegate.onRefer(t) : (this.logger.log("No delegate available to handle REFER, automatically accepting and following."), t.accept().then(() => t.makeInviter(this._referralInviterOptions).invite()).catch((r) => {
       this.logger.error(r.message);
     }));
@@ -2676,7 +2676,7 @@ class de {
   getOffer(e) {
     const t = this.setupSessionDescriptionHandler(), r = e.sessionDescriptionHandlerOptions, s = e.sessionDescriptionHandlerModifiers;
     try {
-      return t.getDescription(r, s).then((i) => Ee(i)).catch((i) => {
+      return t.getDescription(r, s).then((i) => be(i)).catch((i) => {
         this.logger.error("Session.getOffer: SDH getDescription rejected...");
         const n = i instanceof Error ? i : new Error("Session.getOffer unknown error.");
         throw this.logger.error(n.message), n;
@@ -2715,22 +2715,22 @@ class de {
     const r = this.setupSessionDescriptionHandler(), s = t.sessionDescriptionHandlerOptions, i = t.sessionDescriptionHandlerModifiers;
     try {
       if (!r.hasDescription(e.contentType))
-        return Promise.reject(new qe());
+        return Promise.reject(new _e());
     } catch (n) {
       this.logger.error("Session.setAnswer: SDH hasDescription threw...");
-      const a = n instanceof Error ? n : new Error(n);
-      return this.logger.error(a.message), Promise.reject(a);
+      const o = n instanceof Error ? n : new Error(n);
+      return this.logger.error(o.message), Promise.reject(o);
     }
     try {
       return r.setDescription(e.content, s, i).catch((n) => {
         this.logger.error("Session.setAnswer: SDH setDescription rejected...");
-        const a = n instanceof Error ? n : new Error("Session.setAnswer unknown error.");
-        throw this.logger.error(a.message), a;
+        const o = n instanceof Error ? n : new Error("Session.setAnswer unknown error.");
+        throw this.logger.error(o.message), o;
       });
     } catch (n) {
       this.logger.error("Session.setAnswer: SDH setDescription threw...");
-      const a = n instanceof Error ? n : new Error(n);
-      return this.logger.error(a.message), Promise.reject(a);
+      const o = n instanceof Error ? n : new Error(n);
+      return this.logger.error(o.message), Promise.reject(o);
     }
   }
   /**
@@ -2741,22 +2741,22 @@ class de {
     const r = this.setupSessionDescriptionHandler(), s = t.sessionDescriptionHandlerOptions, i = t.sessionDescriptionHandlerModifiers;
     try {
       if (!r.hasDescription(e.contentType))
-        return Promise.reject(new qe());
+        return Promise.reject(new _e());
     } catch (n) {
       this.logger.error("Session.setOfferAndGetAnswer: SDH hasDescription threw...");
-      const a = n instanceof Error ? n : new Error(n);
-      return this.logger.error(a.message), Promise.reject(a);
+      const o = n instanceof Error ? n : new Error(n);
+      return this.logger.error(o.message), Promise.reject(o);
     }
     try {
-      return r.setDescription(e.content, s, i).then(() => r.getDescription(s, i)).then((n) => Ee(n)).catch((n) => {
+      return r.setDescription(e.content, s, i).then(() => r.getDescription(s, i)).then((n) => be(n)).catch((n) => {
         this.logger.error("Session.setOfferAndGetAnswer: SDH setDescription or getDescription rejected...");
-        const a = n instanceof Error ? n : new Error("Session.setOfferAndGetAnswer unknown error.");
-        throw this.logger.error(a.message), a;
+        const o = n instanceof Error ? n : new Error("Session.setOfferAndGetAnswer unknown error.");
+        throw this.logger.error(o.message), o;
       });
     } catch (n) {
       this.logger.error("Session.setOfferAndGetAnswer: SDH setDescription or getDescription threw...");
-      const a = n instanceof Error ? n : new Error(n);
-      return this.logger.error(a.message), Promise.reject(a);
+      const o = n instanceof Error ? n : new Error(n);
+      return this.logger.error(o.message), Promise.reject(o);
     }
   }
   /**
@@ -2818,7 +2818,7 @@ class de {
   }
   getReasonHeaderValue(e, t) {
     const r = e;
-    let s = Se(e);
+    let s = Re(e);
     return !s && t && (s = t), "SIP;cause=" + r + ';text="' + s + '"';
   }
   referExtraHeaders(e) {
@@ -2832,17 +2832,17 @@ class de {
     else {
       if (!e.dialog)
         throw new Error("Dialog undefined.");
-      const r = e.remoteIdentity.friendlyName, s = e.dialog.remoteTarget.toString(), i = e.dialog.callId, n = e.dialog.remoteTag, a = e.dialog.localTag, d = encodeURIComponent(`${i};to-tag=${n};from-tag=${a}`);
+      const r = e.remoteIdentity.friendlyName, s = e.dialog.remoteTarget.toString(), i = e.dialog.callId, n = e.dialog.remoteTag, o = e.dialog.localTag, d = encodeURIComponent(`${i};to-tag=${n};from-tag=${o}`);
       t = `"${r}" <${s}?Replaces=${d}>`;
     }
     return t;
   }
 }
 var K;
-(function(o) {
-  o.Required = "Required", o.Supported = "Supported", o.Unsupported = "Unsupported";
+(function(a) {
+  a.Required = "Required", a.Supported = "Supported", a.Unsupported = "Unsupported";
 })(K = K || (K = {}));
-const Rt = {
+const Et = {
   "100rel": !0,
   199: !0,
   answermode: !0,
@@ -2897,8 +2897,8 @@ class ue extends de {
     }
     const n = this.request.getHeader("P-Asserted-Identity");
     n && (this._assertedIdentity = P.nameAddrHeaderParse(n)), this._contact = this.userAgent.contact.toString();
-    const a = r.parseHeader("Content-Disposition");
-    a && a.type === "render" && (this._renderbody = r.body, this._rendertype = r.getHeader("Content-Type")), this._id = r.callId + r.fromTag, this.userAgent._sessions[this._id] = this;
+    const o = r.parseHeader("Content-Disposition");
+    o && o.type === "render" && (this._renderbody = r.body, this._rendertype = r.getHeader("Content-Type")), this._id = r.callId + r.fromTag, this.userAgent._sessions[this._id] = this;
   }
   /**
    * Destructor.
@@ -3029,10 +3029,10 @@ class ue extends de {
       const n = new Error(`Invalid session state ${this.state}`);
       return this.logger.error(n.message), Promise.reject(n);
     }
-    const t = e.statusCode || 480, r = e.reasonPhrase ? e.reasonPhrase : Se(t), s = e.extraHeaders || [];
+    const t = e.statusCode || 480, r = e.reasonPhrase ? e.reasonPhrase : Re(t), s = e.extraHeaders || [];
     if (t < 300 || t > 699)
       throw new TypeError("Invalid statusCode: " + t);
-    const i = e.body ? Ee(e.body) : void 0;
+    const i = e.body ? be(e.body) : void 0;
     return t < 400 ? this.incomingInviteRequest.redirect([], { statusCode: t, reasonPhrase: r, extraHeaders: s, body: i }) : this.incomingInviteRequest.reject({ statusCode: t, reasonPhrase: r, extraHeaders: s, body: i }), this.stateTransition(p.Terminated), Promise.resolve();
   }
   /**
@@ -3048,7 +3048,7 @@ class ue extends de {
       return;
     }
     if (this.delegate && this.delegate.onCancel) {
-      const t = new mt(e);
+      const t = new ft(e);
       this.delegate.onCancel(t);
     }
     this.isCanceled = !0, this.incomingInviteRequest.reject({ statusCode: 487 }), this.stateTransition(p.Terminated);
@@ -3091,7 +3091,7 @@ class ue extends de {
    */
   handleResponseError(e) {
     let t = 480;
-    if (e instanceof Error ? this.logger.error(e.message) : this.logger.error(e), e instanceof qe ? (this.logger.error("A session description handler occurred while sending response (content type unsupported"), t = 415) : e instanceof gt ? this.logger.error("A session description handler occurred while sending response") : e instanceof Ae ? this.logger.error("Session ended before response could be formulated and sent (while waiting for PRACK)") : e instanceof ee && this.logger.error("Session changed state before response could be formulated and sent"), this.state === p.Initial || this.state === p.Establishing)
+    if (e instanceof Error ? this.logger.error(e.message) : this.logger.error(e), e instanceof _e ? (this.logger.error("A session description handler occurred while sending response (content type unsupported"), t = 415) : e instanceof lt ? this.logger.error("A session description handler occurred while sending response") : e instanceof Ie ? this.logger.error("Session ended before response could be formulated and sent (while waiting for PRACK)") : e instanceof ee && this.logger.error("Session changed state before response could be formulated and sent"), this.state === p.Initial || this.state === p.Establishing)
       try {
         this.incomingInviteRequest.reject({ statusCode: t }), this.stateTransition(p.Terminated);
       } catch (r) {
@@ -3128,7 +3128,7 @@ class ue extends de {
    * @param options - Options bucket.
    */
   sendProgress(e = {}) {
-    const t = e.statusCode || 180, r = e.reasonPhrase, s = (e.extraHeaders || []).slice(), i = e.body ? Ee(e.body) : void 0;
+    const t = e.statusCode || 180, r = e.reasonPhrase, s = (e.extraHeaders || []).slice(), i = e.body ? be(e.body) : void 0;
     if (t === 183 && !i)
       return this.sendProgressWithSDP(e);
     try {
@@ -3167,7 +3167,7 @@ class ue extends de {
     }, r = e.statusCode || 183, s = e.reasonPhrase, i = (e.extraHeaders || []).slice();
     i.push("Require: 100rel"), i.push("RSeq: " + this.rseq++);
     let n;
-    return new Promise((a, d) => {
+    return new Promise((o, d) => {
       this.waitingForPrack = !0, this.generateResponseOfferAnswer(this.incomingInviteRequest, t).then((m) => (n = m, this.incomingInviteRequest.progress({ statusCode: r, reasonPhrase: s, extraHeaders: i, body: n }))).then((m) => {
         this._dialog = m.session;
         let f, w;
@@ -3175,7 +3175,7 @@ class ue extends de {
           onPrack: (g) => {
             f = g, clearTimeout(I), clearTimeout(k), this.waitingForPrack && (this.waitingForPrack = !1, this.handlePrackOfferAnswer(f).then((A) => {
               try {
-                w = f.accept({ statusCode: 200, body: A }), this.prackArrived(), a({ prackRequest: f, prackResponse: w, progressResponse: m });
+                w = f.accept({ statusCode: 200, body: A }), this.prackArrived(), o({ prackRequest: f, prackResponse: w, progressResponse: m });
               } catch (ye) {
                 d(ye);
               }
@@ -3183,17 +3183,17 @@ class ue extends de {
           }
         };
         const I = setTimeout(() => {
-          this.waitingForPrack && (this.waitingForPrack = !1, this.logger.warn("No PRACK received, rejecting INVITE."), clearTimeout(k), this.reject({ statusCode: 504 }).then(() => d(new Ae())).catch((g) => d(g)));
-        }, F.T1 * 64), y = () => {
+          this.waitingForPrack && (this.waitingForPrack = !1, this.logger.warn("No PRACK received, rejecting INVITE."), clearTimeout(k), this.reject({ statusCode: 504 }).then(() => d(new Ie())).catch((g) => d(g)));
+        }, F.T1 * 64), C = () => {
           try {
             this.incomingInviteRequest.progress({ statusCode: r, reasonPhrase: s, extraHeaders: i, body: n });
           } catch (g) {
             this.waitingForPrack = !1, d(g);
             return;
           }
-          k = setTimeout(y, S *= 2);
+          k = setTimeout(C, S *= 2);
         };
-        let S = F.T1, k = setTimeout(y, S);
+        let S = F.T1, k = setTimeout(C, S);
       }).catch((m) => {
         this.waitingForPrack = !1, d(m);
       });
@@ -3235,10 +3235,10 @@ class ue extends de {
    * the accept to fail and the session to transition to "terminated".
    */
   prackNeverArrived() {
-    this.waitingForPrackReject && this.waitingForPrackReject(new Ae()), this.waitingForPrackPromise = void 0, this.waitingForPrackResolve = void 0, this.waitingForPrackReject = void 0;
+    this.waitingForPrackReject && this.waitingForPrackReject(new Ie()), this.waitingForPrackPromise = void 0, this.waitingForPrackResolve = void 0, this.waitingForPrackReject = void 0;
   }
 }
-class Te extends de {
+class ve extends de {
   /**
    * Constructs a new instance of the `Inviter` class.
    * @param userAgent - User agent. See {@link UserAgent} for details.
@@ -3246,7 +3246,7 @@ class Te extends de {
    * @param options - Options bucket. See {@link InviterOptions} for details.
    */
   constructor(e, t, r = {}) {
-    super(e, r), this.disposed = !1, this.earlyMedia = !1, this.earlyMediaSessionDescriptionHandlers = /* @__PURE__ */ new Map(), this.isCanceled = !1, this.inviteWithoutSdp = !1, this.logger = e.getLogger("sip.Inviter"), this.earlyMedia = r.earlyMedia !== void 0 ? r.earlyMedia : this.earlyMedia, this.fromTag = Ce(), this.inviteWithoutSdp = r.inviteWithoutSdp !== void 0 ? r.inviteWithoutSdp : this.inviteWithoutSdp;
+    super(e, r), this.disposed = !1, this.earlyMedia = !1, this.earlyMediaSessionDescriptionHandlers = /* @__PURE__ */ new Map(), this.isCanceled = !1, this.inviteWithoutSdp = !1, this.logger = e.getLogger("sip.Inviter"), this.earlyMedia = r.earlyMedia !== void 0 ? r.earlyMedia : this.earlyMedia, this.fromTag = Se(), this.inviteWithoutSdp = r.inviteWithoutSdp !== void 0 ? r.inviteWithoutSdp : this.inviteWithoutSdp;
     const s = Object.assign({}, r);
     s.params = Object.assign({}, r.params);
     const i = r.anonymous || !1, n = e.contact.toString({
@@ -3256,8 +3256,8 @@ class Te extends de {
       outbound: i ? !e.contact.tempGruu : !e.contact.pubGruu
     });
     i && e.configuration.uri && (s.params.fromDisplayName = "Anonymous", s.params.fromUri = "sip:anonymous@anonymous.invalid");
-    let a = e.userAgentCore.configuration.aor;
-    if (s.params.fromUri && (a = typeof s.params.fromUri == "string" ? P.URIParse(s.params.fromUri) : s.params.fromUri), !a)
+    let o = e.userAgentCore.configuration.aor;
+    if (s.params.fromUri && (o = typeof s.params.fromUri == "string" ? P.URIParse(s.params.fromUri) : s.params.fromUri), !o)
       throw new TypeError("Invalid from URI: " + s.params.fromUri);
     let d = t;
     if (s.params.toUri && (d = typeof s.params.toUri == "string" ? P.URIParse(s.params.toUri) : s.params.toUri), !d)
@@ -3267,7 +3267,7 @@ class Te extends de {
     const f = (s.extraHeaders || []).slice();
     i && e.configuration.uri && (f.push("P-Preferred-Identity: " + e.configuration.uri.toString()), f.push("Privacy: id")), f.push("Contact: " + n), f.push("Allow: " + ["ACK", "CANCEL", "INVITE", "MESSAGE", "BYE", "OPTIONS", "INFO", "NOTIFY", "REFER"].toString()), e.configuration.sipExtension100rel === K.Required && f.push("Require: 100rel"), e.configuration.sipExtensionReplaces === K.Required && f.push("Require: replaces"), s.extraHeaders = f;
     const w = void 0;
-    this.outgoingRequestMessage = e.userAgentCore.makeOutgoingRequestMessage(b.INVITE, t, a, d, m, f, w), this._contact = n, this._referralInviterOptions = s, this._renderbody = r.renderbody, this._rendertype = r.rendertype, r.sessionDescriptionHandlerModifiers && (this.sessionDescriptionHandlerModifiers = r.sessionDescriptionHandlerModifiers), r.sessionDescriptionHandlerOptions && (this.sessionDescriptionHandlerOptions = r.sessionDescriptionHandlerOptions), r.sessionDescriptionHandlerModifiersReInvite && (this.sessionDescriptionHandlerModifiersReInvite = r.sessionDescriptionHandlerModifiersReInvite), r.sessionDescriptionHandlerOptionsReInvite && (this.sessionDescriptionHandlerOptionsReInvite = r.sessionDescriptionHandlerOptionsReInvite), this._id = this.outgoingRequestMessage.callId + this.fromTag, this.userAgent._sessions[this._id] = this;
+    this.outgoingRequestMessage = e.userAgentCore.makeOutgoingRequestMessage(b.INVITE, t, o, d, m, f, w), this._contact = n, this._referralInviterOptions = s, this._renderbody = r.renderbody, this._rendertype = r.rendertype, r.sessionDescriptionHandlerModifiers && (this.sessionDescriptionHandlerModifiers = r.sessionDescriptionHandlerModifiers), r.sessionDescriptionHandlerOptions && (this.sessionDescriptionHandlerOptions = r.sessionDescriptionHandlerOptions), r.sessionDescriptionHandlerModifiersReInvite && (this.sessionDescriptionHandlerModifiersReInvite = r.sessionDescriptionHandlerModifiersReInvite), r.sessionDescriptionHandlerOptionsReInvite && (this.sessionDescriptionHandlerOptionsReInvite = r.sessionDescriptionHandlerOptionsReInvite), this._id = this.outgoingRequestMessage.callId + this.fromTag, this.userAgent._sessions[this._id] = this;
   }
   /**
    * Destructor.
@@ -3338,7 +3338,7 @@ class Te extends de {
       if (r && r < 200 || r > 699)
         throw new TypeError("Invalid statusCode: " + r);
       if (r) {
-        const i = r, n = Se(r) || s;
+        const i = r, n = Re(r) || s;
         return "SIP;cause=" + i + ';text="' + n + '"';
       }
     }
@@ -3715,7 +3715,7 @@ class Te extends de {
     }
   }
 }
-class St {
+class xt {
   /**
    * Constructs a new instance of the `Messager` class.
    * @param userAgent - User agent. See {@link UserAgent} for details.
@@ -3729,15 +3729,15 @@ class St {
     let n = e.userAgentCore.configuration.aor;
     if (i.params.fromUri && (n = typeof i.params.fromUri == "string" ? P.URIParse(i.params.fromUri) : i.params.fromUri), !n)
       throw new TypeError("Invalid from URI: " + i.params.fromUri);
-    let a = t;
-    if (i.params.toUri && (a = typeof i.params.toUri == "string" ? P.URIParse(i.params.toUri) : i.params.toUri), !a)
+    let o = t;
+    if (i.params.toUri && (o = typeof i.params.toUri == "string" ? P.URIParse(i.params.toUri) : i.params.toUri), !o)
       throw new TypeError("Invalid to URI: " + i.params.toUri);
     const d = i.params ? Object.assign({}, i.params) : {}, m = (i.extraHeaders || []).slice(), w = {
       contentDisposition: "render",
       contentType: s,
       content: r
     };
-    this.request = e.userAgentCore.makeOutgoingRequestMessage(b.MESSAGE, t, n, a, d, m, w), this.userAgent = e;
+    this.request = e.userAgentCore.makeOutgoingRequestMessage(b.MESSAGE, t, n, o, d, m, w), this.userAgent = e;
   }
   /**
    * Send the message.
@@ -3746,10 +3746,10 @@ class St {
     return this.userAgent.userAgentCore.request(this.request, e.requestDelegate), Promise.resolve();
   }
 }
-var C;
-(function(o) {
-  o.Initial = "Initial", o.Registered = "Registered", o.Unregistered = "Unregistered", o.Terminated = "Terminated";
-})(C = C || (C = {}));
+var $;
+(function(a) {
+  a.Initial = "Initial", a.Registered = "Registered", a.Unregistered = "Unregistered", a.Terminated = "Terminated";
+})($ = $ || ($ = {}));
 class Z {
   /**
    * Constructs a new instance of the `Registerer` class.
@@ -3757,7 +3757,7 @@ class Z {
    * @param options - Options bucket. See {@link RegistererOptions} for details.
    */
   constructor(e, t = {}) {
-    this.disposed = !1, this._contacts = [], this._retryAfter = void 0, this._state = C.Initial, this._waiting = !1, this._stateEventEmitter = new pe(), this._waitingEventEmitter = new pe(), this.userAgent = e;
+    this.disposed = !1, this._contacts = [], this._retryAfter = void 0, this._state = $.Initial, this._waiting = !1, this._stateEventEmitter = new pe(), this._waitingEventEmitter = new pe(), this.userAgent = e;
     const r = e.configuration.uri.clone();
     if (r.user = void 0, this.options = Object.assign(Object.assign(Object.assign({}, Z.defaultOptions()), { registrar: r }), Z.stripUndefinedProperties(t)), this.options.extraContactHeaderParams = (this.options.extraContactHeaderParams || []).slice(), this.options.extraHeaders = (this.options.extraHeaders || []).slice(), !this.options.registrar)
       throw new Error("Registrar undefined.");
@@ -3765,8 +3765,8 @@ class Z {
       throw new Error("Invalid instanceId.");
     if (this.options.regId && this.options.regId < 0)
       throw new Error("Invalid regId.");
-    const s = this.options.registrar, i = this.options.params && this.options.params.fromUri || e.userAgentCore.configuration.aor, n = this.options.params && this.options.params.toUri || e.configuration.uri, a = this.options.params || {}, d = (t.extraHeaders || []).slice();
-    if (this.request = e.userAgentCore.makeOutgoingRequestMessage(b.REGISTER, s, i, n, a, d, void 0), this.expires = this.options.expires || Z.defaultExpires, this.expires < 0)
+    const s = this.options.registrar, i = this.options.params && this.options.params.fromUri || e.userAgentCore.configuration.aor, n = this.options.params && this.options.params.toUri || e.configuration.uri, o = this.options.params || {}, d = (t.extraHeaders || []).slice();
+    if (this.request = e.userAgentCore.makeOutgoingRequestMessage(b.REGISTER, s, i, n, o, d, void 0), this.expires = this.options.expires || Z.defaultExpires, this.expires < 0)
       throw new Error("Invalid expires.");
     if (this.refreshFrequency = this.options.refreshFrequency || Z.defaultRefreshFrequency, this.refreshFrequency < 50 || this.refreshFrequency > 99)
       throw new Error("Invalid refresh frequency. The value represents a percentage of the expiration time and should be between 50 and 99.");
@@ -3856,7 +3856,7 @@ class Z {
   dispose() {
     return this.disposed ? Promise.resolve() : (this.disposed = !0, this.logger.log(`Registerer ${this.id} in state ${this.state} is being disposed`), delete this.userAgent._registerers[this.id], new Promise((e) => {
       const t = () => {
-        if (!this.waiting && this._state === C.Registered) {
+        if (!this.waiting && this._state === $.Registered) {
           this.stateChange.addListener(() => {
             this.terminated(), e();
           }, { once: !0 }), this.unregister();
@@ -3876,7 +3876,7 @@ class Z {
    * Rejects with `RequestPendingError` if a REGISTER request is already in progress.
    */
   register(e = {}) {
-    if (this.state === C.Terminated)
+    if (this.state === $.Terminated)
       throw this.stateError(), new Error("Registerer terminated. Unable to register.");
     if (this.disposed)
       throw this.stateError(), new Error("Registerer disposed. Unable to register.");
@@ -3897,26 +3897,26 @@ class Z {
           this.logger.error("No Contact header in response to REGISTER, dropping response."), this.unregistered();
           return;
         }
-        let a;
+        let o;
         for (; n--; ) {
-          if (a = s.message.parseHeader("contact", n), !a)
+          if (o = s.message.parseHeader("contact", n), !o)
             throw new Error("Contact undefined");
-          if (this.userAgent.contact.pubGruu && Le(a.uri, this.userAgent.contact.pubGruu)) {
-            i = Number(a.getParam("expires"));
+          if (this.userAgent.contact.pubGruu && je(o.uri, this.userAgent.contact.pubGruu)) {
+            i = Number(o.getParam("expires"));
             break;
           }
           if (this.userAgent.configuration.contactName === "") {
-            if (a.uri.user === this.userAgent.contact.uri.user) {
-              i = Number(a.getParam("expires"));
+            if (o.uri.user === this.userAgent.contact.uri.user) {
+              i = Number(o.getParam("expires"));
               break;
             }
-          } else if (Le(a.uri, this.userAgent.contact.uri)) {
-            i = Number(a.getParam("expires"));
+          } else if (je(o.uri, this.userAgent.contact.uri)) {
+            i = Number(o.getParam("expires"));
             break;
           }
-          a = void 0;
+          o = void 0;
         }
-        if (a === void 0) {
+        if (o === void 0) {
           this.logger.error("No Contact header pointing to us, dropping response"), this.unregistered(), this.waitingToggle(!1);
           return;
         }
@@ -3924,12 +3924,12 @@ class Z {
           this.logger.error("Contact pointing to us is missing expires parameter, dropping response"), this.unregistered(), this.waitingToggle(!1);
           return;
         }
-        if (a.hasParam("temp-gruu")) {
-          const d = a.getParam("temp-gruu");
+        if (o.hasParam("temp-gruu")) {
+          const d = o.getParam("temp-gruu");
           d && (this.userAgent.contact.tempGruu = P.URIParse(d.replace(/"/g, "")));
         }
-        if (a.hasParam("pub-gruu")) {
-          const d = a.getParam("pub-gruu");
+        if (o.hasParam("pub-gruu")) {
+          const d = o.getParam("pub-gruu");
           d && (this.userAgent.contact.pubGruu = P.URIParse(d.replace(/"/g, "")));
         }
         this.registered(i), e.requestDelegate && e.requestDelegate.onAccept && e.requestDelegate.onAccept(s), this.waitingToggle(!1);
@@ -3969,16 +3969,16 @@ class Z {
    * Rejects with `RequestPendingError` if a REGISTER request is already in progress.
    */
   unregister(e = {}) {
-    if (this.state === C.Terminated)
+    if (this.state === $.Terminated)
       throw this.stateError(), new Error("Registerer terminated. Unable to register.");
-    if (this.disposed && this.state !== C.Registered)
+    if (this.disposed && this.state !== $.Registered)
       throw this.stateError(), new Error("Registerer disposed. Unable to register.");
     if (this.waiting) {
       this.waitingWarning();
       const s = new fe("REGISTER request already in progress, waiting for final response");
       return Promise.reject(s);
     }
-    this._state !== C.Registered && !e.all && this.logger.warn("Not currently registered, but sending an unregister anyway.");
+    this._state !== $.Registered && !e.all && this.logger.warn("Not currently registered, but sending an unregister anyway.");
     const t = (e.requestOptions && e.requestOptions.extraHeaders || []).slice();
     this.request.extraHeaders = t, e.all ? (t.push("Contact: *"), t.push("Expires: 0")) : t.push("Contact: " + this.generateContactHeader(0)), this.request.cseq++, this.request.setHeader("cseq", this.request.cseq + " REGISTER"), this.registrationTimer !== void 0 && (clearTimeout(this.registrationTimer), this.registrationTimer = void 0), this.waitingToggle(!0);
     const r = this.userAgent.userAgentCore.register(this.request, {
@@ -4023,19 +4023,19 @@ class Z {
       this.registrationTimer = void 0, this.register();
     }, this.refreshFrequency / 100 * e * 1e3), this.registrationExpiredTimer = setTimeout(() => {
       this.logger.warn("Registration expired"), this.unregistered();
-    }, e * 1e3), this._state !== C.Registered && this.stateTransition(C.Registered);
+    }, e * 1e3), this._state !== $.Registered && this.stateTransition($.Registered);
   }
   /**
    * Helper function, called when unregistered.
    */
   unregistered() {
-    this.clearTimers(), this._state !== C.Unregistered && this.stateTransition(C.Unregistered);
+    this.clearTimers(), this._state !== $.Unregistered && this.stateTransition($.Unregistered);
   }
   /**
    * Helper function, called when terminated.
    */
   terminated() {
-    this.clearTimers(), this._state !== C.Terminated && this.stateTransition(C.Terminated);
+    this.clearTimers(), this._state !== $.Terminated && this.stateTransition($.Terminated);
   }
   /**
    * Transition registration state.
@@ -4045,22 +4045,22 @@ class Z {
       throw new Error(`Invalid state transition from ${this._state} to ${e}`);
     };
     switch (this._state) {
-      case C.Initial:
-        e !== C.Registered && e !== C.Unregistered && e !== C.Terminated && t();
+      case $.Initial:
+        e !== $.Registered && e !== $.Unregistered && e !== $.Terminated && t();
         break;
-      case C.Registered:
-        e !== C.Unregistered && e !== C.Terminated && t();
+      case $.Registered:
+        e !== $.Unregistered && e !== $.Terminated && t();
         break;
-      case C.Unregistered:
-        e !== C.Registered && e !== C.Terminated && t();
+      case $.Unregistered:
+        e !== $.Registered && e !== $.Terminated && t();
         break;
-      case C.Terminated:
+      case $.Terminated:
         t();
         break;
       default:
         throw new Error("Unrecognized state.");
     }
-    this._state = e, this.logger.log(`Registration transitioned to state ${this._state}`), this._stateEventEmitter.emit(this._state), e === C.Terminated && this.dispose();
+    this._state = e, this.logger.log(`Registration transitioned to state ${this._state}`), this._stateEventEmitter.emit(this._state), e === $.Terminated && this.dispose();
   }
   /** True if the registerer is currently waiting for final response to a REGISTER request. */
   get waiting() {
@@ -4085,23 +4085,23 @@ class Z {
   }
   /** Hopefully helpful as the standard behavior has been found to be unexpected. */
   stateError() {
-    let t = `An attempt was made to send a REGISTER request when the Registerer ${this.state === C.Terminated ? "is in 'Terminated' state" : "has been disposed"}.`;
+    let t = `An attempt was made to send a REGISTER request when the Registerer ${this.state === $.Terminated ? "is in 'Terminated' state" : "has been disposed"}.`;
     t += " The Registerer transitions to 'Terminated' when Registerer.dispose() is called.", t += " Perhaps you called UserAgent.stop() which dipsoses of all Registerers?", this.logger.error(t);
   }
 }
 Z.defaultExpires = 600;
 Z.defaultRefreshFrequency = 99;
-var $;
-(function(o) {
-  o.Initial = "Initial", o.NotifyWait = "NotifyWait", o.Pending = "Pending", o.Active = "Active", o.Terminated = "Terminated";
-})($ = $ || ($ = {}));
+var y;
+(function(a) {
+  a.Initial = "Initial", a.NotifyWait = "NotifyWait", a.Pending = "Pending", a.Active = "Active", a.Terminated = "Terminated";
+})(y = y || (y = {}));
 var x;
-(function(o) {
-  o.Connecting = "Connecting", o.Connected = "Connected", o.Disconnecting = "Disconnecting", o.Disconnected = "Disconnected";
+(function(a) {
+  a.Connecting = "Connecting", a.Connected = "Connected", a.Disconnecting = "Disconnecting", a.Disconnected = "Disconnected";
 })(x = x || (x = {}));
 var H;
-(function(o) {
-  o.Started = "Started", o.Stopped = "Stopped";
+(function(a) {
+  a.Started = "Started", a.Stopped = "Stopped";
 })(H = H || (H = {}));
 class _ {
   constructor() {
@@ -4115,9 +4115,9 @@ class _ {
   }
   static _hex(e) {
     const t = _.hexChars, r = _.hexOut;
-    let s, i, n, a;
-    for (a = 0; a < 4; a += 1)
-      for (i = a * 8, s = e[a], n = 0; n < 8; n += 2)
+    let s, i, n, o;
+    for (o = 0; o < 4; o += 1)
+      for (i = o * 8, s = e[o], n = 0; n < 8; n += 2)
         r[i + 1 + n] = t.charAt(s & 15), s >>>= 4, r[i + 0 + n] = t.charAt(s & 15), s >>>= 4;
     return r.join("");
   }
@@ -4195,10 +4195,10 @@ class _ {
     if (this._dataLength += t, r[t] = 128, r[t + 1] = r[t + 2] = r[t + 3] = 0, s.set(_.buffer32Identity.subarray(i), i), t > 55 && (_._md5cycle(this._state, s), s.set(_.buffer32Identity)), n = this._dataLength * 8, n <= 4294967295)
       s[14] = n;
     else {
-      const a = n.toString(16).match(/(.*?)(.{0,8})$/);
-      if (a === null)
+      const o = n.toString(16).match(/(.*?)(.{0,8})$/);
+      if (o === null)
         return;
-      const d = parseInt(a[2], 16), m = parseInt(a[1], 16) || 0;
+      const d = parseInt(o[2], 16), m = parseInt(o[1], 16) || 0;
       s[14] = d, s[15] = m;
     }
     return _._md5cycle(this._state, s), e ? this._state : _._hex(this._state);
@@ -4210,10 +4210,10 @@ _.hexChars = "0123456789abcdef";
 _.hexOut = [];
 _.onePassHasher = new _();
 _.hashStr("hello") !== "5d41402abc4b2a76b9719d911017c592" && console.error("Md5 self test failed.");
-function Q(o) {
-  return _.hashStr(o);
+function Q(a) {
+  return _.hashStr(a);
 }
-class Ct {
+class Rt {
   /**
    * Constructor.
    * @param loggerFactory - LoggerFactory.
@@ -4277,10 +4277,10 @@ class Ct {
   }
 }
 var q;
-(function(o) {
-  o[o.error = 0] = "error", o[o.warn = 1] = "warn", o[o.log = 2] = "log", o[o.debug = 3] = "debug";
+(function(a) {
+  a[a.error = 0] = "error", a[a.warn = 1] = "warn", a[a.log = 2] = "log", a[a.debug = 3] = "debug";
 })(q = q || (q = {}));
-class Ve {
+class Be {
   constructor(e, t, r) {
     this.logger = e, this.category = t, this.label = r;
   }
@@ -4306,7 +4306,7 @@ class Ve {
     this.logger.level = e;
   }
 }
-class $t {
+class St {
   constructor() {
     this.builtinEnabled = !0, this._level = q.log, this.loggers = {}, this.logger = this.getLogger("sip:loggerfactory");
   }
@@ -4325,11 +4325,11 @@ class $t {
   }
   getLogger(e, t) {
     if (t && this.level === 3)
-      return new Ve(this, e, t);
+      return new Be(this, e, t);
     if (this.loggers[e])
       return this.loggers[e];
     {
-      const r = new Ve(this, e);
+      const r = new Be(this, e);
       return this.loggers[e] = r, r;
     }
   }
@@ -4359,23 +4359,23 @@ class $t {
     }
   }
 }
-var be;
-(function(o) {
+var Te;
+(function(a) {
   function e(s, i) {
-    let n = i, a = 0, d = 0;
+    let n = i, o = 0, d = 0;
     if (s.substring(n, n + 2).match(/(^\r\n)/))
       return -2;
-    for (; a === 0; ) {
+    for (; o === 0; ) {
       if (d = s.indexOf(`\r
 `, n), d === -1)
         return d;
-      !s.substring(d + 2, d + 4).match(/(^\r\n)/) && s.charAt(d + 2).match(/(^\s+)/) ? n = d + 2 : a = d;
+      !s.substring(d + 2, d + 4).match(/(^\r\n)/) && s.charAt(d + 2).match(/(^\s+)/) ? n = d + 2 : o = d;
     }
-    return a;
+    return o;
   }
-  o.getHeader = e;
-  function t(s, i, n, a) {
-    const d = i.indexOf(":", n), m = i.substring(n, d).trim(), f = i.substring(d + 1, a).trim();
+  a.getHeader = e;
+  function t(s, i, n, o) {
+    const d = i.indexOf(":", n), m = i.substring(n, d).trim(), f = i.substring(d + 1, o).trim();
     let w;
     switch (m.toLowerCase()) {
       case "via":
@@ -4452,54 +4452,54 @@ var be;
       error: "error parsing header '" + m + "'"
     } : !0;
   }
-  o.parseHeader = t;
+  a.parseHeader = t;
   function r(s, i) {
-    let n = 0, a = s.indexOf(`\r
+    let n = 0, o = s.indexOf(`\r
 `);
-    if (a === -1) {
+    if (o === -1) {
       i.warn("no CRLF found, not a SIP message, discarded");
       return;
     }
-    const d = s.substring(0, a), m = P.parse(d, "Request_Response");
+    const d = s.substring(0, o), m = P.parse(d, "Request_Response");
     let f;
     if (m === -1) {
       i.warn('error parsing first line of SIP message: "' + d + '"');
       return;
     } else m.status_code ? (f = new se(), f.statusCode = m.status_code, f.reasonPhrase = m.reason_phrase) : (f = new ce(), f.method = m.method, f.ruri = m.uri);
-    f.data = s, n = a + 2;
+    f.data = s, n = o + 2;
     let w;
     for (; ; ) {
-      if (a = e(s, n), a === -2) {
+      if (o = e(s, n), o === -2) {
         w = n + 2;
         break;
-      } else if (a === -1) {
+      } else if (o === -1) {
         i.error("malformed message");
         return;
       }
-      const E = t(f, s, n, a);
+      const E = t(f, s, n, o);
       if (E && E !== !0) {
         i.error(E.error);
         return;
       }
-      n = a + 2;
+      n = o + 2;
     }
     return f.hasHeader("content-length") ? f.body = s.substr(w, Number(f.getHeader("content-length"))) : f.body = s.substring(w), f;
   }
-  o.parseMessage = r;
-})(be = be || (be = {}));
-function Qe(o, e) {
+  a.parseMessage = r;
+})(Te = Te || (Te = {}));
+function Je(a, e) {
   const t = `\r
 `;
   if (e.statusCode < 100 || e.statusCode > 699)
     throw new TypeError("Invalid statusCode: " + e.statusCode);
-  const r = e.reasonPhrase ? e.reasonPhrase : Se(e.statusCode);
+  const r = e.reasonPhrase ? e.reasonPhrase : Re(e.statusCode);
   let s = "SIP/2.0 " + e.statusCode + " " + r + t;
   e.statusCode >= 100 && e.statusCode < 200, e.statusCode;
-  const i = "From: " + o.getHeader("From") + t, n = "Call-ID: " + o.callId + t, a = "CSeq: " + o.cseq + " " + o.method + t, d = o.getHeaders("via").reduce((I, y) => I + "Via: " + y + t, "");
-  let m = "To: " + o.getHeader("to");
-  if (e.statusCode > 100 && !o.parseHeader("to").hasParam("tag")) {
+  const i = "From: " + a.getHeader("From") + t, n = "Call-ID: " + a.callId + t, o = "CSeq: " + a.cseq + " " + a.method + t, d = a.getHeaders("via").reduce((I, C) => I + "Via: " + C + t, "");
+  let m = "To: " + a.getHeader("to");
+  if (e.statusCode > 100 && !a.parseHeader("to").hasParam("tag")) {
     let I = e.toTag;
-    I || (I = Ce()), m += ";tag=" + I;
+    I || (I = Se()), m += ";tag=" + I;
   }
   m += t;
   let f = "";
@@ -4507,14 +4507,14 @@ function Qe(o, e) {
   let w = "";
   e.userAgent && (w = "User-Agent: " + e.userAgent + t);
   let E = "";
-  return e.extraHeaders && (E = e.extraHeaders.reduce((I, y) => I + y.trim() + t, "")), s += d, s += i, s += m, s += a, s += n, s += f, s += w, s += E, e.body ? (s += "Content-Type: " + e.body.contentType + t, s += "Content-Length: " + me(e.body.content) + t + t, s += e.body.content) : s += "Content-Length: 0" + t + t, { message: s };
+  return e.extraHeaders && (E = e.extraHeaders.reduce((I, C) => I + C.trim() + t, "")), s += d, s += i, s += m, s += o, s += n, s += f, s += w, s += E, e.body ? (s += "Content-Type: " + e.body.contentType + t, s += "Content-Length: " + me(e.body.content) + t + t, s += e.body.content) : s += "Content-Length: 0" + t + t, { message: s };
 }
-class Pe extends ae {
+class He extends ae {
   constructor(e) {
     super(e || "Unspecified transport error.");
   }
 }
-class et {
+class ze {
   constructor(e, t, r, s, i) {
     this._transport = e, this._user = t, this._id = r, this._state = s, this.listeners = new Array(), this.logger = t.loggerFactory.getLogger(i, r), this.logger.debug(`Constructing ${this.typeToString()} with id ${this.id}.`);
   }
@@ -4585,10 +4585,10 @@ class et {
    */
   send(e) {
     return this.transport.send(e).catch((t) => {
-      if (t instanceof Pe)
+      if (t instanceof He)
         throw this.onTransportError(t), t;
       let r;
-      throw t && typeof t.message == "string" ? r = new Pe(t.message) : r = new Pe(), this.onTransportError(r), r;
+      throw t && typeof t.message == "string" ? r = new He(t.message) : r = new He(), this.onTransportError(r), r;
     });
   }
   setState(e) {
@@ -4598,7 +4598,7 @@ class et {
     return "UnknownType";
   }
 }
-class tt extends et {
+class Xe extends ze {
   constructor(e, t, r, s, i) {
     super(t, r, e.viaBranch, s, i), this._request = e, this.user = r;
   }
@@ -4608,10 +4608,10 @@ class tt extends et {
   }
 }
 var u;
-(function(o) {
-  o.Accepted = "Accepted", o.Calling = "Calling", o.Completed = "Completed", o.Confirmed = "Confirmed", o.Proceeding = "Proceeding", o.Terminated = "Terminated", o.Trying = "Trying";
+(function(a) {
+  a.Accepted = "Accepted", a.Calling = "Calling", a.Completed = "Completed", a.Confirmed = "Confirmed", a.Proceeding = "Proceeding", a.Terminated = "Terminated", a.Trying = "Trying";
 })(u = u || (u = {}));
-class U extends tt {
+class U extends Xe {
   /**
    * Constructor.
    * Upon construction, a "100 Trying" reply will be immediately sent.
@@ -4841,7 +4841,7 @@ class U extends tt {
     this.logger.debug(`Timer L expired for INVITE server transaction ${this.id}.`), this.state === u.Accepted && this.stateTransition(u.Terminated);
   }
 }
-class $e extends et {
+class $e extends ze {
   constructor(e, t, r, s, i) {
     super(t, r, $e.makeId(e), s, i), this._request = e, this.user = r, e.setViaHeader(this.id, t.protocol);
   }
@@ -5026,7 +5026,7 @@ class he {
       throw new Error("Contact undefined.");
     if (!(i instanceof N))
       throw new Error("Contact not instance of NameAddrHeader.");
-    const n = i.uri, a = e.cseq, d = void 0, m = e.callId, f = e.fromTag, w = t.toTag;
+    const n = i.uri, o = e.cseq, d = void 0, m = e.callId, f = e.fromTag, w = t.toTag;
     if (!m)
       throw new Error("Call id undefined.");
     if (!f)
@@ -5040,14 +5040,14 @@ class he {
     const E = e.from.uri, I = e.to.uri;
     if (!t.statusCode)
       throw new Error("Incoming response status code undefined.");
-    const y = t.statusCode < 200;
+    const C = t.statusCode < 200;
     return {
       id: m + f + w,
-      early: y,
+      early: C,
       callId: m,
       localTag: f,
       remoteTag: w,
-      localSequenceNumber: a,
+      localSequenceNumber: o,
       remoteSequenceNumber: d,
       localURI: E,
       remoteURI: I,
@@ -5069,7 +5069,7 @@ class he {
       throw new Error("Contact undefined.");
     if (!(n instanceof N))
       throw new Error("Contact not instance of NameAddrHeader.");
-    const a = n.uri, d = e.cseq, m = void 0, f = e.callId, w = t, E = e.fromTag, I = e.from.uri, y = e.to.uri;
+    const o = n.uri, d = e.cseq, m = void 0, f = e.callId, w = t, E = e.fromTag, I = e.from.uri, C = e.to.uri;
     return {
       id: f + w + E,
       early: r,
@@ -5078,9 +5078,9 @@ class he {
       remoteTag: E,
       localSequenceNumber: m,
       remoteSequenceNumber: d,
-      localURI: y,
+      localURI: C,
       remoteURI: I,
-      remoteTarget: a,
+      remoteTarget: o,
       routeSet: i,
       secure: !1
     };
@@ -5223,12 +5223,12 @@ class he {
    * @param method - Outgoing request method.
    */
   createOutgoingRequestMessage(e, t) {
-    const r = this.remoteURI, s = this.remoteTag, i = this.localURI, n = this.localTag, a = this.callId;
+    const r = this.remoteURI, s = this.remoteTag, i = this.localURI, n = this.localTag, o = this.callId;
     let d;
     t && t.cseq ? d = t.cseq : this.dialogState.localSequenceNumber ? d = this.dialogState.localSequenceNumber += 1 : d = this.dialogState.localSequenceNumber = 1;
     const m = this.remoteTarget, f = this.routeSet, w = t && t.extraHeaders, E = t && t.body;
     return this.userAgentCore.makeOutgoingRequestMessage(e, m, i, r, {
-      callId: a,
+      callId: o,
       cseq: d,
       fromTag: n,
       toTag: s,
@@ -5396,17 +5396,17 @@ class re extends $e {
     return "INVITE client transaction";
   }
   ack(e) {
-    const t = this.request.ruri, r = this.request.callId, s = this.request.cseq, i = this.request.getHeader("from"), n = e.getHeader("to"), a = this.request.getHeader("via"), d = this.request.getHeader("route");
+    const t = this.request.ruri, r = this.request.callId, s = this.request.cseq, i = this.request.getHeader("from"), n = e.getHeader("to"), o = this.request.getHeader("via"), d = this.request.getHeader("route");
     if (!i)
       throw new Error("From undefined.");
     if (!n)
       throw new Error("To undefined.");
-    if (!a)
+    if (!o)
       throw new Error("Via undefined.");
     let m = `ACK ${t} SIP/2.0\r
 `;
     d && (m += `Route: ${d}\r
-`), m += `Via: ${a}\r
+`), m += `Via: ${o}\r
 `, m += `To: ${n}\r
 `, m += `From: ${i}\r
 `, m += `Call-ID: ${r}\r
@@ -5646,13 +5646,13 @@ class M {
     this.core.userAgentClients.set(r, this);
   }
 }
-class yt extends M {
+class $t extends M {
   constructor(e, t, r) {
     const s = e.createOutgoingRequestMessage(b.BYE, r);
     super(B, e.userAgentCore, s, t), e.dispose();
   }
 }
-class j extends tt {
+class j extends Xe {
   /**
    * Constructor.
    * After construction the transaction will be in the "trying": state and the transaction
@@ -5793,7 +5793,7 @@ class j extends tt {
 }
 class z {
   constructor(e, t, r, s) {
-    this.transactionConstructor = e, this.core = t, this.message = r, this.delegate = s, this.logger = this.loggerFactory.getLogger("sip.user-agent-server"), this.toTag = r.toTag ? r.toTag : Ce(), this.init();
+    this.transactionConstructor = e, this.core = t, this.message = r, this.delegate = s, this.logger = this.loggerFactory.getLogger("sip.user-agent-server"), this.toTag = r.toTag ? r.toTag : Se(), this.init();
   }
   dispose() {
     this.transaction.dispose();
@@ -5917,7 +5917,7 @@ class z {
    */
   reply(e) {
     !e.toTag && e.statusCode !== 100 && (e.toTag = this.toTag), e.userAgent = e.userAgent || this.core.configuration.userAgentHeaderFieldValue, e.supported = e.supported || this.core.configuration.supportedOptionTagsResponse;
-    const t = Qe(this.message, e);
+    const t = Je(this.message, e);
     return this.transaction.receiveResponse(e.statusCode, t.message), t;
   }
   init() {
@@ -5935,59 +5935,59 @@ class z {
     this.core.userAgentServers.set(t.id, this);
   }
 }
-class It extends z {
+class yt extends z {
   constructor(e, t, r) {
     super(j, e.userAgentCore, t, r);
   }
 }
-class At extends M {
+class Ct extends M {
   constructor(e, t, r) {
     const s = e.createOutgoingRequestMessage(b.INFO, r);
     super(B, e.userAgentCore, s, t);
   }
 }
-class Dt extends z {
+class It extends z {
   constructor(e, t, r) {
     super(j, e.userAgentCore, t, r);
   }
 }
-class rt extends M {
+class Qe extends M {
   constructor(e, t, r) {
     super(B, e, t, r);
   }
 }
-class st extends z {
+class et extends z {
   constructor(e, t, r) {
     super(j, e, t, r);
   }
 }
-class Ht extends M {
+class At extends M {
   constructor(e, t, r) {
     const s = e.createOutgoingRequestMessage(b.NOTIFY, r);
     super(B, e.userAgentCore, s, t);
   }
 }
-function Pt(o) {
-  return o.userAgentCore !== void 0;
+function Dt(a) {
+  return a.userAgentCore !== void 0;
 }
-class xe extends z {
+class Ee extends z {
   /**
    * NOTIFY UAS constructor.
    * @param dialogOrCore - Dialog for in dialog NOTIFY, UserAgentCore for out of dialog NOTIFY (deprecated).
    * @param message - Incoming NOTIFY request message.
    */
   constructor(e, t, r) {
-    const s = Pt(e) ? e.userAgentCore : e;
+    const s = Dt(e) ? e.userAgentCore : e;
     super(j, s, t, r);
   }
 }
-class _t extends M {
+class Ht extends M {
   constructor(e, t, r) {
     const s = e.createOutgoingRequestMessage(b.PRACK, r);
     super(B, e.userAgentCore, s, t), e.signalingStateTransition(s);
   }
 }
-class kt extends z {
+class Pt extends z {
   constructor(e, t, r) {
     super(j, e.userAgentCore, t, r), e.signalingStateTransition(t), this.dialog = e;
   }
@@ -5999,7 +5999,7 @@ class kt extends z {
     return e.body && this.dialog.signalingStateTransition(e.body), super.accept(e);
   }
 }
-class qt extends M {
+class _t extends M {
   constructor(e, t, r) {
     const s = e.createOutgoingRequestMessage(b.INVITE, r);
     super(re, e.userAgentCore, s, t), this.delegate = t, e.signalingStateTransition(s), e.reinviteUserAgentClient = this, this.dialog = e;
@@ -6042,7 +6042,7 @@ class qt extends M {
     }
   }
 }
-class Ft extends z {
+class kt extends z {
   constructor(e, t, r) {
     super(U, e.userAgentCore, t, r), e.reinviteUserAgentServer = this, this.dialog = e;
   }
@@ -6084,27 +6084,27 @@ class Ft extends z {
     return this.dialog.signalingStateRollback(), this.dialog.reinviteUserAgentServer = void 0, super.reject(e);
   }
 }
-class Mt extends M {
+class qt extends M {
   constructor(e, t, r) {
     const s = e.createOutgoingRequestMessage(b.REFER, r);
     super(B, e.userAgentCore, s, t);
   }
 }
-function Ot(o) {
-  return o.userAgentCore !== void 0;
+function Ft(a) {
+  return a.userAgentCore !== void 0;
 }
-class it extends z {
+class tt extends z {
   /**
    * REFER UAS constructor.
    * @param dialogOrCore - Dialog for in dialog REFER, UserAgentCore for out of dialog REFER.
    * @param message - Incoming REFER request message.
    */
   constructor(e, t, r) {
-    const s = Ot(e) ? e.userAgentCore : e;
+    const s = Ft(e) ? e.userAgentCore : e;
     super(j, s, t, r);
   }
 }
-class Re extends he {
+class xe extends he {
   constructor(e, t, r, s) {
     super(t, r), this.initialTransaction = e, this._signalingState = T.Initial, this.ackWait = !1, this.ackProcessing = !1, this.delegate = s, e instanceof U && (this.ackWait = !0), this.early || this.start2xxRetransmissionTimer(), this.signalingStateTransition(e.request), this.logger = t.loggerFactory.getLogger("sip.invite-dialog"), this.logger.log(`INVITE dialog ${this.id} constructed`);
   }
@@ -6213,7 +6213,7 @@ class Re extends he {
       if (this.ackWait && this.initialTransaction.state !== u.Terminated)
         throw new Error("UAS MUST NOT send a BYE on a confirmed dialog until it has received an ACK for its 2xx response or until the server transaction times out.");
     }
-    return new yt(this, e, t);
+    return new $t(this, e, t);
   }
   /**
    * An INFO request can be associated with an Info Package (see
@@ -6228,7 +6228,7 @@ class Re extends he {
   info(e, t) {
     if (this.logger.log(`INVITE dialog ${this.id} sending INFO request`), this.early)
       throw new Error("Dialog not confirmed.");
-    return new At(this, e, t);
+    return new Ct(this, e, t);
   }
   /**
    * Modifying an Existing Session
@@ -6258,7 +6258,7 @@ class Re extends he {
       throw new Error("There is an ongoing re-INVITE client transaction.");
     if (this.reinviteUserAgentServer)
       throw new Error("There is an ongoing re-INVITE server transaction.");
-    return new qt(this, e, t);
+    return new _t(this, e, t);
   }
   /**
    * A UAC MAY associate a MESSAGE request with an existing dialog.  If a
@@ -6271,7 +6271,7 @@ class Re extends he {
     if (this.logger.log(`INVITE dialog ${this.id} sending MESSAGE request`), this.early)
       throw new Error("Dialog not confirmed.");
     const r = this.createOutgoingRequestMessage(b.MESSAGE, t);
-    return new rt(this.core, r, e);
+    return new Qe(this.core, r, e);
   }
   /**
    * The NOTIFY mechanism defined in [2] MUST be used to inform the agent
@@ -6282,7 +6282,7 @@ class Re extends he {
   notify(e, t) {
     if (this.logger.log(`INVITE dialog ${this.id} sending NOTIFY request`), this.early)
       throw new Error("Dialog not confirmed.");
-    return new Ht(this, e, t);
+    return new At(this, e, t);
   }
   /**
    * Assuming the response is to be transmitted reliably, the UAC MUST
@@ -6295,7 +6295,7 @@ class Re extends he {
    * @param options - Options bucket.
    */
   prack(e, t) {
-    return this.logger.log(`INVITE dialog ${this.id} sending PRACK request`), new _t(this, e, t);
+    return this.logger.log(`INVITE dialog ${this.id} sending PRACK request`), new Ht(this, e, t);
   }
   /**
    * REFER is a SIP request and is constructed as defined in [1].  A REFER
@@ -6306,7 +6306,7 @@ class Re extends he {
   refer(e, t) {
     if (this.logger.log(`INVITE dialog ${this.id} sending REFER request`), this.early)
       throw new Error("Dialog not confirmed.");
-    return new Mt(this, e, t);
+    return new qt(this, e, t);
   }
   /**
    * Requests sent within a dialog, as any other requests, are atomic.  If
@@ -6384,13 +6384,13 @@ class Re extends he {
     switch (e.method) {
       case b.BYE:
         {
-          const t = new It(this, e);
+          const t = new yt(this, e);
           this.delegate && this.delegate.onBye ? this.delegate.onBye(t) : t.accept(), this.dispose();
         }
         break;
       case b.INFO:
         {
-          const t = new Dt(this, e);
+          const t = new It(this, e);
           this.delegate && this.delegate.onInfo ? this.delegate.onInfo(t) : t.reject({
             statusCode: 469,
             extraHeaders: ["Recv-Info:"]
@@ -6399,31 +6399,31 @@ class Re extends he {
         break;
       case b.INVITE:
         {
-          const t = new Ft(this, e);
+          const t = new kt(this, e);
           this.signalingStateTransition(e), this.delegate && this.delegate.onInvite ? this.delegate.onInvite(t) : t.reject({ statusCode: 488 });
         }
         break;
       case b.MESSAGE:
         {
-          const t = new st(this.core, e);
+          const t = new et(this.core, e);
           this.delegate && this.delegate.onMessage ? this.delegate.onMessage(t) : t.accept();
         }
         break;
       case b.NOTIFY:
         {
-          const t = new xe(this, e);
+          const t = new Ee(this, e);
           this.delegate && this.delegate.onNotify ? this.delegate.onNotify(t) : t.accept();
         }
         break;
       case b.PRACK:
         {
-          const t = new kt(this, e);
+          const t = new Pt(this, e);
           this.delegate && this.delegate.onPrack ? this.delegate.onPrack(t) : t.accept();
         }
         break;
       case b.REFER:
         {
-          const t = new it(this, e);
+          const t = new tt(this, e);
           this.delegate && this.delegate.onRefer ? this.delegate.onRefer(t) : t.reject();
         }
         break;
@@ -6512,7 +6512,7 @@ class Re extends he {
           default:
             throw new Error("Unexpected signaling state.");
         }
-      if (ze(e))
+      if (Ye(e))
         switch (this._signalingState) {
           case T.Initial:
           case T.Stable:
@@ -6568,7 +6568,7 @@ class Re extends he {
     }
   }
 }
-class Nt extends M {
+class Mt extends M {
   constructor(e, t, r) {
     super(re, e, t, r), this.confirmedDialogAcks = /* @__PURE__ */ new Map(), this.confirmedDialogs = /* @__PURE__ */ new Map(), this.earlyDialogs = /* @__PURE__ */ new Map(), this.delegate = r;
   }
@@ -6613,10 +6613,10 @@ class Nt extends M {
           const s = he.initialDialogStateForUserAgentClient(this.message, e);
           let i = this.earlyDialogs.get(s.id);
           if (!i) {
-            const a = this.transaction;
-            if (!(a instanceof re))
+            const o = this.transaction;
+            if (!(o instanceof re))
               throw new Error("Transaction not instance of InviteClientTransaction.");
-            i = new Re(a, this.core, s), this.earlyDialogs.set(i.id, i);
+            i = new xe(o, this.core, s), this.earlyDialogs.set(i.id, i);
           }
           if (!i.reliableSequenceGuard(e)) {
             this.logger.warn("1xx INVITE reliable response received out of order or is a retransmission, dropping.");
@@ -6627,7 +6627,7 @@ class Nt extends M {
           this.delegate && this.delegate.onProgress && this.delegate.onProgress({
             message: e,
             session: n,
-            prack: (a) => n.prack(void 0, a)
+            prack: (o) => n.prack(void 0, o)
           });
         }
         return;
@@ -6644,22 +6644,22 @@ class Nt extends M {
           const s = he.initialDialogStateForUserAgentClient(this.message, e);
           let i = this.confirmedDialogs.get(s.id);
           if (i) {
-            const a = this.confirmedDialogAcks.get(s.id);
-            if (a) {
+            const o = this.confirmedDialogAcks.get(s.id);
+            if (o) {
               const d = this.transaction;
               if (!(d instanceof re))
                 throw new Error("Client transaction not instance of InviteClientTransaction.");
-              d.ackResponse(a.message);
+              d.ackResponse(o.message);
             }
             return;
           }
           if (i = this.earlyDialogs.get(s.id), i)
             i.confirm(), i.recomputeRouteSet(e), this.earlyDialogs.delete(i.id), this.confirmedDialogs.set(i.id, i);
           else {
-            const a = this.transaction;
-            if (!(a instanceof re))
+            const o = this.transaction;
+            if (!(o instanceof re))
               throw new Error("Transaction not instance of InviteClientTransaction.");
-            i = new Re(a, this.core, s), this.confirmedDialogs.set(i.id, i);
+            i = new xe(o, this.core, s), this.confirmedDialogs.set(i.id, i);
           }
           (i.signalingState === T.Initial || i.signalingState === T.HaveLocalOffer) && i.signalingStateTransition(e);
           const n = i;
@@ -6667,14 +6667,14 @@ class Nt extends M {
             this.delegate.onAccept({
               message: e,
               session: n,
-              ack: (a) => {
-                const d = n.ack(a);
+              ack: (o) => {
+                const d = n.ack(o);
                 return this.confirmedDialogAcks.set(n.id, d), d;
               }
             });
           else {
-            const a = n.ack();
-            this.confirmedDialogAcks.set(n.id, a);
+            const o = n.ack();
+            this.confirmedDialogAcks.set(n.id, o);
           }
         }
         return;
@@ -6689,7 +6689,7 @@ class Nt extends M {
     }
   }
 }
-class _e extends z {
+class Pe extends z {
   constructor(e, t, r) {
     super(U, e, t, r), this.core = e;
   }
@@ -6715,7 +6715,7 @@ class _e extends z {
         if (!(d instanceof U))
           throw new Error("Transaction not instance of InviteClientTransaction.");
         const m = he.initialDialogStateForUserAgentServer(this.message, this.toTag);
-        this.confirmedDialog = new Re(d, this.core, m);
+        this.confirmedDialog = new xe(d, this.core, m);
       }
     const t = this.message.getHeaders("record-route").map((d) => `Record-Route: ${d}`), r = `Contact: ${this.core.configuration.contact.toString()}`, s = "Allow: " + te.toString();
     if (!e.body) {
@@ -6725,8 +6725,8 @@ class _e extends z {
         throw new Error("Response must have a body.");
     }
     e.statusCode = e.statusCode || 200, e.extraHeaders = e.extraHeaders || [], e.extraHeaders = e.extraHeaders.concat(t), e.extraHeaders.push(s), e.extraHeaders.push(r);
-    const i = super.accept(e), n = this.confirmedDialog, a = Object.assign(Object.assign({}, i), { session: n });
-    return e.body && this.confirmedDialog.signalingState !== T.Stable && this.confirmedDialog.signalingStateTransition(e.body), a;
+    const i = super.accept(e), n = this.confirmedDialog, o = Object.assign(Object.assign({}, i), { session: n });
+    return e.body && this.confirmedDialog.signalingState !== T.Stable && this.confirmedDialog.signalingStateTransition(e.body), o;
   }
   /**
    * 13.3.1.1 Progress
@@ -6754,13 +6754,13 @@ class _e extends z {
     if (!this.progressable)
       throw new ee(`${this.message.method} not progressable in state ${this.transaction.state}.`);
     if (!this.earlyDialog) {
-      const a = this.transaction;
-      if (!(a instanceof U))
+      const o = this.transaction;
+      if (!(o instanceof U))
         throw new Error("Transaction not instance of InviteClientTransaction.");
       const d = he.initialDialogStateForUserAgentServer(this.message, this.toTag, !0);
-      this.earlyDialog = new Re(a, this.core, d);
+      this.earlyDialog = new xe(o, this.core, d);
     }
-    const t = this.message.getHeaders("record-route").map((a) => `Record-Route: ${a}`), r = `Contact: ${this.core.configuration.contact}`;
+    const t = this.message.getHeaders("record-route").map((o) => `Record-Route: ${o}`), r = `Contact: ${this.core.configuration.contact}`;
     e.extraHeaders = e.extraHeaders || [], e.extraHeaders = e.extraHeaders.concat(t), e.extraHeaders.push(r);
     const s = super.progress(e), i = this.earlyDialog, n = Object.assign(Object.assign({}, s), { session: i });
     return e.body && this.earlyDialog.signalingState !== T.Stable && this.earlyDialog.signalingStateTransition(e.body), n;
@@ -6792,22 +6792,22 @@ class _e extends z {
     return super.reject(e);
   }
 }
-class Ut extends M {
+class Ot extends M {
   constructor(e, t, r) {
     super(B, e, t, r);
   }
 }
-class jt extends M {
+class Nt extends M {
   constructor(e, t, r) {
     super(B, e, t, r);
   }
 }
-class Bt extends z {
+class Ut extends z {
   constructor(e, t, r) {
     super(j, e, t, r), this.core = e;
   }
 }
-class Lt extends M {
+class jt extends M {
   constructor(e, t, r) {
     const s = e.createOutgoingRequestMessage(b.SUBSCRIBE, r);
     super(B, e.userAgentCore, s, t), this.dialog = e;
@@ -6831,7 +6831,7 @@ class Lt extends M {
     e.statusCode && e.statusCode >= 400 && e.statusCode < 700 && [404, 405, 410, 416, 480, 481, 482, 483, 484, 485, 489, 501, 604].includes(e.statusCode) && this.dialog.terminate(), super.receiveResponse(e);
   }
 }
-class Ge extends he {
+class Le extends he {
   constructor(e, t, r, s, i, n) {
     super(s, i), this.delegate = n, this._autoRefresh = !1, this._subscriptionEvent = e, this._subscriptionExpires = t, this._subscriptionExpiresInitial = t, this._subscriptionExpiresLastSet = Math.floor(Date.now() / 1e3), this._subscriptionRefresh = void 0, this._subscriptionRefreshLastSet = void 0, this._subscriptionState = r, this.logger = s.loggerFactory.getLogger("sip.subscribe-dialog"), this.logger.log(`SUBSCRIBE dialog ${this.id} constructed`);
   }
@@ -6849,7 +6849,7 @@ class Ge extends he {
       throw new Error("Contact undefined.");
     if (!(i instanceof N))
       throw new Error("Contact not instance of NameAddrHeader.");
-    const n = i.uri, a = e.cseq, d = void 0, m = e.callId, f = e.fromTag, w = t.fromTag;
+    const n = i.uri, o = e.cseq, d = void 0, m = e.callId, f = e.fromTag, w = t.fromTag;
     if (!m)
       throw new Error("Call id undefined.");
     if (!f)
@@ -6867,7 +6867,7 @@ class Ge extends he {
       callId: m,
       localTag: f,
       remoteTag: w,
-      localSequenceNumber: a,
+      localSequenceNumber: o,
       remoteSequenceNumber: d,
       localURI: E,
       remoteURI: I,
@@ -6948,10 +6948,10 @@ class Ge extends he {
    */
   subscribe(e, t = {}) {
     var r;
-    if (this.subscriptionState !== $.Pending && this.subscriptionState !== $.Active)
+    if (this.subscriptionState !== y.Pending && this.subscriptionState !== y.Active)
       throw new Error(`Invalid state ${this.subscriptionState}. May only re-subscribe while in state "pending" or "active".`);
     this.logger.log(`SUBSCRIBE dialog ${this.id} sending SUBSCRIBE request`);
-    const s = new Lt(this, e, t);
+    const s = new jt(this, e, t);
     return this.N && (clearTimeout(this.N), this.N = void 0), !((r = t.extraHeaders) === null || r === void 0) && r.includes("Expires: 0") || (this.N = setTimeout(() => this.timerN(), F.TIMER_N)), s;
   }
   /**
@@ -6962,7 +6962,7 @@ class Ge extends he {
    * https://tools.ietf.org/html/rfc6665#section-4.4.1
    */
   terminate() {
-    this.stateTransition($.Terminated), this.onTerminated();
+    this.stateTransition(y.Terminated), this.onTerminated();
   }
   /**
    * 4.1.2.3.  Unsubscribing
@@ -6992,19 +6992,19 @@ class Ge extends he {
     const s = r.state, i = r.expires ? Math.max(r.expires, 0) : void 0;
     switch (s) {
       case "pending":
-        this.stateTransition($.Pending, i);
+        this.stateTransition(y.Pending, i);
         break;
       case "active":
-        this.stateTransition($.Active, i);
+        this.stateTransition(y.Active, i);
         break;
       case "terminated":
-        this.stateTransition($.Terminated, i);
+        this.stateTransition(y.Terminated, i);
         break;
       default:
         this.logger.warn("Unrecognized subscription state.");
         break;
     }
-    const n = new xe(this, e);
+    const n = new Ee(this, e);
     this.delegate && this.delegate.onNotify ? this.delegate.onNotify(n) : n.accept();
   }
   onRefresh(e) {
@@ -7029,26 +7029,26 @@ class Ge extends he {
       this.logger.warn(`Invalid subscription state transition from ${this.subscriptionState} to ${e}`);
     };
     switch (e) {
-      case $.Initial:
+      case y.Initial:
         r();
         return;
-      case $.NotifyWait:
+      case y.NotifyWait:
         r();
         return;
-      case $.Pending:
-        if (this.subscriptionState !== $.NotifyWait && this.subscriptionState !== $.Pending) {
+      case y.Pending:
+        if (this.subscriptionState !== y.NotifyWait && this.subscriptionState !== y.Pending) {
           r();
           return;
         }
         break;
-      case $.Active:
-        if (this.subscriptionState !== $.NotifyWait && this.subscriptionState !== $.Pending && this.subscriptionState !== $.Active) {
+      case y.Active:
+        if (this.subscriptionState !== y.NotifyWait && this.subscriptionState !== y.Pending && this.subscriptionState !== y.Active) {
           r();
           return;
         }
         break;
-      case $.Terminated:
-        if (this.subscriptionState !== $.NotifyWait && this.subscriptionState !== $.Pending && this.subscriptionState !== $.Active) {
+      case y.Terminated:
+        if (this.subscriptionState !== y.NotifyWait && this.subscriptionState !== y.Pending && this.subscriptionState !== y.Active) {
           r();
           return;
         }
@@ -7057,7 +7057,7 @@ class Ge extends he {
         r();
         return;
     }
-    e === $.Pending && t && (this.subscriptionExpires = t), e === $.Active && t && (this.subscriptionExpires = t), e === $.Terminated && this.dispose(), this._subscriptionState = e;
+    e === y.Pending && t && (this.subscriptionExpires = t), e === y.Active && t && (this.subscriptionExpires = t), e === y.Terminated && this.dispose(), this._subscriptionState = e;
   }
   /**
    * When refreshing a subscription, a subscriber starts Timer N, set to
@@ -7071,10 +7071,10 @@ class Ge extends he {
    * https://tools.ietf.org/html/rfc6665#section-4.1.2.2
    */
   timerN() {
-    this.logger.warn("Timer N expired for SUBSCRIBE dialog. Timed out waiting for NOTIFY."), this.subscriptionState !== $.Terminated && (this.stateTransition($.Terminated), this.onTerminated());
+    this.logger.warn("Timer N expired for SUBSCRIBE dialog. Timed out waiting for NOTIFY."), this.subscriptionState !== y.Terminated && (this.stateTransition(y.Terminated), this.onTerminated());
   }
 }
-class Vt extends M {
+class Bt extends M {
   constructor(e, t, r) {
     const s = t.getHeader("Event");
     if (!s)
@@ -7082,7 +7082,7 @@ class Vt extends M {
     const i = t.getHeader("Expires");
     if (!i)
       throw new Error("Expires undefined");
-    super(B, e, t, r), this.delegate = r, this.subscriberId = t.callId + t.fromTag + s, this.subscriptionExpiresRequested = this.subscriptionExpires = Number(i), this.subscriptionEvent = s, this.subscriptionState = $.NotifyWait, this.waitNotifyStart();
+    super(B, e, t, r), this.delegate = r, this.subscriberId = t.callId + t.fromTag + s, this.subscriptionExpiresRequested = this.subscriptionExpires = Number(i), this.subscriptionEvent = s, this.subscriptionState = y.NotifyWait, this.waitNotifyStart();
   }
   /**
    * Destructor.
@@ -7132,20 +7132,20 @@ class Vt extends M {
       throw new Error("Dialog already created. This implementation only supports install of single subscriptions.");
     switch (this.waitNotifyStop(), this.subscriptionExpires = r.expires ? Math.min(this.subscriptionExpires, Math.max(r.expires, 0)) : this.subscriptionExpires, s) {
       case "pending":
-        this.subscriptionState = $.Pending;
+        this.subscriptionState = y.Pending;
         break;
       case "active":
-        this.subscriptionState = $.Active;
+        this.subscriptionState = y.Active;
         break;
       case "terminated":
-        this.subscriptionState = $.Terminated;
+        this.subscriptionState = y.Terminated;
         break;
       default:
         throw new Error(`Unrecognized state ${s}.`);
     }
-    if (this.subscriptionState !== $.Terminated) {
-      const i = Ge.initialDialogStateForSubscription(this.message, e.message);
-      this.dialog = new Ge(this.subscriptionEvent, this.subscriptionExpires, this.subscriptionState, this.core, i);
+    if (this.subscriptionState !== y.Terminated) {
+      const i = Le.initialDialogStateForSubscription(this.message, e.message);
+      this.dialog = new Le(this.subscriptionEvent, this.subscriptionExpires, this.subscriptionState, this.core, i);
     }
     if (this.delegate && this.delegate.onNotify) {
       const i = e, n = this.dialog;
@@ -7191,13 +7191,13 @@ class Vt extends M {
     this.logger.warn("Timer N expired for SUBSCRIBE user agent client. Timed out waiting for NOTIFY."), this.waitNotifyStop(), this.delegate && this.delegate.onNotifyTimeout && this.delegate.onNotifyTimeout();
   }
 }
-class Gt extends z {
+class Lt extends z {
   constructor(e, t, r) {
     super(j, e, t, r), this.core = e;
   }
 }
-const Ke = ["application/sdp", "application/dtmf-relay"];
-class Kt {
+const Ve = ["application/sdp", "application/dtmf-relay"];
+class Vt {
   /**
    * Constructor.
    * @param configuration - Configuration.
@@ -7231,7 +7231,7 @@ class Kt {
    * @param delegate - Request delegate.
    */
   invite(e, t) {
-    return new Nt(this, e, t);
+    return new Mt(this, e, t);
   }
   /**
    * Send MESSAGE.
@@ -7239,7 +7239,7 @@ class Kt {
    * @param delegate - Request delegate.
    */
   message(e, t) {
-    return new rt(this, e, t);
+    return new Qe(this, e, t);
   }
   /**
    * Send PUBLISH.
@@ -7247,7 +7247,7 @@ class Kt {
    * @param delegate - Request delegate.
    */
   publish(e, t) {
-    return new Ut(this, e, t);
+    return new Ot(this, e, t);
   }
   /**
    * Send REGISTER.
@@ -7255,7 +7255,7 @@ class Kt {
    * @param delegate - Request delegate.
    */
   register(e, t) {
-    return new jt(this, e, t);
+    return new Nt(this, e, t);
   }
   /**
    * Send SUBSCRIBE.
@@ -7263,7 +7263,7 @@ class Kt {
    * @param delegate - Request delegate.
    */
   subscribe(e, t) {
-    return new Vt(this, e, t);
+    return new Bt(this, e, t);
   }
   /**
    * Send a request.
@@ -7283,20 +7283,20 @@ class Kt {
    * @param extraHeaders - Extra headers to add.
    * @param body - Message body.
    */
-  makeOutgoingRequestMessage(e, t, r, s, i, n, a) {
+  makeOutgoingRequestMessage(e, t, r, s, i, n, o) {
     const d = this.configuration.sipjsId, m = this.configuration.displayName, f = this.configuration.viaForceRport, w = this.configuration.hackViaTcp, E = this.configuration.supportedOptionTags.slice();
     e === b.REGISTER && E.push("path", "gruu"), e === b.INVITE && (this.configuration.contact.pubGruu || this.configuration.contact.tempGruu) && E.push("gruu");
-    const I = this.configuration.routeSet, y = this.configuration.userAgentHeaderFieldValue, S = this.configuration.viaHost, g = Object.assign(Object.assign({}, {
+    const I = this.configuration.routeSet, C = this.configuration.userAgentHeaderFieldValue, S = this.configuration.viaHost, g = Object.assign(Object.assign({}, {
       callIdPrefix: d,
       forceRport: f,
       fromDisplayName: m,
       hackViaTcp: w,
       optionTags: E,
       routeSet: I,
-      userAgentString: y,
+      userAgentString: C,
       viaHost: S
     }), i);
-    return new ne(e, t, r, s, g, n, a);
+    return new ne(e, t, r, s, g, n, o);
   }
   /**
    * Handle an incoming request message from the transport.
@@ -7331,7 +7331,7 @@ class Kt {
   replyStateless(e, t) {
     const r = this.configuration.userAgentHeaderFieldValue, s = this.configuration.supportedOptionTagsResponse;
     t = Object.assign(Object.assign({}, t), { userAgent: r, supported: s });
-    const i = Qe(e, t);
+    const i = Je(e, t);
     return this.transport.send(i.message).catch((n) => {
       n instanceof Error && this.logger.error(n.message), this.logger.error(`Transport error occurred sending stateless reply to ${e.method} request.`);
     }), i;
@@ -7350,12 +7350,12 @@ class Kt {
    */
   receiveRequestFromTransport(e) {
     const t = e.viaBranch, r = this.userAgentServers.get(t);
-    if (e.method === b.ACK && r && r.transaction.state === u.Accepted && r instanceof _e) {
+    if (e.method === b.ACK && r && r.transaction.state === u.Accepted && r instanceof Pe) {
       this.logger.warn(`Discarding out of dialog ACK after 2xx response sent on transaction ${t}.`);
       return;
     }
     if (e.method === b.CANCEL) {
-      r ? (this.replyStateless(e, { statusCode: 200 }), r.transaction instanceof U && r.transaction.state === u.Proceeding && r instanceof _e && r.receiveCancel(e)) : this.replyStateless(e, { statusCode: 481 });
+      r ? (this.replyStateless(e, { statusCode: 200 }), r.transaction instanceof U && r.transaction.state === u.Proceeding && r instanceof Pe && r.receiveCancel(e)) : this.replyStateless(e, { statusCode: 481 });
       return;
     }
     if (r) {
@@ -7428,15 +7428,15 @@ class Kt {
       }
       const i = e.callId + e.toTag + s.event, n = this.subscribers.get(i);
       if (n) {
-        const a = new xe(this, e);
-        n.onNotify(a);
+        const o = new Ee(this, e);
+        n.onNotify(o);
         return;
       }
     }
     const t = e.callId + e.toTag + e.fromTag, r = this.dialogs.get(t);
     if (r) {
       if (e.method === b.OPTIONS) {
-        const s = "Allow: " + te.toString(), i = "Accept: " + Ke.toString();
+        const s = "Allow: " + te.toString(), i = "Accept: " + Ve.toString();
         this.replyStateless(e, {
           statusCode: 200,
           extraHeaders: [s, i]
@@ -7468,25 +7468,25 @@ class Kt {
         break;
       case b.INVITE:
         {
-          const t = new _e(this, e);
+          const t = new Pe(this, e);
           this.delegate.onInvite ? this.delegate.onInvite(t) : t.reject();
         }
         break;
       case b.MESSAGE:
         {
-          const t = new st(this, e);
+          const t = new et(this, e);
           this.delegate.onMessage ? this.delegate.onMessage(t) : t.accept();
         }
         break;
       case b.NOTIFY:
         {
-          const t = new xe(this, e);
+          const t = new Ee(this, e);
           this.delegate.onNotify ? this.delegate.onNotify(t) : t.reject({ statusCode: 405 });
         }
         break;
       case b.OPTIONS:
         {
-          const t = "Allow: " + te.toString(), r = "Accept: " + Ke.toString();
+          const t = "Allow: " + te.toString(), r = "Accept: " + Ve.toString();
           this.replyStateless(e, {
             statusCode: 200,
             extraHeaders: [t, r]
@@ -7495,19 +7495,19 @@ class Kt {
         break;
       case b.REFER:
         {
-          const t = new it(this, e);
+          const t = new tt(this, e);
           this.delegate.onRefer ? this.delegate.onRefer(t) : t.reject({ statusCode: 405 });
         }
         break;
       case b.REGISTER:
         {
-          const t = new Bt(this, e);
+          const t = new Ut(this, e);
           this.delegate.onRegister ? this.delegate.onRegister(t) : t.reject({ statusCode: 405 });
         }
         break;
       case b.SUBSCRIBE:
         {
-          const t = new Gt(this, e);
+          const t = new Lt(this, e);
           this.delegate.onSubscribe ? this.delegate.onSubscribe(t) : t.reject({ statusCode: 480 });
         }
         break;
@@ -7533,10 +7533,10 @@ class Kt {
     r ? r.transaction.receiveResponse(e) : this.logger.warn(`Discarding unmatched ${e.statusCode} response to ${e.method} ${t}.`);
   }
 }
-function Wt() {
-  return (o) => !o.audio && !o.video ? Promise.resolve(new MediaStream()) : navigator.mediaDevices === void 0 ? Promise.reject(new Error("Media devices not available in insecure contexts.")) : navigator.mediaDevices.getUserMedia.call(navigator.mediaDevices, o);
+function Gt() {
+  return (a) => !a.audio && !a.video ? Promise.resolve(new MediaStream()) : navigator.mediaDevices === void 0 ? Promise.reject(new Error("Media devices not available in insecure contexts.")) : navigator.mediaDevices.getUserMedia.call(navigator.mediaDevices, a);
 }
-function Yt() {
+function Kt() {
   return {
     bundlePolicy: "balanced",
     certificates: void 0,
@@ -7713,11 +7713,11 @@ class O {
       return Promise.reject(new Error("Peer connection closed."));
     this.onDataChannel = e == null ? void 0 : e.onDataChannel;
     const i = (r = e == null ? void 0 : e.offerOptions) === null || r === void 0 ? void 0 : r.iceRestart, n = (e == null ? void 0 : e.iceGatheringTimeout) === void 0 ? (s = this.sessionDescriptionHandlerConfiguration) === null || s === void 0 ? void 0 : s.iceGatheringTimeout : e == null ? void 0 : e.iceGatheringTimeout;
-    return this.getLocalMediaStream(e).then(() => this.updateDirection(e)).then(() => this.createDataChannel(e)).then(() => this.createLocalOfferOrAnswer(e)).then((a) => this.applyModifiers(a, t)).then((a) => this.setLocalSessionDescription(a)).then(() => this.waitForIceGatheringComplete(i, n)).then(() => this.getLocalSessionDescription()).then((a) => ({
-      body: a.sdp,
+    return this.getLocalMediaStream(e).then(() => this.updateDirection(e)).then(() => this.createDataChannel(e)).then(() => this.createLocalOfferOrAnswer(e)).then((o) => this.applyModifiers(o, t)).then((o) => this.setLocalSessionDescription(o)).then(() => this.waitForIceGatheringComplete(i, n)).then(() => this.getLocalSessionDescription()).then((o) => ({
+      body: o.sdp,
       contentType: "application/sdp"
-    })).catch((a) => {
-      throw this.logger.error("SessionDescriptionHandler.getDescription failed - " + a), a;
+    })).catch((o) => {
+      throw this.logger.error("SessionDescriptionHandler.getDescription failed - " + o), o;
     });
   }
   /**
@@ -7756,8 +7756,8 @@ class O {
     const i = t == null ? void 0 : t.duration, n = t == null ? void 0 : t.interToneGap;
     try {
       s.insertDTMF(e, i, n);
-    } catch (a) {
-      return this.logger.error(a.toString()), !1;
+    } catch (o) {
+      return this.logger.error(o.toString()), !1;
     }
     return this.logger.log("SessionDescriptionHandler.sendDtmf sent via RTP: " + e.toString()), !0;
   }
@@ -7890,8 +7890,8 @@ class O {
       }));
     }, n = e.getAudioTracks();
     n.length && i(n[0]);
-    const a = e.getVideoTracks();
-    return a.length && i(a[0]), s.reduce((d, m) => d.then(() => m), Promise.resolve());
+    const o = e.getVideoTracks();
+    return o.length && i(o[0]), s.reduce((d, m) => d.then(() => m), Promise.resolve());
   }
   /**
    * Gets the peer connection's local session description.
@@ -8094,21 +8094,21 @@ class O {
     };
   }
 }
-function Zt(o) {
+function Wt(a) {
   return (e, t) => {
-    o === void 0 && (o = Wt());
+    a === void 0 && (a = Gt());
     const s = {
       iceGatheringTimeout: (t == null ? void 0 : t.iceGatheringTimeout) !== void 0 ? t == null ? void 0 : t.iceGatheringTimeout : 5e3,
-      peerConnectionConfiguration: Object.assign(Object.assign({}, Yt()), t == null ? void 0 : t.peerConnectionConfiguration)
+      peerConnectionConfiguration: Object.assign(Object.assign({}, Kt()), t == null ? void 0 : t.peerConnectionConfiguration)
     }, i = e.userAgent.getLogger("sip.SessionDescriptionHandler");
-    return new O(i, o, s);
+    return new O(i, a, s);
   };
 }
 class we {
   constructor(e, t) {
     if (this._state = x.Disconnected, this.transitioningState = !1, this._stateEventEmitter = new pe(), this.logger = e, t) {
-      const i = t, n = i == null ? void 0 : i.wsServers, a = i == null ? void 0 : i.maxReconnectionAttempts;
-      n !== void 0 && this.logger.warn('The transport option "wsServers" as has apparently been specified and has been deprecated. It will no longer be available starting with SIP.js release 0.16.0. Please update accordingly.'), a !== void 0 && this.logger.warn('The transport option "maxReconnectionAttempts" as has apparently been specified and has been deprecated. It will no longer be available starting with SIP.js release 0.16.0. Please update accordingly.'), n && !t.server && (typeof n == "string" && (t.server = n), n instanceof Array && (t.server = n[0]));
+      const i = t, n = i == null ? void 0 : i.wsServers, o = i == null ? void 0 : i.maxReconnectionAttempts;
+      n !== void 0 && this.logger.warn('The transport option "wsServers" as has apparently been specified and has been deprecated. It will no longer be available starting with SIP.js release 0.16.0. Please update accordingly.'), o !== void 0 && this.logger.warn('The transport option "maxReconnectionAttempts" as has apparently been specified and has been deprecated. It will no longer be available starting with SIP.js release 0.16.0. Please update accordingly.'), n && !t.server && (typeof n == "string" && (t.server = n), n instanceof Array && (t.server = n[0]));
     }
     this.configuration = Object.assign(Object.assign({}, we.defaultOptions), t);
     const r = this.configuration.server, s = P.parse(r, "absoluteURI");
@@ -8410,7 +8410,7 @@ class we {
     this._state = e;
     const i = this.connectResolve, n = this.connectReject;
     s === x.Connecting && (this.connectPromise = void 0, this.connectResolve = void 0, this.connectReject = void 0);
-    const a = this.disconnectResolve, d = this.disconnectReject;
+    const o = this.disconnectResolve, d = this.disconnectReject;
     if (s === x.Disconnecting && (this.disconnectPromise = void 0, this.disconnectResolve = void 0, this.disconnectReject = void 0), this.connectTimeout && (clearTimeout(this.connectTimeout), this.connectTimeout = void 0), this.logger.log(`Transitioned from ${s} to ${this._state}`), this._stateEventEmitter.emit(this._state), e === x.Connected && (this.startSendingKeepAlives(), this.onConnect))
       try {
         this.onConnect();
@@ -8431,11 +8431,11 @@ class we {
       e === x.Connected ? i() : n(t || new Error("Connect aborted."));
     }
     if (s === x.Disconnecting) {
-      if (!a)
+      if (!o)
         throw new Error("Disconnect resolve undefined.");
       if (!d)
         throw new Error("Disconnect reject undefined.");
-      e === x.Disconnected ? a() : d(t || new Error("Disconnect aborted."));
+      e === x.Disconnected ? o() : d(t || new Error("Disconnect aborted."));
     }
     this.transitioningState = !1;
   }
@@ -8513,7 +8513,7 @@ class G {
         const s = Math.floor(Math.random() * 254 + 1);
         this.options.viaHost = "192.0.2." + s;
       } else this.options.hackIpInContact && (this.options.viaHost = this.options.hackIpInContact);
-    switch (this.loggerFactory = new $t(), this.logger = this.loggerFactory.getLogger("sip.UserAgent"), this.loggerFactory.builtinEnabled = this.options.logBuiltinEnabled, this.loggerFactory.connector = this.options.logConnector, this.options.logLevel) {
+    switch (this.loggerFactory = new St(), this.logger = this.loggerFactory.getLogger("sip.UserAgent"), this.loggerFactory.builtinEnabled = this.options.logBuiltinEnabled, this.loggerFactory.connector = this.options.logConnector, this.options.logLevel) {
       case "error":
         this.loggerFactory.level = q.error;
         break;
@@ -8597,7 +8597,7 @@ class G {
       reconnectionAttempts: 0,
       reconnectionDelay: 4,
       sendInitialProvisionalResponse: !0,
-      sessionDescriptionHandlerFactory: Zt(),
+      sessionDescriptionHandlerFactory: Wt(),
       sessionDescriptionHandlerFactoryOptions: {},
       sipExtension100rel: K.Unsupported,
       sipExtensionReplaces: K.Unsupported,
@@ -8606,7 +8606,7 @@ class G {
       transportConstructor: we,
       transportOptions: {},
       uri: new J("sip", "anonymous", "anonymous.invalid"),
-      userAgentString: "SIP.js/" + ut,
+      userAgentString: "SIP.js/" + ht,
       viaHost: ""
     };
   }
@@ -8748,32 +8748,32 @@ class G {
     if (this.state === H.Stopped)
       return this.logger.warn("User agent already stopped"), Promise.resolve();
     if (this.logger.log(`Stopping ${this.configuration.uri}`), !this.options.gracefulShutdown)
-      return this.logger.log("Dispose of transport"), this.transport.dispose().catch((a) => {
-        throw this.logger.error(a.message), a;
+      return this.logger.log("Dispose of transport"), this.transport.dispose().catch((o) => {
+        throw this.logger.error(o.message), o;
       }), this.logger.log("Dispose of core"), this.userAgentCore.dispose(), this._publishers = {}, this._registerers = {}, this._sessions = {}, this._subscriptions = {}, this.transitionState(H.Stopped), Promise.resolve();
     const e = Object.assign({}, this._publishers), t = Object.assign({}, this._registerers), r = Object.assign({}, this._sessions), s = Object.assign({}, this._subscriptions), i = this.transport, n = this.userAgentCore;
     this.logger.log("Dispose of registerers");
-    for (const a in t)
-      t[a] && await t[a].dispose().catch((d) => {
-        throw this.logger.error(d.message), delete this._registerers[a], d;
+    for (const o in t)
+      t[o] && await t[o].dispose().catch((d) => {
+        throw this.logger.error(d.message), delete this._registerers[o], d;
       });
     this.logger.log("Dispose of sessions");
-    for (const a in r)
-      r[a] && await r[a].dispose().catch((d) => {
-        throw this.logger.error(d.message), delete this._sessions[a], d;
+    for (const o in r)
+      r[o] && await r[o].dispose().catch((d) => {
+        throw this.logger.error(d.message), delete this._sessions[o], d;
       });
     this.logger.log("Dispose of subscriptions");
-    for (const a in s)
-      s[a] && await s[a].dispose().catch((d) => {
-        throw this.logger.error(d.message), delete this._subscriptions[a], d;
+    for (const o in s)
+      s[o] && await s[o].dispose().catch((d) => {
+        throw this.logger.error(d.message), delete this._subscriptions[o], d;
       });
     this.logger.log("Dispose of publishers");
-    for (const a in e)
-      e[a] && await e[a].dispose().catch((d) => {
-        throw this.logger.error(d.message), delete this._publishers[a], d;
+    for (const o in e)
+      e[o] && await e[o].dispose().catch((d) => {
+        throw this.logger.error(d.message), delete this._publishers[o], d;
       });
-    this.logger.log("Dispose of transport"), await i.dispose().catch((a) => {
-      throw this.logger.error(a.message), a;
+    this.logger.log("Dispose of transport"), await i.dispose().catch((o) => {
+      throw this.logger.error(o.message), o;
     }), this.logger.log("Dispose of core"), n.dispose(), this.transitionState(H.Stopped);
   }
   /**
@@ -8781,7 +8781,7 @@ class G {
    * @internal
    */
   _makeInviter(e, t) {
-    return new Te(this, e, t);
+    return new ve(this, e, t);
   }
   /**
    * Attempt reconnection up to `maxReconnectionAttempts` times.
@@ -8811,9 +8811,9 @@ class G {
       tempGruu: void 0,
       uri: new J("sip", e, this.options.viaHost, void 0, t),
       toString: (s = {}) => {
-        const i = s.anonymous || !1, n = s.outbound || !1, a = s.register || !1;
+        const i = s.anonymous || !1, n = s.outbound || !1, o = s.register || !1;
         let d = "<";
-        return i ? d += this.contact.tempGruu || `sip:anonymous@anonymous.invalid;transport=${t.transport ? t.transport : "ws"}` : a ? d += this.contact.uri : d += this.contact.pubGruu || this.contact.uri, n && (d += ";ob"), d += ">", this.options.instanceIdAlwaysAdded && (d += ';+sip.instance="<urn:uuid:' + this._instanceId + '>"'), d;
+        return i ? d += this.contact.tempGruu || `sip:anonymous@anonymous.invalid;transport=${t.transport ? t.transport : "ws"}` : o ? d += this.contact.uri : d += this.contact.pubGruu || this.contact.uri, n && (d += ";ob"), d += ">", this.options.instanceIdAlwaysAdded && (d += ';+sip.instance="<urn:uuid:' + this._instanceId + '>"'), d;
       }
     };
   }
@@ -8822,7 +8822,7 @@ class G {
    */
   initCore() {
     let e = [];
-    e.push("outbound"), this.options.sipExtension100rel === K.Supported && e.push("100rel"), this.options.sipExtensionReplaces === K.Supported && e.push("replaces"), this.options.sipExtensionExtraSupported && e.push(...this.options.sipExtensionExtraSupported), this.options.hackAllowUnregisteredOptionTags || (e = e.filter((i) => Rt[i])), e = Array.from(new Set(e));
+    e.push("outbound"), this.options.sipExtension100rel === K.Supported && e.push("100rel"), this.options.sipExtensionReplaces === K.Supported && e.push("replaces"), this.options.sipExtensionExtraSupported && e.push(...this.options.sipExtensionExtraSupported), this.options.hackAllowUnregisteredOptionTags || (e = e.filter((i) => Et[i])), e = Array.from(new Set(e));
     const t = e.slice();
     (this.contact.pubGruu || this.contact.tempGruu) && t.push("gruu");
     const r = {
@@ -8839,17 +8839,17 @@ class G {
       viaForceRport: this.options.forceRport,
       viaHost: this.options.viaHost,
       authenticationFactory: () => {
-        const i = this.options.authorizationUsername ? this.options.authorizationUsername : this.options.uri.user, n = this.options.authorizationPassword ? this.options.authorizationPassword : void 0, a = this.options.authorizationHa1 ? this.options.authorizationHa1 : void 0;
-        return new Ct(this.getLoggerFactory(), a, i, n);
+        const i = this.options.authorizationUsername ? this.options.authorizationUsername : this.options.uri.user, n = this.options.authorizationPassword ? this.options.authorizationPassword : void 0, o = this.options.authorizationHa1 ? this.options.authorizationHa1 : void 0;
+        return new Rt(this.getLoggerFactory(), o, i, n);
       },
       transportAccessor: () => this.transport
     }, s = {
       onInvite: (i) => {
         var n;
-        const a = new ue(this, i);
+        const o = new ue(this, i);
         if (i.delegate = {
           onCancel: (d) => {
-            a._onCancel(d);
+            o._onCancel(d);
           },
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           onTransportError: (d) => {
@@ -8867,46 +8867,46 @@ class G {
             const E = m.replaces_from_tag;
             if (typeof E != "string")
               throw new Error("type of from tag is not string");
-            const I = f + w + E, y = this.userAgentCore.dialogs.get(I);
-            if (!y) {
-              a.reject({ statusCode: 481 });
+            const I = f + w + E, C = this.userAgentCore.dialogs.get(I);
+            if (!C) {
+              o.reject({ statusCode: 481 });
               return;
             }
-            if (!y.early && m.early_only === !0) {
-              a.reject({ statusCode: 486 });
+            if (!C.early && m.early_only === !0) {
+              o.reject({ statusCode: 486 });
               return;
             }
             const S = this._sessions[f + E] || this._sessions[f + w] || void 0;
             if (!S)
               throw new Error("Session does not exist.");
-            a._replacee = S;
+            o._replacee = S;
           }
         }
         if (!((n = this.delegate) === null || n === void 0) && n.onInvite) {
-          if (a.autoSendAnInitialProvisionalResponse) {
-            a.progress().then(() => {
+          if (o.autoSendAnInitialProvisionalResponse) {
+            o.progress().then(() => {
               var d;
               if (((d = this.delegate) === null || d === void 0 ? void 0 : d.onInvite) === void 0)
                 throw new Error("onInvite undefined.");
-              this.delegate.onInvite(a);
+              this.delegate.onInvite(o);
             });
             return;
           }
-          this.delegate.onInvite(a);
+          this.delegate.onInvite(o);
           return;
         }
-        a.reject({ statusCode: 486 });
+        o.reject({ statusCode: 486 });
       },
       onMessage: (i) => {
         if (this.delegate && this.delegate.onMessage) {
-          const n = new Xe(i);
+          const n = new Ze(i);
           this.delegate.onMessage(n);
         } else
           i.accept();
       },
       onNotify: (i) => {
         if (this.delegate && this.delegate.onNotify) {
-          const n = new Fe(i);
+          const n = new ke(i);
           this.delegate.onNotify(n);
         } else
           this.options.allowLegacyNotifications ? i.accept() : i.reject({ statusCode: 481 });
@@ -8921,7 +8921,7 @@ class G {
         this.logger.warn("Received an out of dialog SUBSCRIBE request"), this.delegate && this.delegate.onSubscribeRequest ? this.delegate.onSubscribeRequest(i) : i.reject({ statusCode: 405 });
       }
     };
-    return new Kt(r, s);
+    return new Vt(r, s);
   }
   initTransportCallbacks() {
     this.transport.onConnect = () => this.onTransportConnect(), this.transport.onDisconnect = (e) => this.onTransportDisconnect(e), this.transport.onMessage = (e) => this.onTransportMessage(e);
@@ -8933,7 +8933,7 @@ class G {
     this.state !== H.Stopped && (this.delegate && this.delegate.onDisconnect && this.delegate.onDisconnect(e), e && this.options.reconnectionAttempts > 0 && this.attemptReconnection());
   }
   onTransportMessage(e) {
-    const t = be.parseMessage(e, this.getLogger("sip.Parser"));
+    const t = Te.parseMessage(e, this.getLogger("sip.Parser"));
     if (!t) {
       this.logger.warn("Failed to parse incoming message. Dropping.");
       return;
@@ -9014,10 +9014,10 @@ class G {
     this.logger.log(`Transitioned from ${this._state} to ${e}`), this._state = e, this._stateEventEmitter.emit(this._state);
   }
 }
-function Jt() {
-  return (o, e) => ({ session: e, held: !1, muted: !1 });
+function Yt() {
+  return (a, e) => ({ session: e, held: !1, muted: !1 });
 }
-class Me {
+class qe {
   /**
    * Constructs a new instance of the `SessionManager` class.
    * @param server - SIP WebSocket Server URL.
@@ -9029,7 +9029,7 @@ class Me {
       autoStop: !0,
       delegate: {},
       iceStopWaitingOnServerReflexive: !1,
-      managedSessionFactory: Jt(),
+      managedSessionFactory: Yt(),
       maxSimultaneousSessions: 2,
       media: {},
       optionsPingInterval: -1,
@@ -9043,7 +9043,7 @@ class Me {
       registererRegisterOptions: {},
       sendDTMFUsingSessionDescriptionHandler: !1,
       userAgentOptions: {}
-    }, Me.stripUndefinedProperties(t));
+    }, qe.stripUndefinedProperties(t));
     const r = Object.assign({}, t.userAgentOptions);
     if (r.transportConstructor || (r.transportConstructor = we), r.transportOptions || (r.transportOptions = {
       server: e
@@ -9065,8 +9065,8 @@ class Me {
         this.options.optionsPingInterval > 0 && (i = this.optionsPingFailure, this.optionsPingFailure = !1, this.optionsPingStop()), this.delegate && this.delegate.onServerDisconnect && this.delegate.onServerDisconnect(s), (s || i) && (this.registerer && (this.logger.log("Disposing of registerer..."), this.registerer.dispose().catch((n) => {
           this.logger.debug("Error occurred disposing of registerer after connection with server was lost."), this.logger.debug(n.toString());
         }), this.registerer = void 0), this.managedSessions.slice().map((n) => n.session).forEach(async (n) => {
-          this.logger.log("Disposing of session..."), n.dispose().catch((a) => {
-            this.logger.debug("Error occurred disposing of a session after connection with server was lost."), this.logger.debug(a.toString());
+          this.logger.log("Disposing of session..."), n.dispose().catch((o) => {
+            this.logger.debug("Error occurred disposing of a session after connection with server was lost."), this.logger.debug(o.toString());
           });
         }), this.shouldBeConnected && this.attemptReconnection());
       },
@@ -9077,8 +9077,8 @@ class Me {
         if (i !== 0 && this.managedSessions.length > i) {
           this.logger.warn(`[${s.id}] Session already in progress, rejecting INVITE...`), s.reject().then(() => {
             this.logger.log(`[${s.id}] Rejected INVITE`);
-          }).catch((a) => {
-            this.logger.error(`[${s.id}] Failed to reject INVITE`), this.logger.error(a.toString());
+          }).catch((o) => {
+            this.logger.error(`[${s.id}] Failed to reject INVITE`), this.logger.error(o.toString());
           });
           return;
         }
@@ -9087,8 +9087,8 @@ class Me {
         };
         this.initSession(s, n), this.delegate && this.delegate.onCallReceived ? this.delegate.onCallReceived(s) : (this.logger.warn(`[${s.id}] No handler available, rejecting INVITE...`), s.reject().then(() => {
           this.logger.log(`[${s.id}] Rejected INVITE`);
-        }).catch((a) => {
-          this.logger.error(`[${s.id}] Failed to reject INVITE`), this.logger.error(a.toString());
+        }).catch((o) => {
+          this.logger.error(`[${s.id}] Failed to reject INVITE`), this.logger.error(o.toString());
         }));
       },
       // Handle incoming messages
@@ -9219,15 +9219,15 @@ class Me {
   async register(e) {
     return this.logger.log("Registering UserAgent..."), this.shouldBeRegistered = !0, e !== void 0 && (this.registererRegisterOptions = Object.assign({}, e)), this.registerer || (this.registerer = new Z(this.userAgent, this.registererOptions), this.registerer.stateChange.addListener((t) => {
       switch (t) {
-        case C.Initial:
+        case $.Initial:
           break;
-        case C.Registered:
+        case $.Registered:
           this.delegate && this.delegate.onRegistered && this.delegate.onRegistered();
           break;
-        case C.Unregistered:
+        case $.Unregistered:
           this.delegate && this.delegate.onUnregistered && this.delegate.onUnregistered(), this.shouldBeRegistered && this.attemptRegistration();
           break;
-        case C.Terminated:
+        case $.Terminated:
           break;
         default:
           throw new Error("Unknown registerer state.");
@@ -9264,22 +9264,22 @@ class Me {
       return Promise.reject(new Error(`Failed to create a valid URI from "${e}"`));
     if (t || (t = {}), t.sessionDescriptionHandlerOptions || (t.sessionDescriptionHandlerOptions = {}), t.sessionDescriptionHandlerOptions.constraints || (t.sessionDescriptionHandlerOptions.constraints = this.constraints), t.earlyMedia) {
       r = r || {}, r.requestDelegate = r.requestDelegate || {};
-      const a = r.requestDelegate.onProgress;
+      const o = r.requestDelegate.onProgress;
       r.requestDelegate.onProgress = (d) => {
-        d.message.statusCode === 183 && this.setupRemoteMedia(n), a && a(d);
+        d.message.statusCode === 183 && this.setupRemoteMedia(n), o && o(d);
       };
     }
-    this.options.iceStopWaitingOnServerReflexive && (t.delegate = t.delegate || {}, t.delegate.onSessionDescriptionHandler = (a) => {
-      if (!(a instanceof O))
+    this.options.iceStopWaitingOnServerReflexive && (t.delegate = t.delegate || {}, t.delegate.onSessionDescriptionHandler = (o) => {
+      if (!(o instanceof O))
         throw new Error("Session description handler not instance of SessionDescriptionHandler");
-      a.peerConnectionDelegate = {
+      o.peerConnectionDelegate = {
         onicecandidate: (d) => {
           var m;
-          ((m = d.candidate) === null || m === void 0 ? void 0 : m.type) === "srflx" && (this.logger.log(`[${n.id}] Found srflx ICE candidate, stop waiting...`), a.iceGatheringComplete());
+          ((m = d.candidate) === null || m === void 0 ? void 0 : m.type) === "srflx" && (this.logger.log(`[${n.id}] Found srflx ICE candidate, stop waiting...`), o.iceGatheringComplete());
         }
       };
     });
-    const n = new Te(this.userAgent, i, t);
+    const n = new ve(this.userAgent, i, t);
     return this.sendInvite(n, t, r).then(() => n);
   }
   /**
@@ -9431,7 +9431,7 @@ Duration=` + 2e3
   async message(e, t) {
     this.logger.log("Sending message...");
     const r = G.makeURI(e);
-    return r ? new St(this.userAgent, r, t).message() : Promise.reject(new Error(`Failed to create a valid URI from "${e}"`));
+    return r ? new xt(this.userAgent, r, t).message() : Promise.reject(new Error(`Failed to create a valid URI from "${e}"`));
   }
   /** Media constraints. */
   get constraints() {
@@ -9555,9 +9555,9 @@ Duration=` + 2e3
         r.reject();
         return;
       }
-      let a;
+      let o;
       const d = /^(Signal\s*?=\s*?)([0-9A-D#*]{1})(\s)?.*/;
-      if (n[0] !== void 0 && d.test(n[0]) && (a = n[0].replace(d, "$2")), !a) {
+      if (n[0] !== void 0 && d.test(n[0]) && (o = n[0].replace(d, "$2")), !o) {
         r.reject();
         return;
       }
@@ -9569,9 +9569,9 @@ Duration=` + 2e3
       }
       r.accept().then(() => {
         if (this.delegate && this.delegate.onCallDTMFReceived) {
-          if (!a || !m)
+          if (!o || !m)
             throw new Error("Tone or duration undefined.");
-          this.delegate.onCallDTMFReceived(e, a, m);
+          this.delegate.onCallDTMFReceived(e, o, m);
         }
       }).catch((w) => {
         this.logger.error(w.message);
@@ -9597,8 +9597,8 @@ Duration=` + 2e3
         this.optionsPingFailure = !1, this.optionsPingRunning && (this.optionsPingRunning = !1, this.optionsPingRun(e, t, r));
       }, i = () => {
         this.logger.error("OPTIONS ping failed"), this.optionsPingFailure = !0, this.optionsPingRunning = !1, this.userAgent.transport.disconnect().catch((d) => this.logger.error(d));
-      }, n = this.userAgent.userAgentCore, a = n.makeOutgoingRequestMessage("OPTIONS", e, t, r, {});
-      this.optionsPingRequest = n.request(a, {
+      }, n = this.userAgent.userAgentCore, o = n.makeOutgoingRequestMessage("OPTIONS", e, t, r, {});
+      this.optionsPingRequest = n.request(o, {
         onAccept: () => {
           this.optionsPingRequest = void 0, s();
         },
@@ -9673,13 +9673,13 @@ Duration=` + 2e3
     const s = {
       requestDelegate: {
         onAccept: () => {
-          const a = this.sessionManaged(e);
-          a !== void 0 && (a.held = t, this.enableReceiverTracks(e, !a.held), this.enableSenderTracks(e, !a.held && !a.muted), this.delegate && this.delegate.onCallHold && this.delegate.onCallHold(e, a.held));
+          const o = this.sessionManaged(e);
+          o !== void 0 && (o.held = t, this.enableReceiverTracks(e, !o.held), this.enableSenderTracks(e, !o.held && !o.muted), this.delegate && this.delegate.onCallHold && this.delegate.onCallHold(e, o.held));
         },
         onReject: () => {
           this.logger.warn(`[${e.id}] Re-invite request was rejected`);
-          const a = this.sessionManaged(e);
-          a !== void 0 && (a.held = !t, this.enableReceiverTracks(e, !a.held), this.enableSenderTracks(e, !a.held && !a.muted), this.delegate && this.delegate.onCallHold && this.delegate.onCallHold(e, a.held));
+          const o = this.sessionManaged(e);
+          o !== void 0 && (o.held = !t, this.enableReceiverTracks(e, !o.held), this.enableSenderTracks(e, !o.held && !o.muted), this.delegate && this.delegate.onCallHold && this.delegate.onCallHold(e, o.held));
         }
       }
     }, i = e.sessionDescriptionHandlerOptionsReInvite;
@@ -9688,10 +9688,10 @@ Duration=` + 2e3
     if (!n)
       throw new Error("Managed session is undefiend.");
     return n.held = t, e.invite(s).then(() => {
-      const a = this.sessionManaged(e);
-      a !== void 0 && (this.enableReceiverTracks(e, !a.held), this.enableSenderTracks(e, !a.held && !a.muted));
-    }).catch((a) => {
-      throw n.held = !t, a instanceof fe && this.logger.error(`[${e.id}] A hold request is already in progress.`), a;
+      const o = this.sessionManaged(e);
+      o !== void 0 && (this.enableReceiverTracks(e, !o.held), this.enableSenderTracks(e, !o.held && !o.muted));
+    }).catch((o) => {
+      throw n.held = !t, o instanceof fe && this.logger.error(`[${e.id}] A hold request is already in progress.`), o;
     });
   }
   /**
@@ -9760,7 +9760,7 @@ Duration=` + 2e3
   async terminate(e) {
     switch (this.logger.log(`[${e.id}] Terminating...`), e.state) {
       case p.Initial:
-        if (e instanceof Te)
+        if (e instanceof ve)
           return e.cancel().then(() => {
             this.logger.log(`[${e.id}] Inviter never sent INVITE (canceled)`);
           });
@@ -9770,7 +9770,7 @@ Duration=` + 2e3
           });
         throw new Error("Unknown session type.");
       case p.Establishing:
-        if (e instanceof Te)
+        if (e instanceof ve)
           return e.cancel().then(() => {
             this.logger.log(`[${e.id}] Inviter canceled (sent CANCEL)`);
           });
@@ -9793,7 +9793,7 @@ Duration=` + 2e3
     return this.logger.log(`[${e.id}] Terminating in state ${e.state}, no action taken`), Promise.resolve();
   }
 }
-class zt {
+class Zt {
   /**
    * Constructs a new instance of the `SimpleUser` class.
    * @param server - SIP WebSocket Server URL.
@@ -9821,12 +9821,12 @@ class zt {
           this.session = void 0, !((s = this.delegate) === null || s === void 0) && s.onCallHangup && ((i = this.delegate) === null || i === void 0 || i.onCallHangup());
         },
         onCallHold: (s, i) => {
-          var n, a;
-          return (a = (n = this.delegate) === null || n === void 0 ? void 0 : n.onCallHold) === null || a === void 0 ? void 0 : a.call(n, i);
+          var n, o;
+          return (o = (n = this.delegate) === null || n === void 0 ? void 0 : n.onCallHold) === null || o === void 0 ? void 0 : o.call(n, i);
         },
         onCallDTMFReceived: (s, i, n) => {
-          var a, d;
-          return (d = (a = this.delegate) === null || a === void 0 ? void 0 : a.onCallDTMFReceived) === null || d === void 0 ? void 0 : d.call(a, i, n);
+          var o, d;
+          return (d = (o = this.delegate) === null || o === void 0 ? void 0 : o.onCallDTMFReceived) === null || d === void 0 ? void 0 : d.call(o, i, n);
         },
         onMessageReceived: (s) => {
           var i, n;
@@ -9857,7 +9857,7 @@ class zt {
       sendDTMFUsingSessionDescriptionHandler: this.options.sendDTMFUsingSessionDescriptionHandler,
       userAgentOptions: this.options.userAgentOptions
     };
-    this.sessionManager = new Me(e, r), this.logger = this.sessionManager.userAgent.getLogger("sip.SimpleUser");
+    this.sessionManager = new qe(e, r), this.logger = this.sessionManager.userAgent.getLogger("sip.SimpleUser");
   }
   /**
    * Instance identifier.
@@ -10062,19 +10062,20 @@ class zt {
     return this.logger.log(`[${this.id}] sending message...`), this.sessionManager.message(e, t);
   }
 }
-const nt = ht({
+var Jt = /* @__PURE__ */ ((a) => (a.idle = "idle", a.connecting = "connecting", a.calling = "calling", a.ringing = "ringing", a.connected = "connected", a.failed = "failed", a.busy = "busy", a.error = "error", a.unknown = "unknown", a))(Jt || {});
+const zt = ot({
   state: "idle",
-  call: (o) => {
+  call: (a) => {
   },
   hangup: () => {
   }
-}), er = ({ children: o, sipConfig: e }) => {
-  const [t, r] = We(
+}), er = ({ children: a, sipConfig: e }) => {
+  const [t, r] = ct(
     "idle"
     /* idle */
-  ), s = Be(null), i = Be(null), {
+  ), s = Ue(null), i = Ue(null), {
     baseUri: n,
-    server: a,
+    server: o,
     aor: d,
     userAgentOptions: m
   } = e, f = {
@@ -10087,10 +10088,10 @@ const nt = ht({
     userAgentOptions: m
     // Provide an empty object as the initializer for userAgentOptions
   };
-  lt(() => {
-    i.current || (i.current = new zt(a, f));
-    const y = i.current;
-    return y.delegate = {
+  dt(() => {
+    i.current || (i.current = new Zt(o, f));
+    const C = i.current;
+    return C.delegate = {
       onCallAnswered: () => {
         r(
           "connected"
@@ -10104,7 +10105,7 @@ const nt = ht({
         r(
           "ringing"
           /* ringing */
-        ), console.log("Call received"), y.answer().catch((k) => {
+        ), console.log("Call received"), C.answer().catch((k) => {
           console.error(k), r(
             "error"
             /* error */
@@ -10150,7 +10151,7 @@ const nt = ht({
         /* connecting */
       );
       try {
-        await y.connect(), r(
+        await C.connect(), r(
           "idle"
           /* idle */
         );
@@ -10164,14 +10165,14 @@ const nt = ht({
       i.current && (i.current.delegate = {}, i.current.disconnect());
     };
   }, []);
-  async function w(y) {
+  async function w(C) {
     if (i.current) {
       r(
         "calling"
         /* calling */
       );
       try {
-        const S = `sip:${y}@${n}`;
+        const S = `sip:${C}@${n}`;
         await i.current.call(S);
       } catch (S) {
         console.error(S), r(
@@ -10185,8 +10186,8 @@ const nt = ht({
     if (i.current)
       try {
         await i.current.hangup();
-      } catch (y) {
-        console.error(y), r(
+      } catch (C) {
+        console.error(C), r(
           "error"
           /* error */
         );
@@ -10197,36 +10198,13 @@ const nt = ht({
     call: w,
     hangup: E
   };
-  return /* @__PURE__ */ ke(nt.Provider, { value: I, children: [
-    /* @__PURE__ */ ve("audio", { ref: s }),
-    o
-  ] });
-}, tr = () => {
-  const { state: o, call: e, hangup: t } = dt.useContext(nt), [r, s] = We("");
-  return /* @__PURE__ */ ke("div", { children: [
-    /* @__PURE__ */ ve(
-      "input",
-      {
-        type: "text",
-        value: r,
-        onChange: (a) => s(a.target.value),
-        placeholder: "Enter destination"
-      }
-    ),
-    /* @__PURE__ */ ve("button", { onClick: () => {
-      e(r);
-    }, disabled: o !== "idle", children: "Call" }),
-    /* @__PURE__ */ ve("button", { onClick: () => {
-      t();
-    }, disabled: o !== "connected", children: "Hang Up" }),
-    /* @__PURE__ */ ke("div", { children: [
-      "Current State: ",
-      o
-    ] })
+  return /* @__PURE__ */ nt(zt.Provider, { value: I, children: [
+    /* @__PURE__ */ at("audio", { ref: s }),
+    a
   ] });
 };
 export {
-  tr as PhoneComponent,
-  nt as SipContext,
-  er as SipContextProvider
+  zt as SipContext,
+  er as SipContextProvider,
+  Jt as SipState
 };

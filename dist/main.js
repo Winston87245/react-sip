@@ -1,6 +1,7 @@
-import { PhoneComponent as t, SipContext as n, SipContextProvider as p } from "./store/SipContextProvider.js";
+import { SipContext as e, SipContextProvider as r } from "./store/SipContextProvider.js";
+import { SoftPhone as x } from "./components/SoftPhone.js";
 export {
-  t as PhoneComponent,
-  n as SipContext,
-  p as SipContextProvider
+  e as SipContext,
+  r as SipContextProvider,
+  x as SoftPhone
 };
