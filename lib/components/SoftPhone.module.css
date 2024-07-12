@@ -1,10 +1,13 @@
 /* main color #99e9f2 */
 /* grey color #0c8599 */
+*:focus {
+    outline: none;
+}
 
 .fabIcon {
     width: 50px;
     height: 50px;
-    fill: #0b7285;
+    fill: #13c4d7;
 }
 
 .floatingButton {
@@ -13,13 +16,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #99e9f2;
+    background-color: white;
     border-radius: 50%;
     filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
 }
 
 .floatingButton:hover {
-    background-color: #85d8e1;
+    background-color: rgb(239, 239, 239);
 
 }
 
@@ -28,7 +31,6 @@
 }
 
 .dialWindow {
-    border: 1px black solid;
     display: grid;
     grid-template-columns: repeat(3, 80px);
     grid-template-rows: auto repeat(5, 60px);
@@ -41,6 +43,7 @@
         ". . ."
         "clearButton callButton callButton";
     z-index: 200;
+    filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
 }
 
 .draggablePlace {
@@ -52,16 +55,27 @@
     grid-area: phoneHeader;
     display: flex;
     cursor: pointer;
+    background-color: white;
 }
+
+
 
 .closeButton {
     cursor: pointer;
-    margin-left: auto;
-    margin-right: 0;
+    padding: 0;
     border: 0;
     background-color: transparent;
-    height: 30px;
-    width: 30px;
+    height: 42px;
+    width: 42px;
+}
+
+.closeButton:hover {
+    background-color: rgb(239, 239, 239);
+}
+
+.closeIcon {
+    width: 26px;
+    color: #13c4d7;
 }
 
 .phoneNumber {
@@ -89,10 +103,10 @@
     align-items: center;
     font-size: 1.5rem;
     font-weight: 500;
-    color: #0b7285;
-    background-color: #99e9f2;
+    color: #13c4d7;
     border: none;
     cursor: pointer;
+    background-color: white;
 }
 
 .dialButton1:hover,
@@ -107,7 +121,7 @@
 .dialButtonStar:hover,
 .dialButton0:hover,
 .dialButtonHash:hover {
-    background-color: #85d8e1;
+    background-color: rgb(239, 239, 239);
 }
 
 
@@ -117,14 +131,19 @@
     align-items: center;
     font-size: 1.5rem;
     font-weight: 500;
-    color: #0b7285;
-    background-color: #99e9f2;
+    color: #13c4d7;
+    background-color: white;
     border: none;
     cursor: pointer;
 }
 
 .callButton:hover {
-    background-color: #85d8e1;
+    background-color: rgb(239, 239, 239);
+}
+
+.callIcon {
+    width: 40px;
+    fill: #13c4d7;
 }
 
 .clearButton {
@@ -133,12 +152,16 @@
     align-items: center;
     font-size: 1.5rem;
     font-weight: 500;
-    color: #0b7285;
-    background-color: #99e9f2;
+    color: #13c4d7;
+    background-color: white;
     border: none;
     cursor: pointer;
 }
 
 .clearButton:hover {
-    background-color: #85d8e1;
+    background-color: rgb(239, 239, 239);
+}
+
+.clearIcon {
+    width: 30px;
 }
