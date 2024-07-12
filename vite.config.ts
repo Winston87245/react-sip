@@ -13,7 +13,7 @@ export default defineConfig({
       entry: resolve(__dirname, 'lib/main.ts'),
       formats: ['es']
     },
-    copyPublicDir: true,
+    copyPublicDir: false,
     rollupOptions: {
       external: ['react', 'react/jsx-runtime'],
       input: Object.fromEntries(
@@ -29,5 +29,6 @@ export default defineConfig({
         entryFileNames: '[name].js',
       }
     }
-  }
+  },
+  assetsInclude: ['**/*.mp3'],
 })

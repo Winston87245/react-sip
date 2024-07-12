@@ -40,8 +40,8 @@ export const SipContextProvider: React.FC<PropsWithChildren<{ sipConfig: { baseU
         aor,
         userAgentOptions
     } = sipConfig;
-    const ringMp3Path = import.meta.env.VITE_AUDIO_PATH;
-    const ringMp3Audio = useRef(new Audio(ringMp3Path));
+    
+    const ringMp3Audio = useRef(new Audio(new URL('../assets/PhoneRing.mp3', import.meta.url).href));
 
 
     const options: Web.SimpleUserOptions = {
