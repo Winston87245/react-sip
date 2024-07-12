@@ -3,7 +3,7 @@ import { Web } from "sip.js";
 import { UserAgentOptions } from "sip.js/lib/api/user-agent-options";
 
 // Define the initial state of the SIP context
-enum SipState {
+export enum SipState {
     idle = 'idle',
     connecting = 'connecting',
     calling = 'calling',
@@ -23,14 +23,14 @@ interface SipContextProps {
     hangup: () => void;
 }
 
-const SipContext = createContext<SipContextProps>({
+export const SipContext = createContext<SipContextProps>({
     state: SipState.idle,
     call: (destination: string) => { destination },
     receive: () => { },
     hangup: () => { },
 });
 
-const SipContextProvider: React.FC<PropsWithChildren<{ sipConfig: { baseUri: string, server: string, aor: string, userAgentOptions: UserAgentOptions } }>> = ({ children, sipConfig }) => {
+export const SipContextProvider: React.FC<PropsWithChildren<{ sipConfig: { baseUri: string, server: string, aor: string, userAgentOptions: UserAgentOptions } }>> = ({ children, sipConfig }) => {
     const [sipState, setSipState] = useState<SipState>(SipState.idle);
     const audioRef = useRef<HTMLAudioElement>(null);
     const simpleUserRef = useRef<Web.SimpleUser | null>(null);
@@ -40,7 +40,8 @@ const SipContextProvider: React.FC<PropsWithChildren<{ sipConfig: { baseUri: str
         aor,
         userAgentOptions
     } = sipConfig;
-    const ringMp3Audio = useRef(new Audio(`../../public/PhoneRing.mp3`));
+    const ringMp3Path = import.meta.env.VITE_AUDIO_PATH;
+    const ringMp3Audio = useRef(new Audio(ringMp3Path));
 
 
     const options: Web.SimpleUserOptions = {
@@ -192,4 +193,3 @@ const SipContextProvider: React.FC<PropsWithChildren<{ sipConfig: { baseUri: str
     );
 };
 
-export { SipContextProvider, SipContext, SipState };

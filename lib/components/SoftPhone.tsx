@@ -1,8 +1,7 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import classes from './SoftPhone.module.css';
-import { SipContext } from '../store/SipContextProvider';
 
-const SoftPhone: React.FC = () => {
+export const SoftPhone: React.FC = () => {
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [isDragging, setIsDragging] = useState(false);
     const [offset, setOffset] = useState({ x: 0, y: 0 });
@@ -111,6 +110,3 @@ const SoftPhone: React.FC = () => {
         </>
     );
 };
-
-
-export { SoftPhone };
