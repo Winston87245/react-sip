@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import classes from './SoftPhone.module.css';
+import { SipContext } from '../store/SipContextProvider';
 
 const SoftPhone: React.FC = () => {
     const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -8,6 +9,7 @@ const SoftPhone: React.FC = () => {
     const [isMoving, setIsMoving] = useState(false);
     const [isDialWindow, setIsDialWindow] = useState(false);
     const [phoneNumber, setPhoneNumber] = useState('');
+    // const { state } = useContext(SipContext);
 
     const handleMouseDown = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         setIsDragging(true);
@@ -62,7 +64,7 @@ const SoftPhone: React.FC = () => {
     };
 
     const clearPhoneNumber = () => {
-        setPhoneNumber(prev=>prev.slice(0, -1));
+        setPhoneNumber(prev => prev.slice(0, -1));
     }
 
     return (
@@ -81,7 +83,7 @@ const SoftPhone: React.FC = () => {
                 <div className={classes.phoneHeader}>
                     <div className={classes.draggablePlace} onMouseDown={handleMouseDown}></div>
                     <button className={classes.closeButton} onClick={toggleDialWindow}>
-                        <svg className={classes.closeIcon} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none" /><polyline points="144 64 144 112 192 112" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" /><line x1="208" y1="48" x2="144" y2="112" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" /><polyline points="64 144 112 144 112 192" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" /><line x1="48" y1="208" x2="112" y2="144" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" /></svg>
+                        <svg className={classes.closeIcon} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none" /><polyline points="144 64 144 112 192 112" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="16" /><line x1="208" y1="48" x2="144" y2="112" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="16" /><polyline points="64 144 112 144 112 192" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="16" /><line x1="48" y1="208" x2="112" y2="144" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="16" /></svg>
                     </button>
                 </div>
                 <input value={phoneNumber} onChange={handlePhoneNumberChange} type='text' pattern='[0-9]*' className={classes.phoneNumber} />
@@ -98,7 +100,7 @@ const SoftPhone: React.FC = () => {
                 <button onClick={() => handleDialButtonClick('0')} className={classes.dialButton0}>0</button>
                 <button onClick={() => handleDialButtonClick('#')} className={classes.dialButtonHash}>#</button>
                 <button className={classes.clearButton} onClick={clearPhoneNumber}>
-                    <svg className={classes.clearIcon} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none" /><path d="M61.67,204.12,16,128,61.67,51.88A8,8,0,0,1,68.53,48H216a8,8,0,0,1,8,8V200a8,8,0,0,1-8,8H68.53A8,8,0,0,1,61.67,204.12Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" /><line x1="160" y1="104" x2="112" y2="152" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" /><line x1="160" y1="152" x2="112" y2="104" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" /></svg>
+                    <svg className={classes.clearIcon} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none" /><path d="M61.67,204.12,16,128,61.67,51.88A8,8,0,0,1,68.53,48H216a8,8,0,0,1,8,8V200a8,8,0,0,1-8,8H68.53A8,8,0,0,1,61.67,204.12Z" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="16" /><line x1="160" y1="104" x2="112" y2="152" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="16" /><line x1="160" y1="152" x2="112" y2="104" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="16" /></svg>
                 </button>
                 <button className={classes.callButton}>
                     <svg className={classes.callIcon} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">

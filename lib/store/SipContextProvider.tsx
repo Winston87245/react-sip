@@ -1,6 +1,7 @@
 import React, { createContext, useState, useRef, useEffect, PropsWithChildren } from 'react';
 import { Web } from "sip.js";
 import { UserAgentOptions } from "sip.js/lib/api/user-agent-options";
+
 // Define the initial state of the SIP context
 enum SipState {
     idle = 'idle',
@@ -18,12 +19,14 @@ enum SipState {
 interface SipContextProps {
     state: SipState;
     call: (destination: string) => void;
+    receive: () => void;
     hangup: () => void;
 }
 
 const SipContext = createContext<SipContextProps>({
     state: SipState.idle,
     call: (destination: string) => { destination },
+    receive: () => { },
     hangup: () => { },
 });
 
@@ -37,6 +40,8 @@ const SipContextProvider: React.FC<PropsWithChildren<{ sipConfig: { baseUri: str
         aor,
         userAgentOptions
     } = sipConfig;
+    const ringMp3Audio = useRef(new Audio(`../../public/PhoneRing.mp3`));
+
 
     const options: Web.SimpleUserOptions = {
         aor,
@@ -45,7 +50,7 @@ const SipContextProvider: React.FC<PropsWithChildren<{ sipConfig: { baseUri: str
                 audio: audioRef.current ? audioRef.current : undefined
             }
         },
-        userAgentOptions // Provide an empty object as the initializer for userAgentOptions
+        userAgentOptions
     };
 
     useEffect(() => {
@@ -58,6 +63,7 @@ const SipContextProvider: React.FC<PropsWithChildren<{ sipConfig: { baseUri: str
         simpleUser.delegate = {
             onCallAnswered: () => {
                 setSipState(SipState.connected);
+                pauseRingAudio();
                 console.log('Call answered');
             },
             onCallCreated: () => {
@@ -65,14 +71,12 @@ const SipContextProvider: React.FC<PropsWithChildren<{ sipConfig: { baseUri: str
             },
             onCallReceived: () => {
                 setSipState(SipState.ringing);
+                playRingAudio();
                 console.log('Call received');
-                simpleUser.answer().catch((error) => {
-                    console.error(error);
-                    setSipState(SipState.error);
-                });
             },
             onCallHangup: () => {
                 setSipState(SipState.idle);
+                pauseRingAudio();
                 console.log('Call hung up');
             },
             onCallHold: (held: boolean) => {
@@ -104,6 +108,7 @@ const SipContextProvider: React.FC<PropsWithChildren<{ sipConfig: { baseUri: str
             setSipState(SipState.connecting);
             try {
                 await simpleUser.connect();
+                await simpleUser.register();
                 setSipState(SipState.idle);
             } catch (error) {
                 console.error(error);
@@ -118,6 +123,8 @@ const SipContextProvider: React.FC<PropsWithChildren<{ sipConfig: { baseUri: str
                 simpleUserRef.current.delegate = {};
                 simpleUserRef.current.disconnect();
             }
+            ringMp3Audio.current.pause();
+            ringMp3Audio.current.currentTime = 0;
         };
     }, []);
 
@@ -133,29 +140,56 @@ const SipContextProvider: React.FC<PropsWithChildren<{ sipConfig: { baseUri: str
         }
     }
 
-    async function hangup() {
+    async function receive() {
         if (!simpleUserRef.current) return;
         try {
-            await simpleUserRef.current.hangup();
+            await simpleUserRef.current.answer();
         } catch (error) {
             console.error(error);
             setSipState(SipState.error);
         }
     }
 
-    const sipValue = {
-        state: sipState,
-        call,
-        hangup,
+    async function hangup() {
+        if (!simpleUserRef.current) return;
+        if (sipState === SipState.ringing) {
+            try {
+                await simpleUserRef.current.decline();
+            } catch (error) {
+                console.error(error);
+                setSipState(SipState.error);
+            }
+            return;
+        } else {
+            try {
+                await simpleUserRef.current.hangup();
+            } catch (error) {
+                console.error(error);
+                setSipState(SipState.error);
+            }
+        }
+    }
+
+    const playRingAudio = () => {
+        console.log('Playing ring audio');
+        ringMp3Audio.current.play().catch(error => {
+            console.error("Failed to play audio:", error);
+        });
     };
 
+    const pauseRingAudio = () => {
+        console.log('Pausing ring audio');
+        ringMp3Audio.current.pause();
+        ringMp3Audio.current.currentTime = 0;
+    };
+
+
     return (
-        <SipContext.Provider value={sipValue}>
+        <SipContext.Provider value={{ state: sipState, call, receive, hangup }}>
             <audio ref={audioRef}></audio>
             {children}
         </SipContext.Provider>
     );
 };
-
 
 export { SipContextProvider, SipContext, SipState };
