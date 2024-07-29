@@ -40,9 +40,8 @@ export const SipContextProvider: React.FC<PropsWithChildren<{ sipConfig: { baseU
         aor,
         userAgentOptions
     } = sipConfig;
-    
-    const ringMp3Audio = useRef(new Audio("../assets/PhoneRing.mp3"));
 
+    const ringMp3Audio = useRef<HTMLAudioElement | null>(null);
 
     const options: Web.SimpleUserOptions = {
         aor,
@@ -58,6 +57,10 @@ export const SipContextProvider: React.FC<PropsWithChildren<{ sipConfig: { baseU
         if (!simpleUserRef.current) {
             simpleUserRef.current = new Web.SimpleUser(server, options);
         }
+        ringMp3Audio.current = new Audio(new URL('../assets/PhoneRing.mp3', import.meta.url).href)
+        console.log('SimpleUser created');
+        console.log(ringMp3Audio.current);
+
 
         const simpleUser = simpleUserRef.current;
 
@@ -124,8 +127,10 @@ export const SipContextProvider: React.FC<PropsWithChildren<{ sipConfig: { baseU
                 simpleUserRef.current.delegate = {};
                 simpleUserRef.current.disconnect();
             }
-            ringMp3Audio.current.pause();
-            ringMp3Audio.current.currentTime = 0;
+            if (ringMp3Audio.current) {
+                ringMp3Audio.current.pause();
+                ringMp3Audio.current.currentTime = 0;
+            }
         };
     }, []);
 
@@ -172,6 +177,7 @@ export const SipContextProvider: React.FC<PropsWithChildren<{ sipConfig: { baseU
     }
 
     const playRingAudio = () => {
+        if (!ringMp3Audio.current) return;
         console.log('Playing ring audio');
         ringMp3Audio.current.play().catch(error => {
             console.error("Failed to play audio:", error);
@@ -179,6 +185,7 @@ export const SipContextProvider: React.FC<PropsWithChildren<{ sipConfig: { baseU
     };
 
     const pauseRingAudio = () => {
+        if (!ringMp3Audio.current) return;
         console.log('Pausing ring audio');
         ringMp3Audio.current.pause();
         ringMp3Audio.current.currentTime = 0;

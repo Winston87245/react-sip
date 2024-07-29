@@ -10080,7 +10080,7 @@ const zt = ot({
     server: o,
     aor: d,
     userAgentOptions: m
-  } = e, f = Ae(new Audio("../assets/PhoneRing.mp3")), w = {
+  } = e, f = Ae(new Audio(new URL("../dist/assets/PhoneRing.mp3", import.meta.url).href)), w = {
     aor: d,
     media: {
       remote: {
