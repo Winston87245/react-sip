@@ -1,7 +1,7 @@
 import React, { createContext, useState, useRef, useEffect, PropsWithChildren } from 'react';
 import { Web } from "sip.js";
 import { UserAgentOptions } from "sip.js/lib/api/user-agent-options";
-
+import phoneRingBase64 from '../assets/PhoneRingBase64';
 // Define the initial state of the SIP context
 export enum SipState {
     idle = 'idle',
@@ -57,9 +57,8 @@ export const SipContextProvider: React.FC<PropsWithChildren<{ sipConfig: { baseU
         if (!simpleUserRef.current) {
             simpleUserRef.current = new Web.SimpleUser(server, options);
         }
-        ringMp3Audio.current = new Audio(new URL('../assets/PhoneRing.mp3', import.meta.url).href)
-        console.log('SimpleUser created');
-        console.log(ringMp3Audio.current);
+        ringMp3Audio.current = new Audio(`data:audio/mp3;base64,${phoneRingBase64}`);
+        
 
 
         const simpleUser = simpleUserRef.current;
