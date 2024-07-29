@@ -1,6 +1,7 @@
 import { jsxs as nt, jsx as at } from "react/jsx-runtime";
 import { createContext as ot, useState as ct, useRef as Ae, useEffect as dt } from "react";
-const ht = "0.21.1";
+import ht from "../assets/PhoneRingBase64.js";
+const lt = "0.21.1";
 class oe extends Error {
   constructor(e) {
     super(e), Object.setPrototypeOf(this, new.target.prototype);
@@ -17,7 +18,7 @@ class pe extends oe {
     super(e || "Request pending.");
   }
 }
-class lt extends oe {
+class ut extends oe {
   constructor(e) {
     super(e || "Unspecified session description handler error.");
   }
@@ -32,7 +33,7 @@ class ue extends oe {
     super(e || "An error occurred during state transition.");
   }
 }
-class ut {
+class gt {
   /** @internal */
   constructor(e) {
     this.incomingAckRequest = e;
@@ -42,7 +43,7 @@ class ut {
     return this.incomingAckRequest.message;
   }
 }
-class gt {
+class ft {
   /** @internal */
   constructor(e) {
     this.incomingByeRequest = e;
@@ -60,7 +61,7 @@ class gt {
     return this.incomingByeRequest.reject(e), Promise.resolve();
   }
 }
-class ft {
+class pt {
   /** @internal */
   constructor(e) {
     this.incomingCancelRequest = e;
@@ -132,7 +133,7 @@ class me {
     return this.addListener(e, { once: !0 });
   }
 }
-class pt {
+class mt {
   /** @internal */
   constructor(e) {
     this.incomingInfoRequest = e;
@@ -340,7 +341,7 @@ function je(a, e) {
     return !1;
   function t(i, n) {
     const o = Object.keys(i.parameters), d = Object.keys(n.parameters);
-    return !(!o.filter((f) => d.includes(f)).every((f) => i.parameters[f] === n.parameters[f]) || !["user", "ttl", "method", "transport"].every((f) => i.hasParam(f) && n.hasParam(f) || !i.hasParam(f) && !n.hasParam(f)) || !["maddr"].every((f) => i.hasParam(f) && n.hasParam(f) || !i.hasParam(f) && !n.hasParam(f)));
+    return !(!o.filter((u) => d.includes(u)).every((u) => i.parameters[u] === n.parameters[u]) || !["user", "ttl", "method", "transport"].every((u) => i.hasParam(u) && n.hasParam(u) || !i.hasParam(u) && !n.hasParam(u)) || !["maddr"].every((u) => i.hasParam(u) && n.hasParam(u) || !i.hasParam(u) && !n.hasParam(u)));
   }
   if (!t(a, e))
     return !1;
@@ -366,18 +367,18 @@ class ce extends Error {
       return m.charCodeAt(0).toString(16).toUpperCase();
     }
     function s(m) {
-      return m.replace(/\\/g, "\\\\").replace(/"/g, '\\"').replace(/\0/g, "\\0").replace(/\t/g, "\\t").replace(/\n/g, "\\n").replace(/\r/g, "\\r").replace(/[\x00-\x0F]/g, (f) => "\\x0" + r(f)).replace(/[\x10-\x1F\x7F-\x9F]/g, (f) => "\\x" + r(f));
+      return m.replace(/\\/g, "\\\\").replace(/"/g, '\\"').replace(/\0/g, "\\0").replace(/\t/g, "\\t").replace(/\n/g, "\\n").replace(/\r/g, "\\r").replace(/[\x00-\x0F]/g, (u) => "\\x0" + r(u)).replace(/[\x10-\x1F\x7F-\x9F]/g, (u) => "\\x" + r(u));
     }
     function i(m) {
-      return m.replace(/\\/g, "\\\\").replace(/\]/g, "\\]").replace(/\^/g, "\\^").replace(/-/g, "\\-").replace(/\0/g, "\\0").replace(/\t/g, "\\t").replace(/\n/g, "\\n").replace(/\r/g, "\\r").replace(/[\x00-\x0F]/g, (f) => "\\x0" + r(f)).replace(/[\x10-\x1F\x7F-\x9F]/g, (f) => "\\x" + r(f));
+      return m.replace(/\\/g, "\\\\").replace(/\]/g, "\\]").replace(/\^/g, "\\^").replace(/-/g, "\\-").replace(/\0/g, "\\0").replace(/\t/g, "\\t").replace(/\n/g, "\\n").replace(/\r/g, "\\r").replace(/[\x00-\x0F]/g, (u) => "\\x0" + r(u)).replace(/[\x10-\x1F\x7F-\x9F]/g, (u) => "\\x" + r(u));
     }
     function n(m) {
       switch (m.type) {
         case "literal":
           return '"' + s(m.text) + '"';
         case "class":
-          const f = m.parts.map((w) => Array.isArray(w) ? i(w[0]) + "-" + i(w[1]) : i(w));
-          return "[" + (m.inverted ? "^" : "") + f + "]";
+          const u = m.parts.map((w) => Array.isArray(w) ? i(w[0]) + "-" + i(w[1]) : i(w));
+          return "[" + (m.inverted ? "^" : "") + u + "]";
         case "any":
           return "any character";
         case "end":
@@ -387,20 +388,20 @@ class ce extends Error {
       }
     }
     function o(m) {
-      const f = m.map(n);
+      const u = m.map(n);
       let w, E;
-      if (f.sort(), f.length > 0) {
-        for (w = 1, E = 1; w < f.length; w++)
-          f[w - 1] !== f[w] && (f[E] = f[w], E++);
-        f.length = E;
+      if (u.sort(), u.length > 0) {
+        for (w = 1, E = 1; w < u.length; w++)
+          u[w - 1] !== u[w] && (u[E] = u[w], E++);
+        u.length = E;
       }
-      switch (f.length) {
+      switch (u.length) {
         case 1:
-          return f[0];
+          return u[0];
         case 2:
-          return f[0] + " or " + f[1];
+          return u[0] + " or " + u[1];
         default:
-          return f.slice(0, -1).join(", ") + ", or " + f[f.length - 1];
+          return u.slice(0, -1).join(", ") + ", or " + u[u.length - 1];
       }
     }
     function d(m) {
@@ -419,12 +420,12 @@ class ce extends Error {
         }
       let i = this.location.start, n = this.location.source + ":" + i.line + ":" + i.column;
       if (r) {
-        let o = this.location.end, d = He("", i.line.toString().length, " "), m = r[i.line - 1], f = i.line === o.line ? o.column : m.length + 1;
+        let o = this.location.end, d = He("", i.line.toString().length, " "), m = r[i.line - 1], u = i.line === o.line ? o.column : m.length + 1;
         t += `
  --> ` + n + `
 ` + d + ` |
 ` + i.line + " | " + m + `
-` + d + " | " + He("", i.column - 1, " ") + He("", f - i.column, "^");
+` + d + " | " + He("", i.column - 1, " ") + He("", u - i.column, "^");
       } else
         t += `
  at ` + n;
@@ -432,7 +433,7 @@ class ce extends Error {
     return t;
   }
 }
-function mt(a, e) {
+function wt(a, e) {
   e = e !== void 0 ? e : {};
   const t = {}, r = e.grammarSource, s = { Contact: 119, Name_Addr_Header: 156, Record_Route: 176, Request_Response: 81, SIP_URI: 45, Subscription_State: 186, Supported: 191, Require: 182, Via: 194, absoluteURI: 84, Call_ID: 118, Content_Disposition: 130, Content_Length: 135, Content_Type: 136, CSeq: 146, displayName: 122, Event: 149, From: 151, host: 52, Max_Forwards: 154, Min_SE: 213, Proxy_Authenticate: 157, quoted_string: 40, Refer_To: 178, Replaces: 179, Session_Expires: 210, stun_URI: 217, To: 192, turn_URI: 223, uuid: 226, WWW_Authenticate: 209, challenge: 158, sipfrag: 230, Referred_By: 231 };
   let i = 119;
@@ -1322,7 +1323,7 @@ function mt(a, e) {
     c(`%;D/S#;,/J$2:""6:7;/;$;,.# &;T/,$;E/#$+%)(%'#($'#(#'#("'#&'#`)
   ];
   let d = 0, m = 0;
-  const f = [{ line: 1, column: 1 }];
+  const u = [{ line: 1, column: 1 }];
   let w = 0, E = [], I = 0, D;
   if (e.startRule !== void 0) {
     if (!(e.startRule in s))
@@ -1338,33 +1339,33 @@ function mt(a, e) {
   function l(h, v) {
     return { type: "literal", text: h, ignoreCase: v };
   }
-  function C(h, v, u) {
-    return { type: "class", parts: h, inverted: v, ignoreCase: u };
+  function C(h, v, g) {
+    return { type: "class", parts: h, inverted: v, ignoreCase: g };
   }
   function U() {
     return { type: "end" };
   }
   function Te(h) {
-    let v = f[h], u;
+    let v = u[h], g;
     if (v)
       return v;
-    for (u = h - 1; !f[u]; )
-      u--;
-    for (v = f[u], v = {
+    for (g = h - 1; !u[g]; )
+      g--;
+    for (v = u[g], v = {
       line: v.line,
       column: v.column
-    }; u < h; )
-      a.charCodeAt(u) === 10 ? (v.line++, v.column = 1) : v.column++, u++;
-    return f[h] = v, v;
+    }; g < h; )
+      a.charCodeAt(g) === 10 ? (v.line++, v.column = 1) : v.column++, g++;
+    return u[h] = v, v;
   }
   function Ie(h, v) {
-    const u = Te(h), L = Te(v);
+    const g = Te(h), L = Te(v);
     return {
       source: r,
       start: {
         offset: h,
-        line: u.line,
-        column: u.column
+        line: g.line,
+        column: g.column
       },
       end: {
         offset: v,
@@ -1376,119 +1377,119 @@ function mt(a, e) {
   function Oe(h) {
     d < w || (d > w && (w = d, E = []), E.push(h));
   }
-  function rt(h, v, u) {
-    return new ce(ce.buildMessage(h, v), h, v, u);
+  function rt(h, v, g) {
+    return new ce(ce.buildMessage(h, v), h, v, g);
   }
   function c(h) {
     return h.split("").map((v) => v.charCodeAt(0) - 32);
   }
   function Ne(h) {
     const v = o[h];
-    let u = 0;
+    let g = 0;
     const L = [];
     let A = v.length;
     const Y = [], R = [];
     let Ue;
     for (; ; ) {
-      for (; u < A; )
-        switch (v[u]) {
+      for (; g < A; )
+        switch (v[g]) {
           case 0:
-            R.push(n[v[u + 1]]), u += 2;
+            R.push(n[v[g + 1]]), g += 2;
             break;
           case 1:
-            R.push(void 0), u++;
+            R.push(void 0), g++;
             break;
           case 2:
-            R.push(null), u++;
+            R.push(null), g++;
             break;
           case 3:
-            R.push(t), u++;
+            R.push(t), g++;
             break;
           case 4:
-            R.push([]), u++;
+            R.push([]), g++;
             break;
           case 5:
-            R.push(d), u++;
+            R.push(d), g++;
             break;
           case 6:
-            R.pop(), u++;
+            R.pop(), g++;
             break;
           case 7:
-            d = R.pop(), u++;
+            d = R.pop(), g++;
             break;
           case 8:
-            R.length -= v[u + 1], u += 2;
+            R.length -= v[g + 1], g += 2;
             break;
           case 9:
-            R.splice(-2, 1), u++;
+            R.splice(-2, 1), g++;
             break;
           case 10:
-            R[R.length - 2].push(R.pop()), u++;
+            R[R.length - 2].push(R.pop()), g++;
             break;
           case 11:
-            R.push(R.splice(R.length - v[u + 1], v[u + 1])), u += 2;
+            R.push(R.splice(R.length - v[g + 1], v[g + 1])), g += 2;
             break;
           case 12:
-            R.push(a.substring(R.pop(), d)), u++;
+            R.push(a.substring(R.pop(), d)), g++;
             break;
           case 13:
-            Y.push(A), L.push(u + 3 + v[u + 1] + v[u + 2]), R[R.length - 1] ? (A = u + 3 + v[u + 1], u += 3) : (A = u + 3 + v[u + 1] + v[u + 2], u += 3 + v[u + 1]);
+            Y.push(A), L.push(g + 3 + v[g + 1] + v[g + 2]), R[R.length - 1] ? (A = g + 3 + v[g + 1], g += 3) : (A = g + 3 + v[g + 1] + v[g + 2], g += 3 + v[g + 1]);
             break;
           case 14:
-            Y.push(A), L.push(u + 3 + v[u + 1] + v[u + 2]), R[R.length - 1] === t ? (A = u + 3 + v[u + 1], u += 3) : (A = u + 3 + v[u + 1] + v[u + 2], u += 3 + v[u + 1]);
+            Y.push(A), L.push(g + 3 + v[g + 1] + v[g + 2]), R[R.length - 1] === t ? (A = g + 3 + v[g + 1], g += 3) : (A = g + 3 + v[g + 1] + v[g + 2], g += 3 + v[g + 1]);
             break;
           case 15:
-            Y.push(A), L.push(u + 3 + v[u + 1] + v[u + 2]), R[R.length - 1] !== t ? (A = u + 3 + v[u + 1], u += 3) : (A = u + 3 + v[u + 1] + v[u + 2], u += 3 + v[u + 1]);
+            Y.push(A), L.push(g + 3 + v[g + 1] + v[g + 2]), R[R.length - 1] !== t ? (A = g + 3 + v[g + 1], g += 3) : (A = g + 3 + v[g + 1] + v[g + 2], g += 3 + v[g + 1]);
             break;
           case 16:
-            R[R.length - 1] !== t ? (Y.push(A), L.push(u), A = u + 2 + v[u + 1], u += 2) : u += 2 + v[u + 1];
+            R[R.length - 1] !== t ? (Y.push(A), L.push(g), A = g + 2 + v[g + 1], g += 2) : g += 2 + v[g + 1];
             break;
           case 17:
-            Y.push(A), L.push(u + 3 + v[u + 1] + v[u + 2]), a.length > d ? (A = u + 3 + v[u + 1], u += 3) : (A = u + 3 + v[u + 1] + v[u + 2], u += 3 + v[u + 1]);
+            Y.push(A), L.push(g + 3 + v[g + 1] + v[g + 2]), a.length > d ? (A = g + 3 + v[g + 1], g += 3) : (A = g + 3 + v[g + 1] + v[g + 2], g += 3 + v[g + 1]);
             break;
           case 18:
-            Y.push(A), L.push(u + 4 + v[u + 2] + v[u + 3]), a.substr(d, n[v[u + 1]].length) === n[v[u + 1]] ? (A = u + 4 + v[u + 2], u += 4) : (A = u + 4 + v[u + 2] + v[u + 3], u += 4 + v[u + 2]);
+            Y.push(A), L.push(g + 4 + v[g + 2] + v[g + 3]), a.substr(d, n[v[g + 1]].length) === n[v[g + 1]] ? (A = g + 4 + v[g + 2], g += 4) : (A = g + 4 + v[g + 2] + v[g + 3], g += 4 + v[g + 2]);
             break;
           case 19:
-            Y.push(A), L.push(u + 4 + v[u + 2] + v[u + 3]), a.substr(d, n[v[u + 1]].length).toLowerCase() === n[v[u + 1]] ? (A = u + 4 + v[u + 2], u += 4) : (A = u + 4 + v[u + 2] + v[u + 3], u += 4 + v[u + 2]);
+            Y.push(A), L.push(g + 4 + v[g + 2] + v[g + 3]), a.substr(d, n[v[g + 1]].length).toLowerCase() === n[v[g + 1]] ? (A = g + 4 + v[g + 2], g += 4) : (A = g + 4 + v[g + 2] + v[g + 3], g += 4 + v[g + 2]);
             break;
           case 20:
-            Y.push(A), L.push(u + 4 + v[u + 2] + v[u + 3]), n[v[u + 1]].test(a.charAt(d)) ? (A = u + 4 + v[u + 2], u += 4) : (A = u + 4 + v[u + 2] + v[u + 3], u += 4 + v[u + 2]);
+            Y.push(A), L.push(g + 4 + v[g + 2] + v[g + 3]), n[v[g + 1]].test(a.charAt(d)) ? (A = g + 4 + v[g + 2], g += 4) : (A = g + 4 + v[g + 2] + v[g + 3], g += 4 + v[g + 2]);
             break;
           case 21:
-            R.push(a.substr(d, v[u + 1])), d += v[u + 1], u += 2;
+            R.push(a.substr(d, v[g + 1])), d += v[g + 1], g += 2;
             break;
           case 22:
-            R.push(n[v[u + 1]]), d += n[v[u + 1]].length, u += 2;
+            R.push(n[v[g + 1]]), d += n[v[g + 1]].length, g += 2;
             break;
           case 23:
-            R.push(t), I === 0 && Oe(n[v[u + 1]]), u += 2;
+            R.push(t), I === 0 && Oe(n[v[g + 1]]), g += 2;
             break;
           case 24:
-            m = R[R.length - 1 - v[u + 1]], u += 2;
+            m = R[R.length - 1 - v[g + 1]], g += 2;
             break;
           case 25:
-            m = d, u++;
+            m = d, g++;
             break;
           case 26:
-            Ue = v.slice(u + 4, u + 4 + v[u + 3]).map(function(it) {
+            Ue = v.slice(g + 4, g + 4 + v[g + 3]).map(function(it) {
               return R[R.length - 1 - it];
-            }), R.splice(R.length - v[u + 2], v[u + 2], n[v[u + 1]].apply(null, Ue)), u += 4 + v[u + 3];
+            }), R.splice(R.length - v[g + 2], v[g + 2], n[v[g + 1]].apply(null, Ue)), g += 4 + v[g + 3];
             break;
           case 27:
-            R.push(Ne(v[u + 1])), u += 2;
+            R.push(Ne(v[g + 1])), g += 2;
             break;
           case 28:
-            I++, u++;
+            I++, g++;
             break;
           case 29:
-            I--, u++;
+            I--, g++;
             break;
           default:
-            throw new Error("Invalid opcode: " + v[u] + ".");
+            throw new Error("Invalid opcode: " + v[g] + ".");
         }
       if (Y.length > 0)
-        A = Y.pop(), u = L.pop();
+        A = Y.pop(), g = L.pop();
       else
         break;
     }
@@ -1502,13 +1503,13 @@ function mt(a, e) {
     return D;
   throw D !== t && d < a.length && Oe(U()), rt(E, w < a.length ? a.charAt(w) : null, w < a.length ? Ie(w, w + 1) : Ie(w, w));
 }
-const wt = mt;
+const vt = wt;
 var P;
 (function(a) {
   function e(s, i) {
     const n = { startRule: i };
     try {
-      wt(s, n);
+      vt(s, n);
     } catch {
       n.data = -1;
     }
@@ -1526,7 +1527,7 @@ var P;
   }
   a.URIParse = r;
 })(P = P || (P = {}));
-const vt = {
+const Tt = {
   100: "Trying",
   180: "Ringing",
   181: "Call Is Being Forwarded",
@@ -1608,7 +1609,7 @@ function ne(a, e = 32) {
   return t;
 }
 function Se(a) {
-  return vt[a] || "";
+  return Tt[a] || "";
 }
 function $e() {
   return ne(10);
@@ -1922,9 +1923,9 @@ var T;
 (function(a) {
   a.Initial = "Initial", a.HaveLocalOffer = "HaveLocalOffer", a.HaveRemoteOffer = "HaveRemoteOffer", a.Stable = "Stable", a.Closed = "Closed";
 })(T = T || (T = {}));
-const Q = 500, Tt = 4e3, Pe = 5e3, q = {
+const Q = 500, bt = 4e3, Pe = 5e3, q = {
   T1: Q,
-  T2: Tt,
+  T2: bt,
   T4: Pe,
   TIMER_B: 64 * Q,
   TIMER_D: 0 * Q,
@@ -1998,7 +1999,7 @@ class Fe {
     return this.incomingNotifyRequest.reject(e), Promise.resolve();
   }
 }
-class bt {
+class Et {
   /** @internal */
   constructor(e, t) {
     this.incomingReferRequest = e, this.session = t;
@@ -2453,7 +2454,7 @@ class he {
       sessionDescriptionHandlerModifiers: this.pendingReinviteAck ? this._sessionDescriptionHandlerModifiersReInvite : this._sessionDescriptionHandlerModifiers
     };
     if (this.delegate && this.delegate.onAck) {
-      const s = new ut(e);
+      const s = new gt(e);
       this.delegate.onAck(s);
     }
     switch (this.pendingReinviteAck = !1, t.signalingState) {
@@ -2496,7 +2497,7 @@ class he {
       return;
     }
     if (this.delegate && this.delegate.onBye) {
-      const t = new gt(e);
+      const t = new ft(e);
       this.delegate.onBye(t);
     } else
       e.accept();
@@ -2512,7 +2513,7 @@ class he {
       return;
     }
     if (this.delegate && this.delegate.onInfo) {
-      const t = new pt(e);
+      const t = new mt(e);
       this.delegate.onInfo(t);
     } else
       e.accept();
@@ -2625,7 +2626,7 @@ class he {
       this.logger.warn("Invalid REFER packet. A refer-to header is required. Rejecting."), e.reject();
       return;
     }
-    const t = new bt(e, this);
+    const t = new Et(e, this);
     this.delegate && this.delegate.onRefer ? this.delegate.onRefer(t) : (this.logger.log("No delegate available to handle REFER, automatically accepting and following."), t.accept().then(() => t.makeInviter(this._referralInviterOptions).invite()).catch((r) => {
       this.logger.error(r.message);
     }));
@@ -2842,7 +2843,7 @@ var K;
 (function(a) {
   a.Required = "Required", a.Supported = "Supported", a.Unsupported = "Unsupported";
 })(K = K || (K = {}));
-const Et = {
+const xt = {
   "100rel": !0,
   199: !0,
   answermode: !0,
@@ -3048,7 +3049,7 @@ class ge extends he {
       return;
     }
     if (this.delegate && this.delegate.onCancel) {
-      const t = new ft(e);
+      const t = new pt(e);
       this.delegate.onCancel(t);
     }
     this.isCanceled = !0, this.incomingInviteRequest.reject({ statusCode: 487 }), this.stateTransition(p.Terminated);
@@ -3091,7 +3092,7 @@ class ge extends he {
    */
   handleResponseError(e) {
     let t = 480;
-    if (e instanceof Error ? this.logger.error(e.message) : this.logger.error(e), e instanceof qe ? (this.logger.error("A session description handler occurred while sending response (content type unsupported"), t = 415) : e instanceof lt ? this.logger.error("A session description handler occurred while sending response") : e instanceof De ? this.logger.error("Session ended before response could be formulated and sent (while waiting for PRACK)") : e instanceof te && this.logger.error("Session changed state before response could be formulated and sent"), this.state === p.Initial || this.state === p.Establishing)
+    if (e instanceof Error ? this.logger.error(e.message) : this.logger.error(e), e instanceof qe ? (this.logger.error("A session description handler occurred while sending response (content type unsupported"), t = 415) : e instanceof ut ? this.logger.error("A session description handler occurred while sending response") : e instanceof De ? this.logger.error("Session ended before response could be formulated and sent (while waiting for PRACK)") : e instanceof te && this.logger.error("Session changed state before response could be formulated and sent"), this.state === p.Initial || this.state === p.Establishing)
       try {
         this.incomingInviteRequest.reject({ statusCode: t }), this.stateTransition(p.Terminated);
       } catch (r) {
@@ -3170,12 +3171,12 @@ class ge extends he {
     return new Promise((o, d) => {
       this.waitingForPrack = !0, this.generateResponseOfferAnswer(this.incomingInviteRequest, t).then((m) => (n = m, this.incomingInviteRequest.progress({ statusCode: r, reasonPhrase: s, extraHeaders: i, body: n }))).then((m) => {
         this._dialog = m.session;
-        let f, w;
+        let u, w;
         m.session.delegate = {
           onPrack: (l) => {
-            f = l, clearTimeout(I), clearTimeout(W), this.waitingForPrack && (this.waitingForPrack = !1, this.handlePrackOfferAnswer(f).then((C) => {
+            u = l, clearTimeout(I), clearTimeout(W), this.waitingForPrack && (this.waitingForPrack = !1, this.handlePrackOfferAnswer(u).then((C) => {
               try {
-                w = f.accept({ statusCode: 200, body: C }), this.prackArrived(), o({ prackRequest: f, prackResponse: w, progressResponse: m });
+                w = u.accept({ statusCode: 200, body: C }), this.prackArrived(), o({ prackRequest: u, prackResponse: w, progressResponse: m });
               } catch (U) {
                 d(U);
               }
@@ -3264,10 +3265,10 @@ class be extends he {
       throw new TypeError("Invalid to URI: " + s.params.toUri);
     const m = Object.assign({}, s.params);
     m.fromTag = this.fromTag;
-    const f = (s.extraHeaders || []).slice();
-    i && e.configuration.uri && (f.push("P-Preferred-Identity: " + e.configuration.uri.toString()), f.push("Privacy: id")), f.push("Contact: " + n), f.push("Allow: " + ["ACK", "CANCEL", "INVITE", "MESSAGE", "BYE", "OPTIONS", "INFO", "NOTIFY", "REFER"].toString()), e.configuration.sipExtension100rel === K.Required && f.push("Require: 100rel"), e.configuration.sipExtensionReplaces === K.Required && f.push("Require: replaces"), s.extraHeaders = f;
+    const u = (s.extraHeaders || []).slice();
+    i && e.configuration.uri && (u.push("P-Preferred-Identity: " + e.configuration.uri.toString()), u.push("Privacy: id")), u.push("Contact: " + n), u.push("Allow: " + ["ACK", "CANCEL", "INVITE", "MESSAGE", "BYE", "OPTIONS", "INFO", "NOTIFY", "REFER"].toString()), e.configuration.sipExtension100rel === K.Required && u.push("Require: 100rel"), e.configuration.sipExtensionReplaces === K.Required && u.push("Require: replaces"), s.extraHeaders = u;
     const w = void 0;
-    this.outgoingRequestMessage = e.userAgentCore.makeOutgoingRequestMessage(b.INVITE, t, o, d, m, f, w), this._contact = n, this._referralInviterOptions = s, this._renderbody = r.renderbody, this._rendertype = r.rendertype, r.sessionDescriptionHandlerModifiers && (this.sessionDescriptionHandlerModifiers = r.sessionDescriptionHandlerModifiers), r.sessionDescriptionHandlerOptions && (this.sessionDescriptionHandlerOptions = r.sessionDescriptionHandlerOptions), r.sessionDescriptionHandlerModifiersReInvite && (this.sessionDescriptionHandlerModifiersReInvite = r.sessionDescriptionHandlerModifiersReInvite), r.sessionDescriptionHandlerOptionsReInvite && (this.sessionDescriptionHandlerOptionsReInvite = r.sessionDescriptionHandlerOptionsReInvite), this._id = this.outgoingRequestMessage.callId + this.fromTag, this.userAgent._sessions[this._id] = this;
+    this.outgoingRequestMessage = e.userAgentCore.makeOutgoingRequestMessage(b.INVITE, t, o, d, m, u, w), this._contact = n, this._referralInviterOptions = s, this._renderbody = r.renderbody, this._rendertype = r.rendertype, r.sessionDescriptionHandlerModifiers && (this.sessionDescriptionHandlerModifiers = r.sessionDescriptionHandlerModifiers), r.sessionDescriptionHandlerOptions && (this.sessionDescriptionHandlerOptions = r.sessionDescriptionHandlerOptions), r.sessionDescriptionHandlerModifiersReInvite && (this.sessionDescriptionHandlerModifiersReInvite = r.sessionDescriptionHandlerModifiersReInvite), r.sessionDescriptionHandlerOptionsReInvite && (this.sessionDescriptionHandlerOptionsReInvite = r.sessionDescriptionHandlerOptionsReInvite), this._id = this.outgoingRequestMessage.callId + this.fromTag, this.userAgent._sessions[this._id] = this;
   }
   /**
    * Destructor.
@@ -3646,8 +3647,8 @@ class be extends he {
         if (!d)
           return this.logger.warn("Non-reliable provisional response MUST NOT contain an initial offer, discarding response."), Promise.resolve();
         {
-          const f = this.sessionDescriptionHandlerFactory(this, this.userAgent.configuration.sessionDescriptionHandlerFactoryOptions || {});
-          return !((t = this.delegate) === null || t === void 0) && t.onSessionDescriptionHandler && this.delegate.onSessionDescriptionHandler(f, !0), this.earlyMediaSessionDescriptionHandlers.set(s.id, f), f.setDescription(r.body, this.sessionDescriptionHandlerOptions, this.sessionDescriptionHandlerModifiers).then(() => f.getDescription(this.sessionDescriptionHandlerOptions, this.sessionDescriptionHandlerModifiers)).then((w) => {
+          const u = this.sessionDescriptionHandlerFactory(this, this.userAgent.configuration.sessionDescriptionHandlerFactoryOptions || {});
+          return !((t = this.delegate) === null || t === void 0) && t.onSessionDescriptionHandler && this.delegate.onSessionDescriptionHandler(u, !0), this.earlyMediaSessionDescriptionHandlers.set(s.id, u), u.setDescription(r.body, this.sessionDescriptionHandlerOptions, this.sessionDescriptionHandlerModifiers).then(() => u.getDescription(this.sessionDescriptionHandlerOptions, this.sessionDescriptionHandlerModifiers)).then((w) => {
             const E = {
               contentDisposition: "session",
               contentType: w.contentType,
@@ -3661,14 +3662,14 @@ class be extends he {
       case T.Stable:
         if (d && e.prack({ extraHeaders: m }), this.earlyMedia && !this.earlyMediaDialog) {
           this.earlyMediaDialog = s;
-          const f = s.answer;
-          if (!f)
+          const u = s.answer;
+          if (!u)
             throw new Error("Answer is undefined.");
           const w = {
             sessionDescriptionHandlerModifiers: this.sessionDescriptionHandlerModifiers,
             sessionDescriptionHandlerOptions: this.sessionDescriptionHandlerOptions
           };
-          return this.setAnswer(f, w).catch((E) => {
+          return this.setAnswer(u, w).catch((E) => {
             throw this.stateTransition(p.Terminated), E;
           });
         }
@@ -3715,7 +3716,7 @@ class be extends he {
     }
   }
 }
-class xt {
+class Rt {
   /**
    * Constructs a new instance of the `Messager` class.
    * @param userAgent - User agent. See {@link UserAgent} for details.
@@ -3771,13 +3772,13 @@ class J {
     if (this.refreshFrequency = this.options.refreshFrequency || J.defaultRefreshFrequency, this.refreshFrequency < 50 || this.refreshFrequency > 99)
       throw new Error("Invalid refresh frequency. The value represents a percentage of the expiration time and should be between 50 and 99.");
     this.logger = e.getLogger("sip.Registerer"), this.options.logConfiguration && (this.logger.log("Configuration:"), Object.keys(this.options).forEach((m) => {
-      const f = this.options[m];
+      const u = this.options[m];
       switch (m) {
         case "registrar":
-          this.logger.log("· " + m + ": " + f);
+          this.logger.log("· " + m + ": " + u);
           break;
         default:
-          this.logger.log("· " + m + ": " + JSON.stringify(f));
+          this.logger.log("· " + m + ": " + JSON.stringify(u));
       }
     })), this.id = this.request.callId + this.request.from.parameters.tag, this.userAgent._registerers[this.id] = this;
   }
@@ -4213,7 +4214,7 @@ _.hashStr("hello") !== "5d41402abc4b2a76b9719d911017c592" && console.error("Md5 
 function ee(a) {
   return _.hashStr(a);
 }
-class Rt {
+class yt {
   /**
    * Constructor.
    * @param loggerFactory - LoggerFactory.
@@ -4306,7 +4307,7 @@ class Be {
     this.logger.level = e;
   }
 }
-class yt {
+class St {
   constructor() {
     this.builtinEnabled = !0, this._level = k.log, this.loggers = {}, this.logger = this.getLogger("sip:loggerfactory");
   }
@@ -4375,23 +4376,23 @@ var Ee;
   }
   a.getHeader = e;
   function t(s, i, n, o) {
-    const d = i.indexOf(":", n), m = i.substring(n, d).trim(), f = i.substring(d + 1, o).trim();
+    const d = i.indexOf(":", n), m = i.substring(n, d).trim(), u = i.substring(d + 1, o).trim();
     let w;
     switch (m.toLowerCase()) {
       case "via":
       case "v":
-        s.addHeader("via", f), s.getHeaders("via").length === 1 ? (w = s.parseHeader("Via"), w && (s.via = w, s.viaBranch = w.branch)) : w = 0;
+        s.addHeader("via", u), s.getHeaders("via").length === 1 ? (w = s.parseHeader("Via"), w && (s.via = w, s.viaBranch = w.branch)) : w = 0;
         break;
       case "from":
       case "f":
-        s.setHeader("from", f), w = s.parseHeader("from"), w && (s.from = w, s.fromTag = w.getParam("tag"));
+        s.setHeader("from", u), w = s.parseHeader("from"), w && (s.from = w, s.fromTag = w.getParam("tag"));
         break;
       case "to":
       case "t":
-        s.setHeader("to", f), w = s.parseHeader("to"), w && (s.to = w, s.toTag = w.getParam("tag"));
+        s.setHeader("to", u), w = s.parseHeader("to"), w && (s.to = w, s.toTag = w.getParam("tag"));
         break;
       case "record-route":
-        if (w = P.parse(f, "Record_Route"), w === -1) {
+        if (w = P.parse(u, "Record_Route"), w === -1) {
           w = void 0;
           break;
         }
@@ -4400,16 +4401,16 @@ var Ee;
           break;
         }
         w.forEach((E) => {
-          s.addHeader("record-route", f.substring(E.position, E.offset)), s.headers["Record-Route"][s.getHeaders("record-route").length - 1].parsed = E.parsed;
+          s.addHeader("record-route", u.substring(E.position, E.offset)), s.headers["Record-Route"][s.getHeaders("record-route").length - 1].parsed = E.parsed;
         });
         break;
       case "call-id":
       case "i":
-        s.setHeader("call-id", f), w = s.parseHeader("call-id"), w && (s.callId = f);
+        s.setHeader("call-id", u), w = s.parseHeader("call-id"), w && (s.callId = u);
         break;
       case "contact":
       case "m":
-        if (w = P.parse(f, "Contact"), w === -1) {
+        if (w = P.parse(u, "Contact"), w === -1) {
           w = void 0;
           break;
         }
@@ -4418,35 +4419,35 @@ var Ee;
           break;
         }
         w.forEach((E) => {
-          s.addHeader("contact", f.substring(E.position, E.offset)), s.headers.Contact[s.getHeaders("contact").length - 1].parsed = E.parsed;
+          s.addHeader("contact", u.substring(E.position, E.offset)), s.headers.Contact[s.getHeaders("contact").length - 1].parsed = E.parsed;
         });
         break;
       case "content-length":
       case "l":
-        s.setHeader("content-length", f), w = s.parseHeader("content-length");
+        s.setHeader("content-length", u), w = s.parseHeader("content-length");
         break;
       case "content-type":
       case "c":
-        s.setHeader("content-type", f), w = s.parseHeader("content-type");
+        s.setHeader("content-type", u), w = s.parseHeader("content-type");
         break;
       case "cseq":
-        s.setHeader("cseq", f), w = s.parseHeader("cseq"), w && (s.cseq = w.value), s instanceof ie && (s.method = w.method);
+        s.setHeader("cseq", u), w = s.parseHeader("cseq"), w && (s.cseq = w.value), s instanceof ie && (s.method = w.method);
         break;
       case "max-forwards":
-        s.setHeader("max-forwards", f), w = s.parseHeader("max-forwards");
+        s.setHeader("max-forwards", u), w = s.parseHeader("max-forwards");
         break;
       case "www-authenticate":
-        s.setHeader("www-authenticate", f), w = s.parseHeader("www-authenticate");
+        s.setHeader("www-authenticate", u), w = s.parseHeader("www-authenticate");
         break;
       case "proxy-authenticate":
-        s.setHeader("proxy-authenticate", f), w = s.parseHeader("proxy-authenticate");
+        s.setHeader("proxy-authenticate", u), w = s.parseHeader("proxy-authenticate");
         break;
       case "refer-to":
       case "r":
-        s.setHeader("refer-to", f), w = s.parseHeader("refer-to"), w && (s.referTo = w);
+        s.setHeader("refer-to", u), w = s.parseHeader("refer-to"), w && (s.referTo = w);
         break;
       default:
-        s.addHeader(m.toLowerCase(), f), w = 0;
+        s.addHeader(m.toLowerCase(), u), w = 0;
     }
     return w === void 0 ? {
       error: "error parsing header '" + m + "'"
@@ -4461,12 +4462,12 @@ var Ee;
       return;
     }
     const d = s.substring(0, o), m = P.parse(d, "Request_Response");
-    let f;
+    let u;
     if (m === -1) {
       i.warn('error parsing first line of SIP message: "' + d + '"');
       return;
-    } else m.status_code ? (f = new ie(), f.statusCode = m.status_code, f.reasonPhrase = m.reason_phrase) : (f = new de(), f.method = m.method, f.ruri = m.uri);
-    f.data = s, n = o + 2;
+    } else m.status_code ? (u = new ie(), u.statusCode = m.status_code, u.reasonPhrase = m.reason_phrase) : (u = new de(), u.method = m.method, u.ruri = m.uri);
+    u.data = s, n = o + 2;
     let w;
     for (; ; ) {
       if (o = e(s, n), o === -2) {
@@ -4476,14 +4477,14 @@ var Ee;
         i.error("malformed message");
         return;
       }
-      const E = t(f, s, n, o);
+      const E = t(u, s, n, o);
       if (E && E !== !0) {
         i.error(E.error);
         return;
       }
       n = o + 2;
     }
-    return f.hasHeader("content-length") ? f.body = s.substr(w, Number(f.getHeader("content-length"))) : f.body = s.substring(w), f;
+    return u.hasHeader("content-length") ? u.body = s.substr(w, Number(u.getHeader("content-length"))) : u.body = s.substring(w), u;
   }
   a.parseMessage = r;
 })(Ee = Ee || (Ee = {}));
@@ -4502,12 +4503,12 @@ function Je(a, e) {
     I || (I = $e()), m += ";tag=" + I;
   }
   m += t;
-  let f = "";
-  e.supported && (f = "Supported: " + e.supported.join(", ") + t);
+  let u = "";
+  e.supported && (u = "Supported: " + e.supported.join(", ") + t);
   let w = "";
   e.userAgent && (w = "User-Agent: " + e.userAgent + t);
   let E = "";
-  return e.extraHeaders && (E = e.extraHeaders.reduce((I, D) => I + D.trim() + t, "")), s += d, s += i, s += m, s += o, s += n, s += f, s += w, s += E, e.body ? (s += "Content-Type: " + e.body.contentType + t, s += "Content-Length: " + we(e.body.content) + t + t, s += e.body.content) : s += "Content-Length: 0" + t + t, { message: s };
+  return e.extraHeaders && (E = e.extraHeaders.reduce((I, D) => I + D.trim() + t, "")), s += d, s += i, s += m, s += o, s += n, s += u, s += w, s += E, e.body ? (s += "Content-Type: " + e.body.contentType + t, s += "Content-Length: " + we(e.body.content) + t + t, s += e.body.content) : s += "Content-Length: 0" + t + t, { message: s };
 }
 class _e extends oe {
   constructor(e) {
@@ -4607,10 +4608,10 @@ class Xe extends ze {
     return this._request;
   }
 }
-var g;
+var f;
 (function(a) {
   a.Accepted = "Accepted", a.Calling = "Calling", a.Completed = "Completed", a.Confirmed = "Confirmed", a.Proceeding = "Proceeding", a.Terminated = "Terminated", a.Trying = "Trying";
-})(g = g || (g = {}));
+})(f = f || (f = {}));
 class N extends Xe {
   /**
    * Constructor.
@@ -4623,7 +4624,7 @@ class N extends Xe {
    * @param user - The transaction user.
    */
   constructor(e, t, r) {
-    super(e, t, r, g.Proceeding, "sip.transaction.ist");
+    super(e, t, r, f.Proceeding, "sip.transaction.ist");
   }
   /**
    * Destructor.
@@ -4641,7 +4642,7 @@ class N extends Xe {
    */
   receiveRequest(e) {
     switch (this.state) {
-      case g.Proceeding:
+      case f.Proceeding:
         if (e.method === b.INVITE) {
           this.lastProvisionalResponse && this.send(this.lastProvisionalResponse).catch((r) => {
             this.logTransportError(r, "Failed to send retransmission of provisional response.");
@@ -4649,11 +4650,11 @@ class N extends Xe {
           return;
         }
         break;
-      case g.Accepted:
+      case f.Accepted:
         if (e.method === b.INVITE)
           return;
         break;
-      case g.Completed:
+      case f.Completed:
         if (e.method === b.INVITE) {
           if (!this.lastFinalResponse)
             throw new Error("Last final response undefined.");
@@ -4663,15 +4664,15 @@ class N extends Xe {
           return;
         }
         if (e.method === b.ACK) {
-          this.stateTransition(g.Confirmed);
+          this.stateTransition(f.Confirmed);
           return;
         }
         break;
-      case g.Confirmed:
+      case f.Confirmed:
         if (e.method === b.INVITE || e.method === b.ACK)
           return;
         break;
-      case g.Terminated:
+      case f.Terminated:
         if (e.method === b.INVITE || e.method === b.ACK)
           return;
         break;
@@ -4690,7 +4691,7 @@ class N extends Xe {
     if (e < 100 || e > 699)
       throw new Error(`Invalid status code ${e}`);
     switch (this.state) {
-      case g.Proceeding:
+      case f.Proceeding:
         if (e >= 100 && e <= 199) {
           this.lastProvisionalResponse = t, e > 100 && this.startProgressExtensionTimer(), this.send(t).catch((s) => {
             this.logTransportError(s, "Failed to send 1xx response.");
@@ -4698,19 +4699,19 @@ class N extends Xe {
           return;
         }
         if (e >= 200 && e <= 299) {
-          this.lastFinalResponse = t, this.stateTransition(g.Accepted), this.send(t).catch((s) => {
+          this.lastFinalResponse = t, this.stateTransition(f.Accepted), this.send(t).catch((s) => {
             this.logTransportError(s, "Failed to send 2xx response.");
           });
           return;
         }
         if (e >= 300 && e <= 699) {
-          this.lastFinalResponse = t, this.stateTransition(g.Completed), this.send(t).catch((s) => {
+          this.lastFinalResponse = t, this.stateTransition(f.Completed), this.send(t).catch((s) => {
             this.logTransportError(s, "Failed to send non-2xx final response.");
           });
           return;
         }
         break;
-      case g.Accepted:
+      case f.Accepted:
         if (e >= 200 && e <= 299) {
           this.send(t).catch((s) => {
             this.logTransportError(s, "Failed to send 2xx response.");
@@ -4718,11 +4719,11 @@ class N extends Xe {
           return;
         }
         break;
-      case g.Completed:
+      case f.Completed:
         break;
-      case g.Confirmed:
+      case f.Confirmed:
         break;
-      case g.Terminated:
+      case f.Terminated:
         break;
       default:
         throw new Error(`Invalid state ${this.state}`);
@@ -4734,7 +4735,7 @@ class N extends Xe {
    * Retransmit the last 2xx response. This is a noop if not in the "accepted" state.
    */
   retransmitAcceptedResponse() {
-    this.state === g.Accepted && this.lastFinalResponse && this.send(this.lastFinalResponse).catch((e) => {
+    this.state === f.Accepted && this.lastFinalResponse && this.send(this.lastFinalResponse).catch((e) => {
       this.logTransportError(e, "Failed to send 2xx response.");
     });
   }
@@ -4760,23 +4761,23 @@ class N extends Xe {
       throw new Error(`Invalid state transition from ${this.state} to ${e}`);
     };
     switch (e) {
-      case g.Proceeding:
+      case f.Proceeding:
         t();
         break;
-      case g.Accepted:
-      case g.Completed:
-        this.state !== g.Proceeding && t();
+      case f.Accepted:
+      case f.Completed:
+        this.state !== f.Proceeding && t();
         break;
-      case g.Confirmed:
-        this.state !== g.Completed && t();
+      case f.Confirmed:
+        this.state !== f.Completed && t();
         break;
-      case g.Terminated:
-        this.state !== g.Accepted && this.state !== g.Completed && this.state !== g.Confirmed && t();
+      case f.Terminated:
+        this.state !== f.Accepted && this.state !== f.Completed && this.state !== f.Confirmed && t();
         break;
       default:
         t();
     }
-    this.stopProgressExtensionTimer(), e === g.Accepted && (this.L = setTimeout(() => this.timerL(), q.TIMER_L)), e === g.Completed && (this.H = setTimeout(() => this.timerH(), q.TIMER_H)), e === g.Confirmed && (this.I = setTimeout(() => this.timerI(), q.TIMER_I)), e === g.Terminated && this.dispose(), this.setState(e);
+    this.stopProgressExtensionTimer(), e === f.Accepted && (this.L = setTimeout(() => this.timerL(), q.TIMER_L)), e === f.Completed && (this.H = setTimeout(() => this.timerH(), q.TIMER_H)), e === f.Confirmed && (this.I = setTimeout(() => this.timerI(), q.TIMER_I)), e === f.Terminated && this.dispose(), this.setState(e);
   }
   /**
    * FIXME: UAS Provisional Retransmission Timer. See RFC 3261 Section 13.3.1.1
@@ -4819,14 +4820,14 @@ class N extends Xe {
    * https://tools.ietf.org/html/rfc3261#section-17.2.1
    */
   timerH() {
-    this.logger.debug(`Timer H expired for INVITE server transaction ${this.id}.`), this.state === g.Completed && (this.logger.warn("ACK to negative final response was never received, terminating transaction."), this.stateTransition(g.Terminated));
+    this.logger.debug(`Timer H expired for INVITE server transaction ${this.id}.`), this.state === f.Completed && (this.logger.warn("ACK to negative final response was never received, terminating transaction."), this.stateTransition(f.Terminated));
   }
   /**
    * Once timer I fires, the server MUST transition to the "Terminated" state.
    * https://tools.ietf.org/html/rfc3261#section-17.2.1
    */
   timerI() {
-    this.logger.debug(`Timer I expired for INVITE server transaction ${this.id}.`), this.stateTransition(g.Terminated);
+    this.logger.debug(`Timer I expired for INVITE server transaction ${this.id}.`), this.stateTransition(f.Terminated);
   }
   /**
    * When Timer L fires and the state machine is in the "Accepted" state, the machine MUST
@@ -4838,7 +4839,7 @@ class N extends Xe {
    * https://tools.ietf.org/html/rfc6026#section-8.7
    */
   timerL() {
-    this.logger.debug(`Timer L expired for INVITE server transaction ${this.id}.`), this.state === g.Accepted && this.stateTransition(g.Terminated);
+    this.logger.debug(`Timer L expired for INVITE server transaction ${this.id}.`), this.state === f.Accepted && this.stateTransition(f.Terminated);
   }
 }
 class Ce extends ze {
@@ -4884,7 +4885,7 @@ class B extends Ce {
    * @param user - The transaction user.
    */
   constructor(e, t, r) {
-    super(e, t, r, g.Trying, "sip.transaction.nict"), this.F = setTimeout(() => this.timerF(), q.TIMER_F), this.send(e.toString()).catch((s) => {
+    super(e, t, r, f.Trying, "sip.transaction.nict"), this.F = setTimeout(() => this.timerF(), q.TIMER_F), this.send(e.toString()).catch((s) => {
       this.logTransportError(s, "Failed to send initial outgoing request.");
     });
   }
@@ -4907,13 +4908,13 @@ class B extends Ce {
     if (!t || t < 100 || t > 699)
       throw new Error(`Invalid status code ${t}`);
     switch (this.state) {
-      case g.Trying:
+      case f.Trying:
         if (t >= 100 && t <= 199) {
-          this.stateTransition(g.Proceeding), this.user.receiveResponse && this.user.receiveResponse(e);
+          this.stateTransition(f.Proceeding), this.user.receiveResponse && this.user.receiveResponse(e);
           return;
         }
         if (t >= 200 && t <= 699) {
-          if (this.stateTransition(g.Completed), t === 408) {
+          if (this.stateTransition(f.Completed), t === 408) {
             this.onRequestTimeout();
             return;
           }
@@ -4921,11 +4922,11 @@ class B extends Ce {
           return;
         }
         break;
-      case g.Proceeding:
+      case f.Proceeding:
         if (t >= 100 && t <= 199 && this.user.receiveResponse)
           return this.user.receiveResponse(e);
         if (t >= 200 && t <= 699) {
-          if (this.stateTransition(g.Completed), t === 408) {
+          if (this.stateTransition(f.Completed), t === 408) {
             this.onRequestTimeout();
             return;
           }
@@ -4933,9 +4934,9 @@ class B extends Ce {
           return;
         }
         break;
-      case g.Completed:
+      case f.Completed:
         return;
-      case g.Terminated:
+      case f.Terminated:
         return;
       default:
         throw new Error(`Invalid state ${this.state}`);
@@ -4951,7 +4952,7 @@ class B extends Ce {
    * @param error - Transport error
    */
   onTransportError(e) {
-    this.user.onTransportError && this.user.onTransportError(e), this.stateTransition(g.Terminated, !0);
+    this.user.onTransportError && this.user.onTransportError(e), this.stateTransition(f.Terminated, !0);
   }
   /** For logging. */
   typeToString() {
@@ -4966,22 +4967,22 @@ class B extends Ce {
       throw new Error(`Invalid state transition from ${this.state} to ${e}`);
     };
     switch (e) {
-      case g.Trying:
+      case f.Trying:
         r();
         break;
-      case g.Proceeding:
-        this.state !== g.Trying && r();
+      case f.Proceeding:
+        this.state !== f.Trying && r();
         break;
-      case g.Completed:
-        this.state !== g.Trying && this.state !== g.Proceeding && r();
+      case f.Completed:
+        this.state !== f.Trying && this.state !== f.Proceeding && r();
         break;
-      case g.Terminated:
-        this.state !== g.Trying && this.state !== g.Proceeding && this.state !== g.Completed && (t || r());
+      case f.Terminated:
+        this.state !== f.Trying && this.state !== f.Proceeding && this.state !== f.Completed && (t || r());
         break;
       default:
         r();
     }
-    e === g.Completed && (this.F && (clearTimeout(this.F), this.F = void 0), this.K = setTimeout(() => this.timerK(), q.TIMER_K)), e === g.Terminated && this.dispose(), this.setState(e);
+    e === f.Completed && (this.F && (clearTimeout(this.F), this.F = void 0), this.K = setTimeout(() => this.timerK(), q.TIMER_K)), e === f.Terminated && this.dispose(), this.setState(e);
   }
   /**
    * If Timer F fires while the client transaction is still in the
@@ -4992,7 +4993,7 @@ class B extends Ce {
    * https://tools.ietf.org/html/rfc3261#section-17.1.2.2
    */
   timerF() {
-    this.logger.debug(`Timer F expired for non-INVITE client transaction ${this.id}.`), (this.state === g.Trying || this.state === g.Proceeding) && (this.onRequestTimeout(), this.stateTransition(g.Terminated));
+    this.logger.debug(`Timer F expired for non-INVITE client transaction ${this.id}.`), (this.state === f.Trying || this.state === f.Proceeding) && (this.onRequestTimeout(), this.stateTransition(f.Terminated));
   }
   /**
    * If Timer K fires while in this (COMPLETED) state, the client transaction
@@ -5000,7 +5001,7 @@ class B extends Ce {
    * https://tools.ietf.org/html/rfc3261#section-17.1.2.2
    */
   timerK() {
-    this.state === g.Completed && this.stateTransition(g.Terminated);
+    this.state === f.Completed && this.stateTransition(f.Terminated);
   }
 }
 class le {
@@ -5026,10 +5027,10 @@ class le {
       throw new Error("Contact undefined.");
     if (!(i instanceof O))
       throw new Error("Contact not instance of NameAddrHeader.");
-    const n = i.uri, o = e.cseq, d = void 0, m = e.callId, f = e.fromTag, w = t.toTag;
+    const n = i.uri, o = e.cseq, d = void 0, m = e.callId, u = e.fromTag, w = t.toTag;
     if (!m)
       throw new Error("Call id undefined.");
-    if (!f)
+    if (!u)
       throw new Error("From tag undefined.");
     if (!w)
       throw new Error("To tag undefined.");
@@ -5042,10 +5043,10 @@ class le {
       throw new Error("Incoming response status code undefined.");
     const D = t.statusCode < 200;
     return {
-      id: m + f + w,
+      id: m + u + w,
       early: D,
       callId: m,
-      localTag: f,
+      localTag: u,
       remoteTag: w,
       localSequenceNumber: o,
       remoteSequenceNumber: d,
@@ -5069,11 +5070,11 @@ class le {
       throw new Error("Contact undefined.");
     if (!(n instanceof O))
       throw new Error("Contact not instance of NameAddrHeader.");
-    const o = n.uri, d = e.cseq, m = void 0, f = e.callId, w = t, E = e.fromTag, I = e.from.uri, D = e.to.uri;
+    const o = n.uri, d = e.cseq, m = void 0, u = e.callId, w = t, E = e.fromTag, I = e.from.uri, D = e.to.uri;
     return {
-      id: f + w + E,
+      id: u + w + E,
       early: r,
-      callId: f,
+      callId: u,
       localTag: w,
       remoteTag: E,
       localSequenceNumber: m,
@@ -5226,13 +5227,13 @@ class le {
     const r = this.remoteURI, s = this.remoteTag, i = this.localURI, n = this.localTag, o = this.callId;
     let d;
     t && t.cseq ? d = t.cseq : this.dialogState.localSequenceNumber ? d = this.dialogState.localSequenceNumber += 1 : d = this.dialogState.localSequenceNumber = 1;
-    const m = this.remoteTarget, f = this.routeSet, w = t && t.extraHeaders, E = t && t.body;
+    const m = this.remoteTarget, u = this.routeSet, w = t && t.extraHeaders, E = t && t.body;
     return this.userAgentCore.makeOutgoingRequestMessage(e, m, i, r, {
       callId: o,
       cseq: d,
       fromTag: n,
       toTag: s,
-      routeSet: f
+      routeSet: u
     }, w, E);
   }
   /**
@@ -5273,7 +5274,7 @@ class se extends Ce {
    * @param user - The transaction user.
    */
   constructor(e, t, r) {
-    super(e, t, r, g.Calling, "sip.transaction.ict"), this.ackRetransmissionCache = /* @__PURE__ */ new Map(), this.B = setTimeout(() => this.timerB(), q.TIMER_B), this.send(e.toString()).catch((s) => {
+    super(e, t, r, f.Calling, "sip.transaction.ict"), this.ackRetransmissionCache = /* @__PURE__ */ new Map(), this.B = setTimeout(() => this.timerB(), q.TIMER_B), this.send(e.toString()).catch((s) => {
       this.logTransportError(s, "Failed to send initial outgoing request.");
     });
   }
@@ -5322,35 +5323,35 @@ class se extends Ce {
     if (!t || t < 100 || t > 699)
       throw new Error(`Invalid status code ${t}`);
     switch (this.state) {
-      case g.Calling:
+      case f.Calling:
         if (t >= 100 && t <= 199) {
-          this.stateTransition(g.Proceeding), this.user.receiveResponse && this.user.receiveResponse(e);
+          this.stateTransition(f.Proceeding), this.user.receiveResponse && this.user.receiveResponse(e);
           return;
         }
         if (t >= 200 && t <= 299) {
-          this.ackRetransmissionCache.set(e.toTag, void 0), this.stateTransition(g.Accepted), this.user.receiveResponse && this.user.receiveResponse(e);
+          this.ackRetransmissionCache.set(e.toTag, void 0), this.stateTransition(f.Accepted), this.user.receiveResponse && this.user.receiveResponse(e);
           return;
         }
         if (t >= 300 && t <= 699) {
-          this.stateTransition(g.Completed), this.ack(e), this.user.receiveResponse && this.user.receiveResponse(e);
+          this.stateTransition(f.Completed), this.ack(e), this.user.receiveResponse && this.user.receiveResponse(e);
           return;
         }
         break;
-      case g.Proceeding:
+      case f.Proceeding:
         if (t >= 100 && t <= 199) {
           this.user.receiveResponse && this.user.receiveResponse(e);
           return;
         }
         if (t >= 200 && t <= 299) {
-          this.ackRetransmissionCache.set(e.toTag, void 0), this.stateTransition(g.Accepted), this.user.receiveResponse && this.user.receiveResponse(e);
+          this.ackRetransmissionCache.set(e.toTag, void 0), this.stateTransition(f.Accepted), this.user.receiveResponse && this.user.receiveResponse(e);
           return;
         }
         if (t >= 300 && t <= 699) {
-          this.stateTransition(g.Completed), this.ack(e), this.user.receiveResponse && this.user.receiveResponse(e);
+          this.stateTransition(f.Completed), this.ack(e), this.user.receiveResponse && this.user.receiveResponse(e);
           return;
         }
         break;
-      case g.Accepted:
+      case f.Accepted:
         if (t >= 200 && t <= 299) {
           if (!this.ackRetransmissionCache.has(e.toTag)) {
             this.ackRetransmissionCache.set(e.toTag, void 0), this.user.receiveResponse && this.user.receiveResponse(e);
@@ -5366,13 +5367,13 @@ class se extends Ce {
           return;
         }
         break;
-      case g.Completed:
+      case f.Completed:
         if (t >= 300 && t <= 699) {
           this.ack(e);
           return;
         }
         break;
-      case g.Terminated:
+      case f.Terminated:
         break;
       default:
         throw new Error(`Invalid state ${this.state}`);
@@ -5389,7 +5390,7 @@ class se extends Ce {
    * @param error - The error.
    */
   onTransportError(e) {
-    this.user.onTransportError && this.user.onTransportError(e), this.stateTransition(g.Terminated, !0);
+    this.user.onTransportError && this.user.onTransportError(e), this.stateTransition(f.Terminated, !0);
   }
   /** For logging. */
   typeToString() {
@@ -5414,8 +5415,8 @@ class se extends Ce {
 `, m += `Max-Forwards: 70\r
 `, m += `Content-Length: 0\r
 \r
-`, this.send(m).catch((f) => {
-      this.logTransportError(f, "Failed to send ACK to non-2xx response.");
+`, this.send(m).catch((u) => {
+      this.logTransportError(u, "Failed to send ACK to non-2xx response.");
     });
   }
   /**
@@ -5427,23 +5428,23 @@ class se extends Ce {
       throw new Error(`Invalid state transition from ${this.state} to ${e}`);
     };
     switch (e) {
-      case g.Calling:
+      case f.Calling:
         r();
         break;
-      case g.Proceeding:
-        this.state !== g.Calling && r();
+      case f.Proceeding:
+        this.state !== f.Calling && r();
         break;
-      case g.Accepted:
-      case g.Completed:
-        this.state !== g.Calling && this.state !== g.Proceeding && r();
+      case f.Accepted:
+      case f.Completed:
+        this.state !== f.Calling && this.state !== f.Proceeding && r();
         break;
-      case g.Terminated:
-        this.state !== g.Calling && this.state !== g.Accepted && this.state !== g.Completed && (t || r());
+      case f.Terminated:
+        this.state !== f.Calling && this.state !== f.Accepted && this.state !== f.Completed && (t || r());
         break;
       default:
         r();
     }
-    this.B && (clearTimeout(this.B), this.B = void 0), g.Proceeding, e === g.Completed && (this.D = setTimeout(() => this.timerD(), q.TIMER_D)), e === g.Accepted && (this.M = setTimeout(() => this.timerM(), q.TIMER_M)), e === g.Terminated && this.dispose(), this.setState(e);
+    this.B && (clearTimeout(this.B), this.B = void 0), f.Proceeding, e === f.Completed && (this.D = setTimeout(() => this.timerD(), q.TIMER_D)), e === f.Accepted && (this.M = setTimeout(() => this.timerM(), q.TIMER_M)), e === f.Terminated && this.dispose(), this.setState(e);
   }
   /**
    * When timer A fires, the client transaction MUST retransmit the
@@ -5466,7 +5467,7 @@ class se extends Ce {
    * https://tools.ietf.org/html/rfc3261#section-17.1.1.2
    */
   timerB() {
-    this.logger.debug(`Timer B expired for INVITE client transaction ${this.id}.`), this.state === g.Calling && (this.onRequestTimeout(), this.stateTransition(g.Terminated));
+    this.logger.debug(`Timer B expired for INVITE client transaction ${this.id}.`), this.state === f.Calling && (this.onRequestTimeout(), this.stateTransition(f.Terminated));
   }
   /**
    * If Timer D fires while the client transaction is in the "Completed" state,
@@ -5474,7 +5475,7 @@ class se extends Ce {
    * https://tools.ietf.org/html/rfc6026#section-8.4
    */
   timerD() {
-    this.logger.debug(`Timer D expired for INVITE client transaction ${this.id}.`), this.state === g.Completed && this.stateTransition(g.Terminated);
+    this.logger.debug(`Timer D expired for INVITE client transaction ${this.id}.`), this.state === f.Completed && this.stateTransition(f.Terminated);
   }
   /**
    * If Timer M fires while the client transaction is in the "Accepted"
@@ -5482,7 +5483,7 @@ class se extends Ce {
    * https://tools.ietf.org/html/rfc6026#section-8.4
    */
   timerM() {
-    this.logger.debug(`Timer M expired for INVITE client transaction ${this.id}.`), this.state === g.Accepted && this.stateTransition(g.Terminated);
+    this.logger.debug(`Timer M expired for INVITE client transaction ${this.id}.`), this.state === f.Accepted && this.stateTransition(f.Terminated);
   }
 }
 class F {
@@ -5521,8 +5522,8 @@ class F {
       callId: this.message.callId,
       cseq: this.message.cseq
     }, t.extraHeaders);
-    return r.branch = this.message.branch, this.message.headers.Route && (r.headers.Route = this.message.headers.Route), e && r.setHeader("Reason", e), this.transaction.state === g.Proceeding ? new F(B, this.core, r) : this.transaction.addStateChangeListener(() => {
-      this.transaction && this.transaction.state === g.Proceeding && new F(B, this.core, r);
+    return r.branch = this.message.branch, this.message.headers.Route && (r.headers.Route = this.message.headers.Route), e && r.setHeader("Reason", e), this.transaction.state === f.Proceeding ? new F(B, this.core, r) : this.transaction.addStateChangeListener(() => {
+      this.transaction && this.transaction.state === f.Proceeding && new F(B, this.core, r);
     }, { once: !0 }), r;
   }
   /**
@@ -5636,7 +5637,7 @@ class F {
       loggerFactory: this.loggerFactory,
       onRequestTimeout: () => this.onRequestTimeout(),
       onStateChange: (s) => {
-        s === g.Terminated && (this.core.userAgentClients.delete(r), t === this._transaction && this.dispose());
+        s === f.Terminated && (this.core.userAgentClients.delete(r), t === this._transaction && this.dispose());
       },
       onTransportError: (s) => this.onTransportError(s),
       receiveResponse: (s) => this.receiveResponse(s)
@@ -5646,7 +5647,7 @@ class F {
     this.core.userAgentClients.set(r, this);
   }
 }
-class St extends F {
+class $t extends F {
   constructor(e, t, r) {
     const s = e.createOutgoingRequestMessage(b.BYE, r);
     super(B, e.userAgentCore, s, t), e.dispose();
@@ -5663,7 +5664,7 @@ class j extends Xe {
    * @param user - The transaction user.
    */
   constructor(e, t, r) {
-    super(e, t, r, g.Trying, "sip.transaction.nist");
+    super(e, t, r, f.Trying, "sip.transaction.nist");
   }
   /**
    * Destructor.
@@ -5682,23 +5683,23 @@ class j extends Xe {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   receiveRequest(e) {
     switch (this.state) {
-      case g.Trying:
+      case f.Trying:
         break;
-      case g.Proceeding:
+      case f.Proceeding:
         if (!this.lastResponse)
           throw new Error("Last response undefined.");
         this.send(this.lastResponse).catch((t) => {
           this.logTransportError(t, "Failed to send retransmission of provisional response.");
         });
         break;
-      case g.Completed:
+      case f.Completed:
         if (!this.lastResponse)
           throw new Error("Last response undefined.");
         this.send(this.lastResponse).catch((t) => {
           this.logTransportError(t, "Failed to send retransmission of final response.");
         });
         break;
-      case g.Terminated:
+      case f.Terminated:
         break;
       default:
         throw new Error(`Invalid state ${this.state}`);
@@ -5715,31 +5716,31 @@ class j extends Xe {
     if (e > 100 && e <= 199)
       throw new Error("Provisional response other than 100 not allowed.");
     switch (this.state) {
-      case g.Trying:
+      case f.Trying:
         if (this.lastResponse = t, e >= 100 && e < 200) {
-          this.stateTransition(g.Proceeding), this.send(t).catch((s) => {
+          this.stateTransition(f.Proceeding), this.send(t).catch((s) => {
             this.logTransportError(s, "Failed to send provisional response.");
           });
           return;
         }
         if (e >= 200 && e <= 699) {
-          this.stateTransition(g.Completed), this.send(t).catch((s) => {
+          this.stateTransition(f.Completed), this.send(t).catch((s) => {
             this.logTransportError(s, "Failed to send final response.");
           });
           return;
         }
         break;
-      case g.Proceeding:
+      case f.Proceeding:
         if (this.lastResponse = t, e >= 200 && e <= 699) {
-          this.stateTransition(g.Completed), this.send(t).catch((s) => {
+          this.stateTransition(f.Completed), this.send(t).catch((s) => {
             this.logTransportError(s, "Failed to send final response.");
           });
           return;
         }
         break;
-      case g.Completed:
+      case f.Completed:
         return;
-      case g.Terminated:
+      case f.Terminated:
         break;
       default:
         throw new Error(`Invalid state ${this.state}`);
@@ -5754,7 +5755,7 @@ class j extends Xe {
    * https://tools.ietf.org/html/rfc3261#section-17.2.4
    */
   onTransportError(e) {
-    this.user.onTransportError && this.user.onTransportError(e), this.stateTransition(g.Terminated, !0);
+    this.user.onTransportError && this.user.onTransportError(e), this.stateTransition(f.Terminated, !0);
   }
   /** For logging. */
   typeToString() {
@@ -5765,22 +5766,22 @@ class j extends Xe {
       throw new Error(`Invalid state transition from ${this.state} to ${e}`);
     };
     switch (e) {
-      case g.Trying:
+      case f.Trying:
         r();
         break;
-      case g.Proceeding:
-        this.state !== g.Trying && r();
+      case f.Proceeding:
+        this.state !== f.Trying && r();
         break;
-      case g.Completed:
-        this.state !== g.Trying && this.state !== g.Proceeding && r();
+      case f.Completed:
+        this.state !== f.Trying && this.state !== f.Proceeding && r();
         break;
-      case g.Terminated:
-        this.state !== g.Proceeding && this.state !== g.Completed && (t || r());
+      case f.Terminated:
+        this.state !== f.Proceeding && this.state !== f.Completed && (t || r());
         break;
       default:
         r();
     }
-    e === g.Completed && (this.J = setTimeout(() => this.timerJ(), q.TIMER_J)), e === g.Terminated && this.dispose(), this.setState(e);
+    e === f.Completed && (this.J = setTimeout(() => this.timerJ(), q.TIMER_J)), e === f.Terminated && this.dispose(), this.setState(e);
   }
   /**
    * The server transaction remains in this state until Timer J fires,
@@ -5788,7 +5789,7 @@ class j extends Xe {
    * https://tools.ietf.org/html/rfc3261#section-17.2.2
    */
   timerJ() {
-    this.logger.debug(`Timer J expired for NON-INVITE server transaction ${this.id}.`), this.state === g.Completed && this.stateTransition(g.Terminated);
+    this.logger.debug(`Timer J expired for NON-INVITE server transaction ${this.id}.`), this.state === f.Completed && this.stateTransition(f.Terminated);
   }
 }
 class X {
@@ -5869,37 +5870,37 @@ class X {
   }
   get acceptable() {
     if (this.transaction instanceof N)
-      return this.transaction.state === g.Proceeding || this.transaction.state === g.Accepted;
+      return this.transaction.state === f.Proceeding || this.transaction.state === f.Accepted;
     if (this.transaction instanceof j)
-      return this.transaction.state === g.Trying || this.transaction.state === g.Proceeding;
+      return this.transaction.state === f.Trying || this.transaction.state === f.Proceeding;
     throw new Error("Unknown transaction type.");
   }
   get progressable() {
     if (this.transaction instanceof N)
-      return this.transaction.state === g.Proceeding;
+      return this.transaction.state === f.Proceeding;
     if (this.transaction instanceof j)
       return !1;
     throw new Error("Unknown transaction type.");
   }
   get redirectable() {
     if (this.transaction instanceof N)
-      return this.transaction.state === g.Proceeding;
+      return this.transaction.state === f.Proceeding;
     if (this.transaction instanceof j)
-      return this.transaction.state === g.Trying || this.transaction.state === g.Proceeding;
+      return this.transaction.state === f.Trying || this.transaction.state === f.Proceeding;
     throw new Error("Unknown transaction type.");
   }
   get rejectable() {
     if (this.transaction instanceof N)
-      return this.transaction.state === g.Proceeding;
+      return this.transaction.state === f.Proceeding;
     if (this.transaction instanceof j)
-      return this.transaction.state === g.Trying || this.transaction.state === g.Proceeding;
+      return this.transaction.state === f.Trying || this.transaction.state === f.Proceeding;
     throw new Error("Unknown transaction type.");
   }
   get tryingable() {
     if (this.transaction instanceof N)
-      return this.transaction.state === g.Proceeding;
+      return this.transaction.state === f.Proceeding;
     if (this.transaction instanceof j)
-      return this.transaction.state === g.Trying;
+      return this.transaction.state === f.Trying;
     throw new Error("Unknown transaction type.");
   }
   /**
@@ -5924,7 +5925,7 @@ class X {
     const e = {
       loggerFactory: this.loggerFactory,
       onStateChange: (s) => {
-        s === g.Terminated && (this.core.userAgentServers.delete(r), this.dispose());
+        s === f.Terminated && (this.core.userAgentServers.delete(r), this.dispose());
       },
       onTransportError: (s) => {
         this.logger.error(s.message), this.delegate && this.delegate.onTransportError ? this.delegate.onTransportError(s) : this.logger.error("User agent server response transport error.");
@@ -5935,18 +5936,18 @@ class X {
     this.core.userAgentServers.set(t.id, this);
   }
 }
-class $t extends X {
+class Ct extends X {
   constructor(e, t, r) {
     super(j, e.userAgentCore, t, r);
   }
 }
-class Ct extends F {
+class It extends F {
   constructor(e, t, r) {
     const s = e.createOutgoingRequestMessage(b.INFO, r);
     super(B, e.userAgentCore, s, t);
   }
 }
-class It extends X {
+class At extends X {
   constructor(e, t, r) {
     super(j, e.userAgentCore, t, r);
   }
@@ -5961,13 +5962,13 @@ class et extends X {
     super(j, e, t, r);
   }
 }
-class At extends F {
+class Dt extends F {
   constructor(e, t, r) {
     const s = e.createOutgoingRequestMessage(b.NOTIFY, r);
     super(B, e.userAgentCore, s, t);
   }
 }
-function Dt(a) {
+function Ht(a) {
   return a.userAgentCore !== void 0;
 }
 class Re extends X {
@@ -5977,17 +5978,17 @@ class Re extends X {
    * @param message - Incoming NOTIFY request message.
    */
   constructor(e, t, r) {
-    const s = Dt(e) ? e.userAgentCore : e;
+    const s = Ht(e) ? e.userAgentCore : e;
     super(j, s, t, r);
   }
 }
-class Ht extends F {
+class Pt extends F {
   constructor(e, t, r) {
     const s = e.createOutgoingRequestMessage(b.PRACK, r);
     super(B, e.userAgentCore, s, t), e.signalingStateTransition(s);
   }
 }
-class Pt extends X {
+class _t extends X {
   constructor(e, t, r) {
     super(j, e.userAgentCore, t, r), e.signalingStateTransition(t), this.dialog = e;
   }
@@ -5999,7 +6000,7 @@ class Pt extends X {
     return e.body && this.dialog.signalingStateTransition(e.body), super.accept(e);
   }
 }
-class _t extends F {
+class kt extends F {
   constructor(e, t, r) {
     const s = e.createOutgoingRequestMessage(b.INVITE, r);
     super(se, e.userAgentCore, s, t), this.delegate = t, e.signalingStateTransition(s), e.reinviteUserAgentClient = this, this.dialog = e;
@@ -6042,7 +6043,7 @@ class _t extends F {
     }
   }
 }
-class kt extends X {
+class qt extends X {
   constructor(e, t, r) {
     super(N, e.userAgentCore, t, r), e.reinviteUserAgentServer = this, this.dialog = e;
   }
@@ -6084,13 +6085,13 @@ class kt extends X {
     return this.dialog.signalingStateRollback(), this.dialog.reinviteUserAgentServer = void 0, super.reject(e);
   }
 }
-class qt extends F {
+class Ft extends F {
   constructor(e, t, r) {
     const s = e.createOutgoingRequestMessage(b.REFER, r);
     super(B, e.userAgentCore, s, t);
   }
 }
-function Ft(a) {
+function Mt(a) {
   return a.userAgentCore !== void 0;
 }
 class tt extends X {
@@ -6100,7 +6101,7 @@ class tt extends X {
    * @param message - Incoming REFER request message.
    */
   constructor(e, t, r) {
-    const s = Ft(e) ? e.userAgentCore : e;
+    const s = Mt(e) ? e.userAgentCore : e;
     super(j, s, t, r);
   }
 }
@@ -6210,10 +6211,10 @@ class ye extends le {
     if (this.logger.log(`INVITE dialog ${this.id} sending BYE request`), this.initialTransaction instanceof N) {
       if (this.early)
         throw new Error("UAS MUST NOT send a BYE on early dialogs.");
-      if (this.ackWait && this.initialTransaction.state !== g.Terminated)
+      if (this.ackWait && this.initialTransaction.state !== f.Terminated)
         throw new Error("UAS MUST NOT send a BYE on a confirmed dialog until it has received an ACK for its 2xx response or until the server transaction times out.");
     }
-    return new St(this, e, t);
+    return new $t(this, e, t);
   }
   /**
    * An INFO request can be associated with an Info Package (see
@@ -6228,7 +6229,7 @@ class ye extends le {
   info(e, t) {
     if (this.logger.log(`INVITE dialog ${this.id} sending INFO request`), this.early)
       throw new Error("Dialog not confirmed.");
-    return new Ct(this, e, t);
+    return new It(this, e, t);
   }
   /**
    * Modifying an Existing Session
@@ -6258,7 +6259,7 @@ class ye extends le {
       throw new Error("There is an ongoing re-INVITE client transaction.");
     if (this.reinviteUserAgentServer)
       throw new Error("There is an ongoing re-INVITE server transaction.");
-    return new _t(this, e, t);
+    return new kt(this, e, t);
   }
   /**
    * A UAC MAY associate a MESSAGE request with an existing dialog.  If a
@@ -6282,7 +6283,7 @@ class ye extends le {
   notify(e, t) {
     if (this.logger.log(`INVITE dialog ${this.id} sending NOTIFY request`), this.early)
       throw new Error("Dialog not confirmed.");
-    return new At(this, e, t);
+    return new Dt(this, e, t);
   }
   /**
    * Assuming the response is to be transmitted reliably, the UAC MUST
@@ -6295,7 +6296,7 @@ class ye extends le {
    * @param options - Options bucket.
    */
   prack(e, t) {
-    return this.logger.log(`INVITE dialog ${this.id} sending PRACK request`), new Ht(this, e, t);
+    return this.logger.log(`INVITE dialog ${this.id} sending PRACK request`), new Pt(this, e, t);
   }
   /**
    * REFER is a SIP request and is constructed as defined in [1].  A REFER
@@ -6306,7 +6307,7 @@ class ye extends le {
   refer(e, t) {
     if (this.logger.log(`INVITE dialog ${this.id} sending REFER request`), this.early)
       throw new Error("Dialog not confirmed.");
-    return new qt(this, e, t);
+    return new Ft(this, e, t);
   }
   /**
    * Requests sent within a dialog, as any other requests, are atomic.  If
@@ -6384,13 +6385,13 @@ class ye extends le {
     switch (e.method) {
       case b.BYE:
         {
-          const t = new $t(this, e);
+          const t = new Ct(this, e);
           this.delegate && this.delegate.onBye ? this.delegate.onBye(t) : t.accept(), this.dispose();
         }
         break;
       case b.INFO:
         {
-          const t = new It(this, e);
+          const t = new At(this, e);
           this.delegate && this.delegate.onInfo ? this.delegate.onInfo(t) : t.reject({
             statusCode: 469,
             extraHeaders: ["Recv-Info:"]
@@ -6399,7 +6400,7 @@ class ye extends le {
         break;
       case b.INVITE:
         {
-          const t = new kt(this, e);
+          const t = new qt(this, e);
           this.signalingStateTransition(e), this.delegate && this.delegate.onInvite ? this.delegate.onInvite(t) : t.reject({ statusCode: 488 });
         }
         break;
@@ -6417,7 +6418,7 @@ class ye extends le {
         break;
       case b.PRACK:
         {
-          const t = new Pt(this, e);
+          const t = new _t(this, e);
           this.delegate && this.delegate.onPrack ? this.delegate.onPrack(t) : t.accept();
         }
         break;
@@ -6543,7 +6544,7 @@ class ye extends le {
       };
       this.invite2xxTimer = setTimeout(r, t);
       const s = () => {
-        e.state === g.Terminated && (e.removeStateChangeListener(s), this.invite2xxTimer && (clearTimeout(this.invite2xxTimer), this.invite2xxTimer = void 0), this.ackWait && (this.delegate && this.delegate.onAckTimeout ? this.delegate.onAckTimeout() : this.bye()));
+        e.state === f.Terminated && (e.removeStateChangeListener(s), this.invite2xxTimer && (clearTimeout(this.invite2xxTimer), this.invite2xxTimer = void 0), this.ackWait && (this.delegate && this.delegate.onAckTimeout ? this.delegate.onAckTimeout() : this.bye()));
       };
       e.addStateChangeListener(s);
     }
@@ -6562,13 +6563,13 @@ class ye extends le {
       };
       this.invite2xxTimer = setTimeout(r, t);
       const s = () => {
-        e.state === g.Terminated && (e.removeStateChangeListener(s), this.invite2xxTimer && (clearTimeout(this.invite2xxTimer), this.invite2xxTimer = void 0), this.reinviteUserAgentServer);
+        e.state === f.Terminated && (e.removeStateChangeListener(s), this.invite2xxTimer && (clearTimeout(this.invite2xxTimer), this.invite2xxTimer = void 0), this.reinviteUserAgentServer);
       };
       e.addStateChangeListener(s);
     }
   }
 }
-class Mt extends F {
+class Ot extends F {
   constructor(e, t, r) {
     super(se, e, t, r), this.confirmedDialogAcks = /* @__PURE__ */ new Map(), this.confirmedDialogs = /* @__PURE__ */ new Map(), this.earlyDialogs = /* @__PURE__ */ new Map(), this.delegate = r;
   }
@@ -6580,7 +6581,7 @@ class Mt extends F {
    * @param error - Transport error
    */
   onTransportError(e) {
-    if (this.transaction.state === g.Calling)
+    if (this.transaction.state === f.Calling)
       return super.onTransportError(e);
     this.logger.error(e.message), this.logger.error("User agent client request transport error while sending ACK.");
   }
@@ -6792,22 +6793,22 @@ class ke extends X {
     return super.reject(e);
   }
 }
-class Ot extends F {
-  constructor(e, t, r) {
-    super(B, e, t, r);
-  }
-}
 class Nt extends F {
   constructor(e, t, r) {
     super(B, e, t, r);
   }
 }
-class Ut extends X {
+class Ut extends F {
+  constructor(e, t, r) {
+    super(B, e, t, r);
+  }
+}
+class jt extends X {
   constructor(e, t, r) {
     super(j, e, t, r), this.core = e;
   }
 }
-class jt extends F {
+class Bt extends F {
   constructor(e, t, r) {
     const s = e.createOutgoingRequestMessage(b.SUBSCRIBE, r);
     super(B, e.userAgentCore, s, t), this.dialog = e;
@@ -6849,10 +6850,10 @@ class Le extends le {
       throw new Error("Contact undefined.");
     if (!(i instanceof O))
       throw new Error("Contact not instance of NameAddrHeader.");
-    const n = i.uri, o = e.cseq, d = void 0, m = e.callId, f = e.fromTag, w = t.fromTag;
+    const n = i.uri, o = e.cseq, d = void 0, m = e.callId, u = e.fromTag, w = t.fromTag;
     if (!m)
       throw new Error("Call id undefined.");
-    if (!f)
+    if (!u)
       throw new Error("From tag undefined.");
     if (!w)
       throw new Error("To tag undefined.");
@@ -6862,10 +6863,10 @@ class Le extends le {
       throw new Error("To undefined.");
     const E = e.from.uri, I = e.to.uri;
     return {
-      id: m + f + w,
+      id: m + u + w,
       early: !1,
       callId: m,
-      localTag: f,
+      localTag: u,
       remoteTag: w,
       localSequenceNumber: o,
       remoteSequenceNumber: d,
@@ -6951,7 +6952,7 @@ class Le extends le {
     if (this.subscriptionState !== $.Pending && this.subscriptionState !== $.Active)
       throw new Error(`Invalid state ${this.subscriptionState}. May only re-subscribe while in state "pending" or "active".`);
     this.logger.log(`SUBSCRIBE dialog ${this.id} sending SUBSCRIBE request`);
-    const s = new jt(this, e, t);
+    const s = new Bt(this, e, t);
     return this.N && (clearTimeout(this.N), this.N = void 0), !((r = t.extraHeaders) === null || r === void 0) && r.includes("Expires: 0") || (this.N = setTimeout(() => this.timerN(), q.TIMER_N)), s;
   }
   /**
@@ -7074,7 +7075,7 @@ class Le extends le {
     this.logger.warn("Timer N expired for SUBSCRIBE dialog. Timed out waiting for NOTIFY."), this.subscriptionState !== $.Terminated && (this.stateTransition($.Terminated), this.onTerminated());
   }
 }
-class Bt extends F {
+class Lt extends F {
   constructor(e, t, r) {
     const s = t.getHeader("Event");
     if (!s)
@@ -7191,13 +7192,13 @@ class Bt extends F {
     this.logger.warn("Timer N expired for SUBSCRIBE user agent client. Timed out waiting for NOTIFY."), this.waitNotifyStop(), this.delegate && this.delegate.onNotifyTimeout && this.delegate.onNotifyTimeout();
   }
 }
-class Lt extends X {
+class Vt extends X {
   constructor(e, t, r) {
     super(j, e, t, r), this.core = e;
   }
 }
 const Ve = ["application/sdp", "application/dtmf-relay"];
-class Vt {
+class Gt {
   /**
    * Constructor.
    * @param configuration - Configuration.
@@ -7231,7 +7232,7 @@ class Vt {
    * @param delegate - Request delegate.
    */
   invite(e, t) {
-    return new Mt(this, e, t);
+    return new Ot(this, e, t);
   }
   /**
    * Send MESSAGE.
@@ -7247,7 +7248,7 @@ class Vt {
    * @param delegate - Request delegate.
    */
   publish(e, t) {
-    return new Ot(this, e, t);
+    return new Nt(this, e, t);
   }
   /**
    * Send REGISTER.
@@ -7255,7 +7256,7 @@ class Vt {
    * @param delegate - Request delegate.
    */
   register(e, t) {
-    return new Nt(this, e, t);
+    return new Ut(this, e, t);
   }
   /**
    * Send SUBSCRIBE.
@@ -7263,7 +7264,7 @@ class Vt {
    * @param delegate - Request delegate.
    */
   subscribe(e, t) {
-    return new Bt(this, e, t);
+    return new Lt(this, e, t);
   }
   /**
    * Send a request.
@@ -7284,11 +7285,11 @@ class Vt {
    * @param body - Message body.
    */
   makeOutgoingRequestMessage(e, t, r, s, i, n, o) {
-    const d = this.configuration.sipjsId, m = this.configuration.displayName, f = this.configuration.viaForceRport, w = this.configuration.hackViaTcp, E = this.configuration.supportedOptionTags.slice();
+    const d = this.configuration.sipjsId, m = this.configuration.displayName, u = this.configuration.viaForceRport, w = this.configuration.hackViaTcp, E = this.configuration.supportedOptionTags.slice();
     e === b.REGISTER && E.push("path", "gruu"), e === b.INVITE && (this.configuration.contact.pubGruu || this.configuration.contact.tempGruu) && E.push("gruu");
     const I = this.configuration.routeSet, D = this.configuration.userAgentHeaderFieldValue, y = this.configuration.viaHost, l = Object.assign(Object.assign({}, {
       callIdPrefix: d,
-      forceRport: f,
+      forceRport: u,
       fromDisplayName: m,
       hackViaTcp: w,
       optionTags: E,
@@ -7350,12 +7351,12 @@ class Vt {
    */
   receiveRequestFromTransport(e) {
     const t = e.viaBranch, r = this.userAgentServers.get(t);
-    if (e.method === b.ACK && r && r.transaction.state === g.Accepted && r instanceof ke) {
+    if (e.method === b.ACK && r && r.transaction.state === f.Accepted && r instanceof ke) {
       this.logger.warn(`Discarding out of dialog ACK after 2xx response sent on transaction ${t}.`);
       return;
     }
     if (e.method === b.CANCEL) {
-      r ? (this.replyStateless(e, { statusCode: 200 }), r.transaction instanceof N && r.transaction.state === g.Proceeding && r instanceof ke && r.receiveCancel(e)) : this.replyStateless(e, { statusCode: 481 });
+      r ? (this.replyStateless(e, { statusCode: 200 }), r.transaction instanceof N && r.transaction.state === f.Proceeding && r instanceof ke && r.receiveCancel(e)) : this.replyStateless(e, { statusCode: 481 });
       return;
     }
     if (r) {
@@ -7501,13 +7502,13 @@ class Vt {
         break;
       case b.REGISTER:
         {
-          const t = new Ut(this, e);
+          const t = new jt(this, e);
           this.delegate.onRegister ? this.delegate.onRegister(t) : t.reject({ statusCode: 405 });
         }
         break;
       case b.SUBSCRIBE:
         {
-          const t = new Lt(this, e);
+          const t = new Vt(this, e);
           this.delegate.onSubscribe ? this.delegate.onSubscribe(t) : t.reject({ statusCode: 480 });
         }
         break;
@@ -7533,10 +7534,10 @@ class Vt {
     r ? r.transaction.receiveResponse(e) : this.logger.warn(`Discarding unmatched ${e.statusCode} response to ${e.method} ${t}.`);
   }
 }
-function Gt() {
+function Kt() {
   return (a) => !a.audio && !a.video ? Promise.resolve(new MediaStream()) : navigator.mediaDevices === void 0 ? Promise.reject(new Error("Media devices not available in insecure contexts.")) : navigator.mediaDevices.getUserMedia.call(navigator.mediaDevices, a);
 }
-function Kt() {
+function Wt() {
   return {
     bundlePolicy: "balanced",
     certificates: void 0,
@@ -7870,10 +7871,10 @@ class M {
       const m = d.kind;
       if (m !== "audio" && m !== "video")
         throw new Error(`Unknown new track kind ${m}.`);
-      const f = t.getSenders().find((w) => w.track && w.track.kind === m);
-      f ? s.push(new Promise((w) => {
+      const u = t.getSenders().find((w) => w.track && w.track.kind === m);
+      u ? s.push(new Promise((w) => {
         this.logger.debug(`SessionDescriptionHandler.setLocalMediaStream - replacing sender ${m} track`), w();
-      }).then(() => f.replaceTrack(d).then(() => {
+      }).then(() => u.replaceTrack(d).then(() => {
         const w = r.getTracks().find((E) => E.kind === m);
         w && (w.stop(), r.removeTrack(w), M.dispatchRemoveTrackEvent(r, w)), r.addTrack(d), M.dispatchAddTrackEvent(r, d);
       }).catch((w) => {
@@ -8094,12 +8095,12 @@ class M {
     };
   }
 }
-function Wt(a) {
+function Yt(a) {
   return (e, t) => {
-    a === void 0 && (a = Gt());
+    a === void 0 && (a = Kt());
     const s = {
       iceGatheringTimeout: (t == null ? void 0 : t.iceGatheringTimeout) !== void 0 ? t == null ? void 0 : t.iceGatheringTimeout : 5e3,
-      peerConnectionConfiguration: Object.assign(Object.assign({}, Kt()), t == null ? void 0 : t.peerConnectionConfiguration)
+      peerConnectionConfiguration: Object.assign(Object.assign({}, Wt()), t == null ? void 0 : t.peerConnectionConfiguration)
     }, i = e.userAgent.getLogger("sip.SessionDescriptionHandler");
     return new M(i, a, s);
   };
@@ -8513,7 +8514,7 @@ class G {
         const s = Math.floor(Math.random() * 254 + 1);
         this.options.viaHost = "192.0.2." + s;
       } else this.options.hackIpInContact && (this.options.viaHost = this.options.hackIpInContact);
-    switch (this.loggerFactory = new yt(), this.logger = this.loggerFactory.getLogger("sip.UserAgent"), this.loggerFactory.builtinEnabled = this.options.logBuiltinEnabled, this.loggerFactory.connector = this.options.logConnector, this.options.logLevel) {
+    switch (this.loggerFactory = new St(), this.logger = this.loggerFactory.getLogger("sip.UserAgent"), this.loggerFactory.builtinEnabled = this.options.logBuiltinEnabled, this.loggerFactory.connector = this.options.logConnector, this.options.logLevel) {
       case "error":
         this.loggerFactory.level = k.error;
         break;
@@ -8597,7 +8598,7 @@ class G {
       reconnectionAttempts: 0,
       reconnectionDelay: 4,
       sendInitialProvisionalResponse: !0,
-      sessionDescriptionHandlerFactory: Wt(),
+      sessionDescriptionHandlerFactory: Yt(),
       sessionDescriptionHandlerFactoryOptions: {},
       sipExtension100rel: K.Unsupported,
       sipExtensionReplaces: K.Unsupported,
@@ -8606,7 +8607,7 @@ class G {
       transportConstructor: ve,
       transportOptions: {},
       uri: new z("sip", "anonymous", "anonymous.invalid"),
-      userAgentString: "SIP.js/" + ht,
+      userAgentString: "SIP.js/" + lt,
       viaHost: ""
     };
   }
@@ -8822,7 +8823,7 @@ class G {
    */
   initCore() {
     let e = [];
-    e.push("outbound"), this.options.sipExtension100rel === K.Supported && e.push("100rel"), this.options.sipExtensionReplaces === K.Supported && e.push("replaces"), this.options.sipExtensionExtraSupported && e.push(...this.options.sipExtensionExtraSupported), this.options.hackAllowUnregisteredOptionTags || (e = e.filter((i) => Et[i])), e = Array.from(new Set(e));
+    e.push("outbound"), this.options.sipExtension100rel === K.Supported && e.push("100rel"), this.options.sipExtensionReplaces === K.Supported && e.push("replaces"), this.options.sipExtensionExtraSupported && e.push(...this.options.sipExtensionExtraSupported), this.options.hackAllowUnregisteredOptionTags || (e = e.filter((i) => xt[i])), e = Array.from(new Set(e));
     const t = e.slice();
     (this.contact.pubGruu || this.contact.tempGruu) && t.push("gruu");
     const r = {
@@ -8840,7 +8841,7 @@ class G {
       viaHost: this.options.viaHost,
       authenticationFactory: () => {
         const i = this.options.authorizationUsername ? this.options.authorizationUsername : this.options.uri.user, n = this.options.authorizationPassword ? this.options.authorizationPassword : void 0, o = this.options.authorizationHa1 ? this.options.authorizationHa1 : void 0;
-        return new Rt(this.getLoggerFactory(), o, i, n);
+        return new yt(this.getLoggerFactory(), o, i, n);
       },
       transportAccessor: () => this.transport
     }, s = {
@@ -8858,8 +8859,8 @@ class G {
         }, i.trying(), this.options.sipExtensionReplaces !== K.Unsupported) {
           const m = i.message.parseHeader("replaces");
           if (m) {
-            const f = m.call_id;
-            if (typeof f != "string")
+            const u = m.call_id;
+            if (typeof u != "string")
               throw new Error("Type of call id is not string");
             const w = m.replaces_to_tag;
             if (typeof w != "string")
@@ -8867,7 +8868,7 @@ class G {
             const E = m.replaces_from_tag;
             if (typeof E != "string")
               throw new Error("type of from tag is not string");
-            const I = f + w + E, D = this.userAgentCore.dialogs.get(I);
+            const I = u + w + E, D = this.userAgentCore.dialogs.get(I);
             if (!D) {
               o.reject({ statusCode: 481 });
               return;
@@ -8876,7 +8877,7 @@ class G {
               o.reject({ statusCode: 486 });
               return;
             }
-            const y = this._sessions[f + E] || this._sessions[f + w] || void 0;
+            const y = this._sessions[u + E] || this._sessions[u + w] || void 0;
             if (!y)
               throw new Error("Session does not exist.");
             o._replacee = y;
@@ -8921,7 +8922,7 @@ class G {
         this.logger.warn("Received an out of dialog SUBSCRIBE request"), this.delegate && this.delegate.onSubscribeRequest ? this.delegate.onSubscribeRequest(i) : i.reject({ statusCode: 405 });
       }
     };
-    return new Vt(r, s);
+    return new Gt(r, s);
   }
   initTransportCallbacks() {
     this.transport.onConnect = () => this.onTransportConnect(), this.transport.onDisconnect = (e) => this.onTransportDisconnect(e), this.transport.onMessage = (e) => this.onTransportMessage(e);
@@ -9014,7 +9015,7 @@ class G {
     this.logger.log(`Transitioned from ${this._state} to ${e}`), this._state = e, this._stateEventEmitter.emit(this._state);
   }
 }
-function Yt() {
+function Zt() {
   return (a, e) => ({ session: e, held: !1, muted: !1 });
 }
 class Me {
@@ -9029,7 +9030,7 @@ class Me {
       autoStop: !0,
       delegate: {},
       iceStopWaitingOnServerReflexive: !1,
-      managedSessionFactory: Yt(),
+      managedSessionFactory: Zt(),
       maxSimultaneousSessions: 2,
       media: {},
       optionsPingInterval: -1,
@@ -9431,7 +9432,7 @@ Duration=` + 2e3
   async message(e, t) {
     this.logger.log("Sending message...");
     const r = G.makeURI(e);
-    return r ? new xt(this.userAgent, r, t).message() : Promise.reject(new Error(`Failed to create a valid URI from "${e}"`));
+    return r ? new Rt(this.userAgent, r, t).message() : Promise.reject(new Error(`Failed to create a valid URI from "${e}"`));
   }
   /** Media constraints. */
   get constraints() {
@@ -9562,8 +9563,8 @@ Duration=` + 2e3
         return;
       }
       let m;
-      const f = /^(Duration\s?=\s?)([0-9]{1,4})(\s)?.*/;
-      if (n[1] !== void 0 && f.test(n[1]) && (m = parseInt(n[1].replace(f, "$2"), 10)), !m) {
+      const u = /^(Duration\s?=\s?)([0-9]{1,4})(\s)?.*/;
+      if (n[1] !== void 0 && u.test(n[1]) && (m = parseInt(n[1].replace(u, "$2"), 10)), !m) {
         r.reject();
         return;
       }
@@ -9793,7 +9794,7 @@ Duration=` + 2e3
     return this.logger.log(`[${e.id}] Terminating in state ${e.state}, no action taken`), Promise.resolve();
   }
 }
-class Zt {
+class Jt {
   /**
    * Constructs a new instance of the `SimpleUser` class.
    * @param server - SIP WebSocket Server URL.
@@ -10062,8 +10063,8 @@ class Zt {
     return this.logger.log(`[${this.id}] sending message...`), this.sessionManager.message(e, t);
   }
 }
-var Jt = /* @__PURE__ */ ((a) => (a.idle = "idle", a.connecting = "connecting", a.calling = "calling", a.ringing = "ringing", a.connected = "connected", a.failed = "failed", a.busy = "busy", a.error = "error", a.unknown = "unknown", a))(Jt || {});
-const zt = ot({
+var zt = /* @__PURE__ */ ((a) => (a.idle = "idle", a.connecting = "connecting", a.calling = "calling", a.ringing = "ringing", a.connected = "connected", a.failed = "failed", a.busy = "busy", a.error = "error", a.unknown = "unknown", a))(zt || {});
+const Xt = ot({
   state: "idle",
   call: (a) => {
   },
@@ -10071,7 +10072,7 @@ const zt = ot({
   },
   hangup: () => {
   }
-}), er = ({ children: a, sipConfig: e }) => {
+}), rr = ({ children: a, sipConfig: e }) => {
   const [t, r] = ct(
     "idle"
     /* idle */
@@ -10080,7 +10081,7 @@ const zt = ot({
     server: o,
     aor: d,
     userAgentOptions: m
-  } = e, f = Ae(new Audio(new URL("../dist/assets/PhoneRing.mp3", import.meta.url).href)), w = {
+  } = e, u = Ae(null), w = {
     aor: d,
     media: {
       remote: {
@@ -10090,7 +10091,7 @@ const zt = ot({
     userAgentOptions: m
   };
   dt(() => {
-    i.current || (i.current = new Zt(o, w));
+    i.current || (i.current = new Jt(o, w)), u.current = new Audio(`data:audio/mp3;base64,${ht}`);
     const l = i.current;
     return l.delegate = {
       onCallAnswered: () => {
@@ -10158,7 +10159,7 @@ const zt = ot({
         );
       }
     })(), () => {
-      i.current && (i.current.delegate = {}, i.current.disconnect()), f.current.pause(), f.current.currentTime = 0;
+      i.current && (i.current.delegate = {}, i.current.disconnect()), u.current && (u.current.pause(), u.current.currentTime = 0);
     };
   }, []);
   async function E(l) {
@@ -10212,19 +10213,19 @@ const zt = ot({
         }
   }
   const y = () => {
-    console.log("Playing ring audio"), f.current.play().catch((l) => {
+    u.current && (console.log("Playing ring audio"), u.current.play().catch((l) => {
       console.error("Failed to play audio:", l);
-    });
+    }));
   }, W = () => {
-    console.log("Pausing ring audio"), f.current.pause(), f.current.currentTime = 0;
+    u.current && (console.log("Pausing ring audio"), u.current.pause(), u.current.currentTime = 0);
   };
-  return /* @__PURE__ */ nt(zt.Provider, { value: { state: t, call: E, receive: I, hangup: D }, children: [
+  return /* @__PURE__ */ nt(Xt.Provider, { value: { state: t, call: E, receive: I, hangup: D }, children: [
     /* @__PURE__ */ at("audio", { ref: s }),
     a
   ] });
 };
 export {
-  zt as SipContext,
-  er as SipContextProvider,
-  Jt as SipState
+  Xt as SipContext,
+  rr as SipContextProvider,
+  zt as SipState
 };
